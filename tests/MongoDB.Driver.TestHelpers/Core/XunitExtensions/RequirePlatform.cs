@@ -15,6 +15,7 @@
 
 using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Xunit.Sdk;
 
 namespace MongoDB.Driver.TestHelpers
@@ -40,20 +41,25 @@ namespace MongoDB.Driver.TestHelpers
 
         public static SupportedOperatingSystem GetCurrentOperatingSystem()
         {
-#if WINDOWS
-            return SupportedOperatingSystem.Windows;
-#endif
-#if LINUX
-            return SupportedOperatingSystem.Linux;
-#endif
-#if MACOS
-            return SupportedOperatingSystem.MacOS;
-#endif
-
-            throw new InvalidOperationException($"Unable to determine current operating system.");
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return SupportedOperatingSystem.Windows;
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return SupportedOperatingSystem.Linux;
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                return SupportedOperatingSystem.MacOS;
+            }
+            else
+            {
+                throw new InvalidOperationException($"Unable to determine current operating system.");
+            }
         }
 
-        public static SupportedTargetFramework GetCurrentTargetFramework() => TargetFramework.Moniker switch
+        private static SupportedTargetFramework GetCurrentTargetFramework() => TargetFramework.Moniker switch
         {
             "net472" => SupportedTargetFramework.Net472,
             "netstandard21" => SupportedTargetFramework.NetStandard21,
