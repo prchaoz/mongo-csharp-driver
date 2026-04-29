@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FluentAssertions;
@@ -104,20 +105,22 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
             Max = ulong.MaxValue,
         }
 
-        public class EnumPrototypes : IEnumerable
+        public class EnumPrototypes : IEnumerable<object[]>
         {
-            public IEnumerator GetEnumerator()
+            public IEnumerator<object[]> GetEnumerator()
             {
-                yield return EnumByte.Min;
-                yield return EnumInt16.Min;
-                yield return EnumInt32.Min;
-                yield return EnumInt64.Min;
-                yield return EnumSByte.Min;
-                yield return EnumUInt16.Min;
-                yield return EnumUInt16.Min;
-                yield return EnumUInt32.Min;
-                yield return EnumUInt64.Min;
+                yield return [EnumByte.Min];
+                yield return [EnumInt16.Min];
+                yield return [EnumInt32.Min];
+                yield return [EnumInt64.Min];
+                yield return [EnumSByte.Min];
+                yield return [EnumUInt16.Min];
+                yield return [EnumUInt16.Min];
+                yield return [EnumUInt32.Min];
+                yield return [EnumUInt64.Min];
             }
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
 
         [Theory]

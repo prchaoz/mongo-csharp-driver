@@ -28,8 +28,6 @@ using MongoDB.Driver.Core.Bindings;
 using MongoDB.Driver.Core.Events;
 using MongoDB.Driver.Core.Misc;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
-using MongoDB.Driver.TestHelpers;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 
@@ -941,19 +939,21 @@ namespace MongoDB.Driver.Tests
             public int PropC;
         }
 
-        public class UpdateTestCases  : IEnumerable
+        public class UpdateTestCases  : IEnumerable<object[]>
         {
-            public IEnumerator GetEnumerator()
+            public IEnumerator<object[]> GetEnumerator()
             {
-                yield return (new A(), new B(), "_t: \"B\"");
-                yield return (new A(), new C(), "_t: \"C\"");
-                yield return (new B(), new C(), "_t: \"C\"");
-                yield return (new AHierarchical(), new BHierarchical(), "_t: [\"AHierarchical\", \"BHierarchical\"]");
-                yield return (new AHierarchical(), new CHierarchical(),
-                    "_t: [\"AHierarchical\", \"BHierarchical\", \"CHierarchical\"]");
-                yield return (new BHierarchical(), new CHierarchical(),
-                    "_t: [\"AHierarchical\", \"BHierarchical\", \"CHierarchical\"]");
+                yield return [(new A(), new B(), "_t: \"B\"")];
+                yield return [(new A(), new C(), "_t: \"C\"")];
+                yield return [(new B(), new C(), "_t: \"C\"")];
+                yield return [(new AHierarchical(), new BHierarchical(), "_t: [\"AHierarchical\", \"BHierarchical\"]")];
+                yield return [(new AHierarchical(), new CHierarchical(),
+                    "_t: [\"AHierarchical\", \"BHierarchical\", \"CHierarchical\"]")];
+                yield return [(new BHierarchical(), new CHierarchical(),
+                    "_t: [\"AHierarchical\", \"BHierarchical\", \"CHierarchical\"]")];
             }
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
     }
 
