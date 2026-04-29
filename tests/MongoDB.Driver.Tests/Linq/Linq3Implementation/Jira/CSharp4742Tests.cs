@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using FluentAssertions;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver.TestHelpers;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira

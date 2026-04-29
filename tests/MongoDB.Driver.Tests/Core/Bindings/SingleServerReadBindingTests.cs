@@ -19,7 +19,6 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using MongoDB.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Core.Servers;
 using Moq;
 using Xunit;

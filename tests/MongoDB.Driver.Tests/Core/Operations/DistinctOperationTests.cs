@@ -23,7 +23,6 @@ using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver.Core.Clusters;
 using MongoDB.Driver.Core.TestHelpers;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Driver.Core.Operations

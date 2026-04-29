@@ -20,7 +20,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using MongoDB.Bson;
-using MongoDB.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Tests;
 using Xunit;
 using MongoDB.Driver.GridFS;

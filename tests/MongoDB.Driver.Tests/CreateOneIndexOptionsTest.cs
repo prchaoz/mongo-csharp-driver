@@ -15,7 +15,6 @@
 
 using System;
 using FluentAssertions;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Driver.Tests

@@ -23,7 +23,6 @@ using Xunit;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
-using MongoDB.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using MongoDB.Bson.TestHelpers;
 

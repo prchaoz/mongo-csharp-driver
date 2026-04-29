@@ -39,7 +39,6 @@ using MongoDB.Driver.Core.TestHelpers.Logging;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Core.WireProtocol;
 using MongoDB.Driver.Core.WireProtocol.Messages.Encoders;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 using Xunit.Abstractions;

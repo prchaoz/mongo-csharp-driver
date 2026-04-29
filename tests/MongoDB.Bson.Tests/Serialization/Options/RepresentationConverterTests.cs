@@ -16,7 +16,6 @@
 using System;
 using FluentAssertions;
 using MongoDB.Bson.Serialization.Options;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Bson.Tests.Serialization

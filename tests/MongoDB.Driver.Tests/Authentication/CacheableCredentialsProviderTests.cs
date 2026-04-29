@@ -20,7 +20,6 @@ using FluentAssertions;
 using MongoDB.Bson;
 using MongoDB.Driver.Authentication.External;
 using MongoDB.Driver.Core.Misc;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 

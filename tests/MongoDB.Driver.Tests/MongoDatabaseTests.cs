@@ -28,7 +28,6 @@ using MongoDB.Driver.Core.Misc;
 using MongoDB.Driver.Core.Operations;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Tests;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 

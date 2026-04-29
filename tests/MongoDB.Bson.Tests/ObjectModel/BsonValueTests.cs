@@ -18,7 +18,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using FluentAssertions;
 using MongoDB.Bson.TestHelpers;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Bson.Tests

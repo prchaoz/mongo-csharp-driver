@@ -17,7 +17,6 @@ using System;
 using System.Net.Sockets;
 using System.Threading;
 using FluentAssertions;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Driver.Core.Configuration

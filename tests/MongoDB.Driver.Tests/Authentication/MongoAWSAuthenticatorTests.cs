@@ -29,7 +29,6 @@ using MongoDB.Driver.Core.Helpers;
 using MongoDB.Driver.Core.Misc;
 using MongoDB.Driver.Core.Servers;
 using MongoDB.Driver.Core.TestHelpers;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 using SystemClock = MongoDB.Driver.Authentication.AWS.SystemClock;

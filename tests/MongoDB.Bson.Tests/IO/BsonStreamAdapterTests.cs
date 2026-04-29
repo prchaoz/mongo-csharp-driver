@@ -21,7 +21,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using MongoDB.Bson.IO;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 using Reflector = MongoDB.Bson.TestHelpers.Reflector;

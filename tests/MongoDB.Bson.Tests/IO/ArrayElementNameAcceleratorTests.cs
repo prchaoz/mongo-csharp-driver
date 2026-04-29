@@ -15,7 +15,6 @@
 
 using System;
 using MongoDB.Bson.IO;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Bson.Tests.IO

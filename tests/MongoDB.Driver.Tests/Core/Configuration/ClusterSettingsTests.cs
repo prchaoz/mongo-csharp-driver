@@ -19,7 +19,6 @@ using System.Threading;
 using FluentAssertions;
 using MongoDB.Bson.TestHelpers.EqualityComparers;
 using MongoDB.Driver.Core.Misc;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Driver.Core.Configuration

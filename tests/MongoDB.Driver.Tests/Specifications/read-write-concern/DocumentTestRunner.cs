@@ -17,8 +17,8 @@ using System;
 using FluentAssertions;
 using MongoDB.Bson;
 using Xunit;
-using MongoDB.TestHelpers.XunitExtensions;
 using MongoDB.Bson.TestHelpers.JsonDrivenTests;
+using MongoDB.TestHelpers.XunitExtensions;
 
 namespace MongoDB.Driver.Tests.Specifications.read_write_concern.tests
 {

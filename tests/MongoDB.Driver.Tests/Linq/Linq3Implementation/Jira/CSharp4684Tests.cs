@@ -19,7 +19,6 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using MongoDB.Driver.Linq;
 using MongoDB.Driver.TestHelpers;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira

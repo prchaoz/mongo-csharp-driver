@@ -17,7 +17,6 @@ using System;
 using FluentAssertions;
 using MongoDB.Bson;
 using MongoDB.Driver.GridFS;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Driver.Tests.GridFS

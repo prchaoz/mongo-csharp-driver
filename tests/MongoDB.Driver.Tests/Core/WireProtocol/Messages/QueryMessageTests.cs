@@ -17,7 +17,6 @@ using System;
 using FluentAssertions;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
-using MongoDB.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Core.WireProtocol.Messages.Encoders;
 using Moq;
 using Xunit;

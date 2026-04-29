@@ -23,7 +23,6 @@ using MongoDB.Bson;
 using MongoDB.Driver.Core.Bindings;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using MongoDB.Driver.GridFS;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 

@@ -23,9 +23,9 @@ using FluentAssertions;
 using MongoDB.Bson;
 using MongoDB.Driver.Core.Configuration;
 using Xunit;
-using MongoDB.TestHelpers.XunitExtensions;
 using System.Collections;
 using System.Threading.Tasks;
+using MongoDB.TestHelpers.XunitExtensions;
 using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Tests.Specifications.initial_dns_seedlist_discovery

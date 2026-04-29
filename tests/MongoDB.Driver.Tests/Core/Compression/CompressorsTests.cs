@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Text;
 using FluentAssertions;
 using MongoDB.Bson.IO;
-using MongoDB.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Core.Compression;
 using SharpCompress.IO;
 using Xunit;

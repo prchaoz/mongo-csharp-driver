@@ -15,7 +15,6 @@
 
 using System;
 using FluentAssertions;
-using MongoDB.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Core.Misc;
 using Xunit;
 

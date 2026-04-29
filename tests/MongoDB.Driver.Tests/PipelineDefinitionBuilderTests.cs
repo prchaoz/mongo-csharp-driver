@@ -21,7 +21,6 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver.GeoJsonObjectModel;
 using MongoDB.Driver.Search;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 

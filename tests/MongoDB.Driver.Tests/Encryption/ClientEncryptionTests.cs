@@ -30,7 +30,6 @@ using MongoDB.Driver.Core.Servers;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Tests.Specifications.client_side_encryption;
 using MongoDB.Driver.Encryption;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 

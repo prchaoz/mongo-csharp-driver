@@ -20,7 +20,6 @@ using System.Runtime.InteropServices;
 using System.Security;
 using FluentAssertions;
 using MongoDB.Bson.IO;
-using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
 
 namespace MongoDB.Driver.Core.Misc.Tests

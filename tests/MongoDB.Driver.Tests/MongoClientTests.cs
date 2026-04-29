@@ -22,7 +22,6 @@ using MongoDB.Bson;
 using MongoDB.Driver.Core.Bindings;
 using MongoDB.Driver.Core.Clusters;
 using MongoDB.Driver.Core.Operations;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 

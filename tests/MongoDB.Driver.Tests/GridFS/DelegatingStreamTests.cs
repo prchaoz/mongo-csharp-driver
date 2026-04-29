@@ -19,7 +19,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using MongoDB.Driver.GridFS;
-using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
 
