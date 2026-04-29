@@ -127,9 +127,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CanRead_should_call_wrapped_stream(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool canRead)
         {
             var mockStream = new Mock<Stream>();
@@ -155,9 +155,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CanSeek_should_call_wrapped_stream(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool canSeek)
         {
             var mockStream = new Mock<Stream>();
@@ -183,9 +183,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CanTimeout_should_call_wrapped_stream(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool canTimeout)
         {
             var mockStream = new Mock<Stream>();
@@ -211,9 +211,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CanWrite_should_call_wrapped_stream(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool canWrite)
         {
             var mockStream = new Mock<Stream>();
@@ -272,9 +272,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool ownsStream)
         {
             var mockStream = new Mock<Stream>();
@@ -354,9 +354,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Dispose_should_dispose_stream_only_when_it_owns_it(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool ownsStream)
         {
             var mockStream = new Mock<Stream>();
@@ -485,9 +485,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Length_get_should_call_wrapped_stream(
-            [Values(0L, 1L, 2L)]
+            [CombinatorialValues(0L, 1L, 2L)]
             long length)
         {
             var mockStream = new Mock<Stream>();
@@ -513,9 +513,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Position_get_should_call_wrapped_stream(
-            [Values(0, 1, 2)]
+            [CombinatorialValues(0, 1, 2)]
             long position)
         {
             var mockStream = new Mock<Stream>();
@@ -541,9 +541,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Position_set_should_call_wrapped_stream(
-            [Values(0, 1, 2)]
+            [CombinatorialValues(0, 1, 2)]
             long position)
         {
             var mockStream = new Mock<Stream>();
@@ -741,9 +741,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadDecimal128_should_return_expected_result(
-            [Values("-1.0", "0.0", "1.0", "NaN", "-Infinity", "Infinity")]
+            [CombinatorialValues("-1.0", "0.0", "1.0", "NaN", "-Infinity", "Infinity")]
             string valueString
             )
         {
@@ -773,9 +773,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadDouble_should_return_expected_result(
-            [Values(-1.0, 0.0, 1.0, double.Epsilon, double.MaxValue, double.MinValue, double.NaN, double.NegativeInfinity, double.PositiveInfinity)]
+            [CombinatorialValues(-1.0, 0.0, 1.0, double.Epsilon, double.MaxValue, double.MinValue, double.NaN, double.NegativeInfinity, double.PositiveInfinity)]
             double value
             )
         {
@@ -815,9 +815,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadInt32_should_return_expected_result(
-            [Values(-1, 0, 1, int.MaxValue, int.MinValue)]
+            [CombinatorialValues(-1, 0, 1, int.MaxValue, int.MinValue)]
             int value)
         {
             var bytes = new byte[4];
@@ -856,9 +856,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadInt64_should_return_expected_result(
-            [Values(-1, 0, 1, long.MaxValue, long.MinValue)]
+            [CombinatorialValues(-1, 0, 1, long.MaxValue, long.MinValue)]
             long value)
         {
             var bytes = new byte[8];
@@ -1004,9 +1004,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadTimeout_get_should_call_wrapped_stream(
-            [Values(0, 1, 2)]
+            [CombinatorialValues(0, 1, 2)]
             int readTimeout)
         {
             var mockStream = new Mock<Stream>();
@@ -1032,9 +1032,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadTimeout_set_should_call_wrapped_stream(
-            [Values(0, 1, 2)]
+            [CombinatorialValues(0, 1, 2)]
             int readTimeout)
         {
             var mockStream = new Mock<Stream>();
@@ -1268,9 +1268,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteCString_should_throw_when_value_with_maxByteCount_near_tempUtf8_contains_nulls(
-            [Values(-1, 0, 1)] int delta)
+            [CombinatorialValues(-1, 0, 1)] int delta)
         {
             const int tempUtf8LegacySize = 128;
 
@@ -1313,9 +1313,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteCString_should_write_expected_bytes_when_maxByteCount_is_near_tempUtf8_length(
-            [Values(-1, 0, 1)]
+            [CombinatorialValues(-1, 0, 1)]
             int delta)
         {
             const int tempUtf8LegacySize = 128;
@@ -1371,9 +1371,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteDecimal128_should_write_expected_bytes(
-            [Values("-1.0", "0.0", "1.0", "NaN", "-Infinity", "Infinity")]
+            [CombinatorialValues("-1.0", "0.0", "1.0", "NaN", "-Infinity", "Infinity")]
             string valueString)
         {
             var value = Decimal128.Parse(valueString);
@@ -1401,9 +1401,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteDouble_should_write_expected_bytes(
-           [Values(-1.0, 0.0, 1.0, double.Epsilon, double.MaxValue, double.MinValue, double.NaN, double.NegativeInfinity, double.PositiveInfinity)]
+           [CombinatorialValues(-1.0, 0.0, 1.0, double.Epsilon, double.MaxValue, double.MinValue, double.NaN, double.NegativeInfinity, double.PositiveInfinity)]
             double value)
         {
             var stream = new MemoryStream();
@@ -1454,9 +1454,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteInt32_should_write_expected_bytes(
-            [Values(-1, 0, 1, int.MaxValue, int.MinValue)]
+            [CombinatorialValues(-1, 0, 1, int.MaxValue, int.MinValue)]
             int value)
         {
             var stream = new MemoryStream();
@@ -1495,9 +1495,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteInt64_should_write_expected_bytes(
-            [Values(-1L, 0L, 1L, long.MaxValue, long.MinValue)]
+            [CombinatorialValues(-1L, 0L, 1L, long.MaxValue, long.MinValue)]
             long value)
         {
             var stream = new MemoryStream();
@@ -1601,9 +1601,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteString_should_write_expected_bytes_when_size_is_near_tempUtf8_length(
-            [Values(-1, 0, 1)]
+            [CombinatorialValues(-1, 0, 1)]
             int delta)
         {
             const int tempUtf8LegacySize = 128;
@@ -1625,9 +1625,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteTimeout_get_should_call_wrapped_stream(
-            [Values(0, 1, 2)]
+            [CombinatorialValues(0, 1, 2)]
             int writeTimeout)
         {
             var mockStream = new Mock<Stream>();
@@ -1653,9 +1653,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteTimeout_set_should_call_wrapped_stream(
-            [Values(0, 1, 2)]
+            [CombinatorialValues(0, 1, 2)]
             int writeTimeout)
         {
             var mockStream = new Mock<Stream>();

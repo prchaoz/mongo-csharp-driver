@@ -25,8 +25,8 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
     public class CSharp4234Tests : Linq3IntegrationTest
     {
         [Theory]
-        [ParameterAttributeData]
-        public void AppendStage_should_work([Values(false, true)] bool useResultSerializer)
+        [CombinatorialData]
+        public void AppendStage_should_work([CombinatorialValues(false, true)] bool useResultSerializer)
         {
             var collection = CreateProductsCollection();
             var textStage = "{ $match : { $text : { $search : 'apples' } } }";

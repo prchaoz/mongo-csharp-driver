@@ -54,12 +54,12 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ShouldTrackState_should_be_correct(
-            [Values(false, true)] bool logCommands,
-            [Values(false, true)] bool captureCommandSucceeded,
-            [Values(false, true)] bool captureCommandFailed,
-            [Values(false, true)] bool traceCommands)
+            [CombinatorialValues(false, true)] bool logCommands,
+            [CombinatorialValues(false, true)] bool captureCommandSucceeded,
+            [CombinatorialValues(false, true)] bool captureCommandFailed,
+            [CombinatorialValues(false, true)] bool traceCommands)
         {
             var mockLogger = new Mock<ILogger<LogCategories.Command>>();
             mockLogger.Setup(m => m.IsEnabled(LogLevel.Debug)).Returns(logCommands);
@@ -84,12 +84,12 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ShouldTrackState_should_be_correct_with_activity_listener(
-            [Values(false, true)] bool logCommands,
-            [Values(false, true)] bool captureCommandSucceeded,
-            [Values(false, true)] bool captureCommandFailed,
-            [Values(false, true)] bool traceCommands)
+            [CombinatorialValues(false, true)] bool logCommands,
+            [CombinatorialValues(false, true)] bool captureCommandSucceeded,
+            [CombinatorialValues(false, true)] bool captureCommandFailed,
+            [CombinatorialValues(false, true)] bool traceCommands)
         {
             ActivityListener listener = null;
             try

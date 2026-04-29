@@ -35,9 +35,9 @@ namespace MongoDB.Driver.Tests
     public class AggregateFluentTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void As_should_add_the_expected_stage(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var subject = CreateCollectionSubject(collection: mockCollection.Object);
@@ -123,9 +123,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Count_should_add_the_expected_stage(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var mockCollection = CreateMockCollection();
@@ -167,9 +167,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Count_should_return_the_expected_result(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -550,8 +550,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Lookup_without_let_should_return_the_expected_result([Values(null, "{}")] string emptyLetValue)
+        [CombinatorialData]
+        public void Lookup_without_let_should_return_the_expected_result([CombinatorialValues(null, "{}")] string emptyLetValue)
         {
             RequireServer.Check();
 
@@ -613,9 +613,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Merge_should_add_the_expected_stage_and_call_Aggregate(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var subject =
@@ -661,9 +661,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void OfType_should_add_the_expected_stage(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var subject = CreateCollectionSubject(collection: mockCollection.Object);
@@ -709,10 +709,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Out_with_collection_should_add_the_expected_stage_and_call_Aggregate(
-            [Values(false, true)] bool async,
-            [Values(true, false)] bool usingTimeSeriesCollection)
+            [CombinatorialValues(false, true)] bool async,
+            [CombinatorialValues(true, false)] bool usingTimeSeriesCollection)
         {
             var inputDatabase = CreateMockDatabase("inputDatabaseName").Object;
             var mockInputCollection = CreateMockCollection(inputDatabase, "inputCollectionName");
@@ -767,10 +767,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Out_with_string_should_add_the_expected_stage_and_call_Aggregate(
-            [Values(false, true)] bool async,
-            [Values(true, false)] bool usingTimeSeriesCollection)
+            [CombinatorialValues(false, true)] bool async,
+            [CombinatorialValues(true, false)] bool usingTimeSeriesCollection)
         {
             var inputDatabase = CreateMockDatabase("inputDatabaseName").Object;
             var mockInputCollection = CreateMockCollection(inputDatabase, "inputCollectionName");
@@ -824,9 +824,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReplaceRoot_should_add_the_expected_stage(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var mockCollection = CreateMockCollection();
@@ -869,8 +869,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void ReplaceWith_should_add_the_expected_stage([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void ReplaceWith_should_add_the_expected_stage([CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var subject = CreateCollectionSubject(collection: mockCollection.Object);
@@ -911,9 +911,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SortByCount_should_add_the_expected_stage(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var mockCollection = CreateMockCollection();
@@ -956,11 +956,11 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToCollection_should_call_collection_AggregateToCollection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values("$out", "$merge")] string lastStageName,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues("$out", "$merge")] string lastStageName,
+            [CombinatorialValues(false, true)] bool async)
         {
             var session = usingSession ? new Mock<IClientSessionHandle>().Object : null;
             var mockCollection = CreateMockCollection();
@@ -1029,11 +1029,11 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToCollection_should_call_database_AggregateToCollection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values("$out", "$merge")] string lastStageName,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues("$out", "$merge")] string lastStageName,
+            [CombinatorialValues(false, true)] bool async)
         {
             var session = usingSession ? new Mock<IClientSessionHandle>().Object : null;
             var mockDatabase = CreateMockDatabase();
@@ -1102,10 +1102,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToCursor_should_call_collection_Aggregate_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var session = usingSession ? new Mock<IClientSessionHandle>().Object : null;
             var mockCollection = CreateMockCollection();
@@ -1168,10 +1168,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToCursor_should_call_database_Aggregate_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var session = usingSession ? new Mock<IClientSessionHandle>().Object : null;
             var mockDatabase = CreateMockDatabase();

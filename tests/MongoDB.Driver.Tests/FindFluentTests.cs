@@ -33,9 +33,9 @@ namespace MongoDB.Driver.Tests
         private Mock<IMongoCollection<Person>> _mockCollection;
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void As_should_change_the_result_type(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -74,10 +74,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Count_should_call_collection_Count(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var session = CreateSession(usingSession);
             var filter = new BsonDocumentFilterDefinition<Person>(new BsonDocument("filter", 1));
@@ -160,10 +160,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CountDocuments_should_call_collection_CountDocuments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var session = CreateSession(usingSession);
             var filter = new BsonDocumentFilterDefinition<Person>(new BsonDocument("filter", 1));
@@ -238,10 +238,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToCursor_should_call_collection_Find_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var session = usingSession ? new Mock<IClientSessionHandle>().Object : null;
             var filter = Builders<Person>.Filter.Eq("_id", 1);

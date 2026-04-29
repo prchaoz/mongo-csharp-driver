@@ -273,10 +273,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetResumeToken_should_return_expected_results_when_batch_is_empty_or_fully_iterated(
-            [Values(false, true)] bool async,
-            [Values(false, true)] bool withResumeAfter)
+            [CombinatorialValues(false, true)] bool async,
+            [CombinatorialValues(false, true)] bool withResumeAfter)
         {
             RequireServer.Check().ClusterTypes(ClusterType.ReplicaSet);
             var pipeline = new BsonDocument[0];
@@ -337,9 +337,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetResumeToken_should_return_expected_results_when_batch_is_not_empty_and_has_not_been_iterated(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.ReplicaSet);
             var pipeline = new BsonDocument[0];
@@ -390,10 +390,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MoveNext_should_call_MoveNext_on_cursor(
-            [Values(false, true)] bool expectedResult,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool expectedResult,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCursor = CreateMockCursor();
             var subject = CreateSubject(cursor: mockCursor.Object);
@@ -422,14 +422,14 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MoveNext_should_call_Resume_after_resumable_exception(
-            [Values(
+            [CombinatorialValues(
                 typeof(MongoConnectionException), // network error
                 typeof(MongoNotPrimaryException),
                 typeof(MongoNodeIsRecoveringException))] Type resumableExceptionType,
-            [Values(false, true)] bool expectedResult,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool expectedResult,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCursor = CreateMockCursor();
             var mockBinding = new Mock<IReadBinding>();
@@ -476,9 +476,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         void ProcessBatch_should_deserialize_documents(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCursor = CreateMockCursor();
             var mockSerializer = new Mock<IBsonSerializer<BsonDocument>>();
@@ -511,9 +511,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         void ProcessBatch_should_Dispose_rawDocuments(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCursor = CreateMockCursor();
             var mockSerializer = new Mock<IBsonSerializer<BsonDocument>>();
@@ -546,9 +546,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         void ProcessBatch_should_save_documentResumeToken(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var postBatchResumeToken = new BsonDocument("a", 1);
             var mockCursor = CreateMockCursor(postBatchResumeToken);
@@ -581,9 +581,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         void ProcessBatch_should_throw_when_resume_token_is_missing(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCursor = CreateMockCursor();
             var subject = CreateSubject(cursor: mockCursor.Object);

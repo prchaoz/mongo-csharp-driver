@@ -60,8 +60,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Close_should_call_supported_kill_cursors([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Close_should_call_supported_kill_cursors([CombinatorialValues(false, true)] bool async)
         {
             var mockChannelHandle = new Mock<IChannelHandle>();
             int testCursorId = 1;
@@ -87,8 +87,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Close_should_dispose_cursor_only_once([Values(false, true)]bool async)
+        [CombinatorialData]
+        public void Close_should_dispose_cursor_only_once([CombinatorialValues(false, true)]bool async)
         {
             int testCursorId = 1;
             var mockChannelHandle = new Mock<IChannelHandle>();
@@ -113,8 +113,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Close_should_not_call_kill_cursor_when_channel_is_already_expired([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Close_should_not_call_kill_cursor_when_channel_is_already_expired([CombinatorialValues(false, true)] bool async)
         {
             var mockChannelHandle = new Mock<IChannelHandle>();
             var mockChannelSource = new Mock<IChannelSource>();
@@ -218,9 +218,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_batch_size_is_invalid(
-            [Values(-1)]
+            [CombinatorialValues(-1)]
             int value)
         {
             Action action = () => CreateSubject(batchSize: value);
@@ -245,9 +245,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_limit_is_invalid(
-            [Values(-1)]
+            [CombinatorialValues(-1)]
             int value)
         {
             Action action = () => CreateSubject(limit: value);
@@ -395,9 +395,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetMore_should_use_same_session(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockChannelSource = new Mock<IChannelSource>();
             var channelSource = mockChannelSource.Object;

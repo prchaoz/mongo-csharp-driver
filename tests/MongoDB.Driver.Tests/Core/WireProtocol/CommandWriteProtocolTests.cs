@@ -52,8 +52,8 @@ namespace MongoDB.Driver.Core.WireProtocol
                 .Add("maxWireVersion", WireVersion.Server49)));
 
         [Theory]
-        [ParameterAttributeData]
-        public void Execute_should_use_cached_IWireProtocol_if_available([Values(false, true)] bool withSameConnection)
+        [CombinatorialData]
+        public void Execute_should_use_cached_IWireProtocol_if_available([CombinatorialValues(false, true)] bool withSameConnection)
         {
             var session = NoCoreSession.Instance;
             var responseHandling = CommandResponseHandling.Return;
@@ -133,10 +133,10 @@ namespace MongoDB.Driver.Core.WireProtocol
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Execute_should_use_serverApi_with_getMoreCommand(
-            [Values(false, true)] bool useServerApi,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool useServerApi,
+            [CombinatorialValues(false, true)] bool async)
         {
             var serverApi = useServerApi ? new ServerApi(ServerApiVersion.V1, true, true) : null;
 
@@ -178,10 +178,10 @@ namespace MongoDB.Driver.Core.WireProtocol
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Execute_should_use_serverApi_in_transaction(
-            [Values(false, true)] bool useServerApi,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool useServerApi,
+            [CombinatorialValues(false, true)] bool async)
         {
             var serverApi = useServerApi ? new ServerApi(ServerApiVersion.V1, true, true) : null;
 

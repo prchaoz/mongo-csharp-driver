@@ -38,9 +38,9 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Constructor_with_representation_should_return_expected_result(
-            [Values(BsonType.Decimal128, BsonType.Int32, BsonType.Int64, BsonType.String, BsonType.Double)] BsonType representation)
+            [CombinatorialValues(BsonType.Decimal128, BsonType.Int32, BsonType.Int64, BsonType.String, BsonType.Double)] BsonType representation)
         {
             var subject = new Decimal128Serializer(representation);
 
@@ -154,10 +154,10 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WithRepresentation_should_return_expected_result(
-            [Values(BsonType.Decimal128, BsonType.Int32, BsonType.Int64, BsonType.String, BsonType.Double)] BsonType oldRepresentation,
-            [Values(BsonType.Decimal128, BsonType.Int32, BsonType.Int64, BsonType.String, BsonType.Double)] BsonType newRepresentation)
+            [CombinatorialValues(BsonType.Decimal128, BsonType.Int32, BsonType.Int64, BsonType.String, BsonType.Double)] BsonType oldRepresentation,
+            [CombinatorialValues(BsonType.Decimal128, BsonType.Int32, BsonType.Int64, BsonType.String, BsonType.Double)] BsonType newRepresentation)
         {
             var subject = new Decimal128Serializer(oldRepresentation);
 

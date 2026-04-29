@@ -1295,9 +1295,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([Values("Infinity", "-Infinity", "NaN")] string edgeValue,
-            [Values("numberDecimal", "numberDouble")] string typeIndicator)
+        [CombinatorialData]
+        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([CombinatorialValues("Infinity", "-Infinity", "NaN")] string edgeValue,
+            [CombinatorialValues("numberDecimal", "numberDouble")] string typeIndicator)
         {
             var json = $$"""{ "x" : { "${{typeIndicator}}" : "{{edgeValue}}" } }""";
             var subject = new Int16Serializer();
@@ -1389,9 +1389,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([Values("Infinity", "-Infinity", "NaN")] string edgeValue,
-            [Values("numberDecimal", "numberDouble")] string typeIndicator)
+        [CombinatorialData]
+        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([CombinatorialValues("Infinity", "-Infinity", "NaN")] string edgeValue,
+            [CombinatorialValues("numberDecimal", "numberDouble")] string typeIndicator)
         {
             var json = $$"""{ "x" : { "${{typeIndicator}}" : "{{edgeValue}}" } }""";
             var subject = new Int32Serializer();
@@ -1483,9 +1483,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([Values("Infinity", "-Infinity", "NaN")] string edgeValue,
-            [Values("numberDecimal", "numberDouble")] string typeIndicator)
+        [CombinatorialData]
+        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([CombinatorialValues("Infinity", "-Infinity", "NaN")] string edgeValue,
+            [CombinatorialValues("numberDecimal", "numberDouble")] string typeIndicator)
         {
             var json = $$"""{ "x" : { "${{typeIndicator}}" : "{{edgeValue}}" } }""";
             var subject = new Int64Serializer();
@@ -2192,9 +2192,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Serialize_NaN_or_Infinity_to_integral_should_throw([Values(BsonType.Int64, BsonType.Int32)] BsonType representation,
-            [Values(float.PositiveInfinity, float.NegativeInfinity, float.NaN)] float value)
+        [CombinatorialData]
+        public void Serialize_NaN_or_Infinity_to_integral_should_throw([CombinatorialValues(BsonType.Int64, BsonType.Int32)] BsonType representation,
+            [CombinatorialValues(float.PositiveInfinity, float.NegativeInfinity, float.NaN)] float value)
         {
             var subject = new SingleSerializer(representation);
 
@@ -2595,9 +2595,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([Values("Infinity", "-Infinity", "NaN")] string edgeValue,
-            [Values("numberDecimal", "numberDouble")] string typeIndicator)
+        [CombinatorialData]
+        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([CombinatorialValues("Infinity", "-Infinity", "NaN")] string edgeValue,
+            [CombinatorialValues("numberDecimal", "numberDouble")] string typeIndicator)
         {
             var json = $$"""{ "x" : { "${{typeIndicator}}" : "{{edgeValue}}" } }""";
             var subject = new UInt16Serializer();
@@ -2783,9 +2783,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([Values("Infinity", "-Infinity", "NaN")] string edgeValue,
-            [Values("numberDecimal", "numberDouble")] string typeIndicator)
+        [CombinatorialData]
+        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([CombinatorialValues("Infinity", "-Infinity", "NaN")] string edgeValue,
+            [CombinatorialValues("numberDecimal", "numberDouble")] string typeIndicator)
         {
             var json = $$"""{ "x" : { "${{typeIndicator}}" : "{{edgeValue}}" } }""";
             var subject = new UInt32Serializer();
@@ -2971,9 +2971,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([Values("Infinity", "-Infinity", "NaN")] string edgeValue,
-            [Values("numberDecimal", "numberDouble")] string typeIndicator)
+        [CombinatorialData]
+        public void Deserialize_NaN_or_Infinity_from_floating_point_should_throw([CombinatorialValues("Infinity", "-Infinity", "NaN")] string edgeValue,
+            [CombinatorialValues("numberDecimal", "numberDouble")] string typeIndicator)
         {
             var json = $$"""{ "x" : { "${{typeIndicator}}" : "{{edgeValue}}" } }""";
             var subject = new UInt64Serializer();

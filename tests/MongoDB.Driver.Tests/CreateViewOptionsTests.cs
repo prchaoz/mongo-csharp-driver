@@ -35,9 +35,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Collation_get_and_set_should_work(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var subject = new CreateViewOptions<BsonDocument>();
@@ -50,9 +50,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DocumentSerializer_get_and_set_should_work(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool isValueNull)
         {
             var subject = new CreateViewOptions<BsonDocument>();
@@ -65,9 +65,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SerializerRegistry_get_and_set_should_work(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool isValueNull)
         {
             var subject = new CreateViewOptions<BsonDocument>();

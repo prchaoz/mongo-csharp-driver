@@ -47,11 +47,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BsonWriter_should_fail_on_invalid_child_elements_names(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int levelsCount,
-            [Values(true, false)]
+            [CombinatorialValues(true, false)]
             bool addValidatorOnRoot)
         {
             var levelNames = Enumerable.Range(0, levelsCount).Select(i => $"level{i}").ToArray();
@@ -90,11 +90,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BsonWriter_should_validate_child_elements_names(
-            [Values(1, 2, 3)]
+            [CombinatorialValues(1, 2, 3)]
             int levelsCount,
-            [Values(true, false)]
+            [CombinatorialValues(true, false)]
             bool addValidatorOnRoot)
         {
             var levelNames = Enumerable.Range(0, levelsCount).Select(i => $"level{i}").ToArray();

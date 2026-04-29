@@ -69,11 +69,11 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCreateChunksCollectionIndexesOperation_should_return_expected_result(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int databaseW,
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? bucketW)
         {
             var bucketWriteConcern = bucketW.HasValue ? new WriteConcern(bucketW.Value) : null;
@@ -93,11 +93,11 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCreateFilesCollectionIndexesOperation_should_return_expected_result(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int databaseW,
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? bucketW)
         {
             var bucketWriteConcern = bucketW.HasValue ? new WriteConcern(bucketW.Value) : null;
@@ -117,11 +117,11 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateDropCollectionOperation_should_return_expected_result(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int databaseW,
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? bucketW)
         {
             var bucketWriteConcern = bucketW.HasValue ? new WriteConcern(bucketW.Value) : null;
@@ -153,9 +153,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Delete_with_BsonValue_id_should_throw_when_id_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -175,9 +175,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DownloadAsBytes_with_BsonValue_id_should_throw_when_id_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -197,9 +197,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DownloadAsBytesByName_should_throw_when_filename_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -217,9 +217,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DownloadToStream_with_BsonValue_id_should_throw_when_id_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var destination = new Mock<Stream>().Object;
@@ -240,9 +240,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DownloadToStream_with_BsonValue_id_should_throw_when_destination_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var id = (BsonValue)123;
@@ -263,9 +263,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DownloadToStream_with_ObjectId_id_should_throw_when_destination_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var id = ObjectId.GenerateNewId();
@@ -284,9 +284,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DownloadToStreamByName_should_throw_when_destination_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var filename = "filename";
@@ -305,9 +305,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DownloadToStreamByName_should_throw_when_filename_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var destination = new Mock<Stream>().Object;
@@ -326,10 +326,10 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [Trait("Category", "Integration")]
         public void Drop_should_drop_the_files_and_chunks_collections(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var client = DriverTestConfiguration.Client;
@@ -352,10 +352,10 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [Trait("Category", "Integration")]
         public void Drop_should_throw_when_a_write_concern_error_occurss(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterType(ClusterType.ReplicaSet);
@@ -381,9 +381,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Find_should_throw_when_filter_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -401,9 +401,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void OpenDownloadStream_with_BsonValue_id_should_throw_when_id_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -423,9 +423,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void OpenDownloadStreamByName_should_throw_when_filename_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -443,9 +443,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void OpenUploadStream_should_throw_when_filename_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -479,9 +479,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Rename_with_BsonValue_id_should_throw_when_id_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var newFilename = "filename";
@@ -502,9 +502,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Rename_with_BsonValue_id_should_throw_when_newFilename_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var id = (BsonValue)123;
@@ -525,9 +525,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Rename_with_ObjectId_id_should_throw_when_newFilename_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var id = ObjectId.GenerateNewId();
@@ -546,9 +546,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UploadFromBytes_should_throw_when_filename_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var source = new byte[0];
@@ -567,9 +567,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UploadFromBytes_should_throw_when_source_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var filename = "filename";
@@ -588,9 +588,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UploadFromStream_should_throw_when_filename_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var source = new Mock<Stream>().Object;
@@ -609,9 +609,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UploadFromStream_should_throw_when_source_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var filename = "filename";
@@ -630,10 +630,10 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [Trait("Category", "Integration")]
         public void GridFS_should_work_with_strict_stable_api(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.StableApi);
 

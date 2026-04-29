@@ -27,9 +27,9 @@ namespace MongoDB.Bson.Tests.ObjectModel
     public class BsonBooleanTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_bool_should_return_precreated_instance(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool value)
         {
             var result1 = (BsonBoolean)value;
@@ -39,9 +39,9 @@ namespace MongoDB.Bson.Tests.ObjectModel
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void precreated_instances_should_have_the_expected_value(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool value)
         {
             var result = (BsonBoolean)value;

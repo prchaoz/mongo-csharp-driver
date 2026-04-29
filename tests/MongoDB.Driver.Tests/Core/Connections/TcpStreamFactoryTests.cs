@@ -33,8 +33,8 @@ namespace MongoDB.Driver.Core.Connections
     public class TcpStreamFactoryTests
     {
         [Theory]
-        [ParameterAttributeData]
-        public async Task Connect_should_dispose_socket_if_socket_fails([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Connect_should_dispose_socket_if_socket_fails([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -62,8 +62,8 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task CreateStream_should_throw_a_SocketException_when_the_endpoint_could_not_be_resolved([Values(false, true)]bool async)
+        [CombinatorialData]
+        public async Task CreateStream_should_throw_a_SocketException_when_the_endpoint_could_not_be_resolved([CombinatorialValues(false, true)]bool async)
         {
             var subject = new TcpStreamFactory();
 
@@ -75,8 +75,8 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task CreateStream_should_throw_when_cancellation_is_requested([Values(false, true)]bool async)
+        [CombinatorialData]
+        public async Task CreateStream_should_throw_when_cancellation_is_requested([CombinatorialValues(false, true)]bool async)
         {
             var subject = new TcpStreamFactory();
             var endPoint = new IPEndPoint(new IPAddress(0x01010101), 12345); // a non-existent host and port
@@ -96,8 +96,8 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task CreateStream_should_throw_when_connect_timeout_has_expired([Values(false, true)]bool async)
+        [CombinatorialData]
+        public async Task CreateStream_should_throw_when_connect_timeout_has_expired([CombinatorialValues(false, true)]bool async)
         {
             var settings = new TcpStreamSettings(connectTimeout: TimeSpan.FromMilliseconds(20));
             var subject = new TcpStreamFactory(settings);
@@ -111,8 +111,8 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task CreateStream_should_call_the_socketConfigurator([Values(false, true)]bool async)
+        [CombinatorialData]
+        public async Task CreateStream_should_call_the_socketConfigurator([CombinatorialValues(false, true)]bool async)
         {
             RequireServer.Check();
             var socketConfiguratorWasCalled = false;
@@ -134,8 +134,8 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task CreateStream_should_connect_to_a_running_server_and_return_a_non_null_stream([Values(false, true)]bool async)
+        [CombinatorialData]
+        public async Task CreateStream_should_connect_to_a_running_server_and_return_a_non_null_stream([CombinatorialValues(false, true)]bool async)
         {
             RequireServer.Check();
             var subject = new TcpStreamFactory();
@@ -155,8 +155,8 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task SocketConfigurator_can_be_used_to_set_keepAlive([Values(false, true)]bool async)
+        [CombinatorialData]
+        public async Task SocketConfigurator_can_be_used_to_set_keepAlive([CombinatorialValues(false, true)]bool async)
         {
             RequireServer.Check();
             Action<Socket> socketConfigurator = s => s.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);

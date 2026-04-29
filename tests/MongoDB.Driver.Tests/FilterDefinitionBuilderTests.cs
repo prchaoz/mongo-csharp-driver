@@ -619,10 +619,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Near(
-            [Values(null, 10d)] double? maxDistance,
-            [Values(null, 20d)] double? minDistance)
+            [CombinatorialValues(null, 10d)] double? maxDistance,
+            [CombinatorialValues(null, 20d)] double? minDistance)
         {
             var subject = CreateSubject<BsonDocument>();
             var filter = subject.Near("x", 40, 18, maxDistance, minDistance);
@@ -641,10 +641,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Near_with_GeoJson(
-            [Values(null, 10d)] double? maxDistance,
-            [Values(null, 20d)] double? minDistance)
+            [CombinatorialValues(null, 10d)] double? maxDistance,
+            [CombinatorialValues(null, 20d)] double? minDistance)
         {
             var subject = CreateSubject<BsonDocument>();
             var point = GeoJson.Point(GeoJson.Geographic(40, 18));
@@ -665,10 +665,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void NearSphere(
-            [Values(null, 10d)] double? maxDistance,
-            [Values(null, 20d)] double? minDistance)
+            [CombinatorialValues(null, 10d)] double? maxDistance,
+            [CombinatorialValues(null, 20d)] double? minDistance)
         {
             var subject = CreateSubject<BsonDocument>();
             var filter = subject.NearSphere("x", 40, 18, maxDistance, minDistance);
@@ -687,10 +687,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void NearSphere_with_GeoJson(
-            [Values(null, 10d)] double? maxDistance,
-            [Values(null, 20d)] double? minDistance)
+            [CombinatorialValues(null, 10d)] double? maxDistance,
+            [CombinatorialValues(null, 20d)] double? minDistance)
         {
             var subject = CreateSubject<BsonDocument>();
             var point = GeoJson.Point(GeoJson.Geographic(40, 18));

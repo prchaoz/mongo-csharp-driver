@@ -39,9 +39,9 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values(false, true)] bool isEnabled)
+            [CombinatorialValues(false, true)] bool isEnabled)
         {
             var subject = new ReadPreferenceHedge(isEnabled);
 
@@ -49,9 +49,9 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsEnabled_should_return_expected_result(
-            [Values(false, true)] bool isEnabled)
+            [CombinatorialValues(false, true)] bool isEnabled)
         {
             var subject = new ReadPreferenceHedge(isEnabled);
 
@@ -91,9 +91,9 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetHashCode_should_return_expected_result(
-            [Values(false, true)] bool isEnabled)
+            [CombinatorialValues(false, true)] bool isEnabled)
         {
             var subject = new ReadPreferenceHedge(isEnabled);
 

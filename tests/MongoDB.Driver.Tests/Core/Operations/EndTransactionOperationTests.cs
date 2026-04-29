@@ -50,9 +50,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MessageEncoderSettings_get_should_return_expected_result(
-            [Values(false, true)] bool nullValue)
+            [CombinatorialValues(false, true)] bool nullValue)
         {
             var value = nullValue ? null : new MessageEncoderSettings();
             var subject = CreateSubject(messageEncoderSettings: value);
@@ -63,9 +63,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MessageEncoderSettings_set_should_return_expected_result(
-            [Values(false, true)] bool nullValue)
+            [CombinatorialValues(false, true)] bool nullValue)
         {
             var subject = CreateSubject();
             var value = nullValue ? null : new MessageEncoderSettings();
@@ -97,10 +97,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result(
-            [Values(true, false)] bool useRecoveryToken,
-            [Values(1, 2)] int w)
+            [CombinatorialValues(true, false)] bool useRecoveryToken,
+            [CombinatorialValues(1, 2)] int w)
         {
             var writeConcern = new WriteConcern(w);
             var recoveryToken = useRecoveryToken ? new BsonDocument("cake", "false") : null;

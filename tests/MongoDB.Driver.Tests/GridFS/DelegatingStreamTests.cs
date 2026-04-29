@@ -66,9 +66,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CanRead_should_call_wrapped_stream(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool canRead)
         {
             var mockStream = new Mock<Stream>();
@@ -82,9 +82,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CanSeek_should_call_wrapped_stream(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool canSeek)
         {
             var mockStream = new Mock<Stream>();
@@ -98,9 +98,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CanTimeout_should_call_wrapped_stream(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool canTimeout)
         {
             var mockStream = new Mock<Stream>();
@@ -114,9 +114,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CanWrite_should_call_wrapped_stream(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool canWrite)
         {
             var mockStream = new Mock<Stream>();

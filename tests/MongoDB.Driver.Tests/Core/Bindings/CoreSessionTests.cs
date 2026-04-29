@@ -87,9 +87,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsCausallyConsistent_should_return_expected_result(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var options = new CoreSessionOptions(isCausallyConsistent: value);
             var subject = CreateSubject(options: options);
@@ -100,9 +100,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsImplicit_should_return_expected_result(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var options = new CoreSessionOptions(isImplicit: value);
             var subject = CreateSubject(options: options);
@@ -220,9 +220,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Dispose_should_have_expected_result(
-            [Values(1, 2)] int timesCalled)
+            [CombinatorialValues(1, 2)] int timesCalled)
         {
             var subject = CreateSubject();
 
@@ -261,9 +261,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void EnsureTransactionsAreSupported_should_not_throw_when_there_are_no_connected_servers_with_LB(
-            [Values(0, 1, 2, 3)] int numberOfDisconnectedServers) // 0 - no servers at all
+            [CombinatorialValues(0, 1, 2, 3)] int numberOfDisconnectedServers) // 0 - no servers at all
         {
             var clusterDescription = CreateClusterDescriptionWithDisconnectedServers(numberOfDisconnectedServers);
             clusterDescription = clusterDescription.WithType(ClusterType.LoadBalanced);

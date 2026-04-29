@@ -41,11 +41,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void JsonWriter_should_support_writing_multiple_documents(
-            [Range(0, 3)]
+            [CombinatorialRange(0, 3)]
             int numberOfDocuments,
-            [Values("", " ", "\r\n")]
+            [CombinatorialValues("", " ", "\r\n")]
             string documentSeparator)
         {
             var document = new BsonDocument("x", 1);

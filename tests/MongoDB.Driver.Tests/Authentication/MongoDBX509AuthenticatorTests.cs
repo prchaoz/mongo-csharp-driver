@@ -54,10 +54,10 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_send_serverApi_with_command_wire_protocol(
-            [Values(false, true)] bool useServerApi,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool useServerApi,
+            [CombinatorialValues(false, true)] bool async)
         {
             var serverApi = useServerApi ? new ServerApi(ServerApiVersion.V1, true, true) : null;
 
@@ -92,9 +92,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_with_loadBalancedConnection_should_use_command_wire_protocol(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = new MongoDBX509Authenticator("CN=client,OU=kerneluser,O=10Gen,L=New York City,ST=New York,C=US", null);
 
@@ -128,9 +128,9 @@ namespace MongoDB.Driver.Tests.Authentication
 
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_throw_an_AuthenticationException_when_authentication_fails(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new MongoDBX509Authenticator("CN=client,OU=kerneluser,O=10Gen,L=New York City,ST=New York,C=US", serverApi: null);
@@ -148,9 +148,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_not_throw_when_authentication_succeeds(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new MongoDBX509Authenticator("CN=client,OU=kerneluser,O=10Gen,L=New York City,ST=New York,C=US", serverApi: null);
@@ -169,9 +169,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_not_throw_when_username_is_null(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new MongoDBX509Authenticator(username: null, serverApi: null);

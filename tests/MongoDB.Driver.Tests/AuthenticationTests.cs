@@ -34,9 +34,9 @@ namespace MongoDB.Driver.Tests
     public class AuthenticationTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Authentication_fails_when_user_has_Scram_Sha_1_mechanism_and_mechanism_is_Scram_Sha_256(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ScramSha256Authentication).Authentication(true);
             // mechanisms field in createUser command requires server >=4.0
@@ -53,9 +53,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Authentication_fails_when_user_has_Scram_Sha_256_mechanism_and_mechanism_is_Scram_Sha_1(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ScramSha256Authentication).Authentication(true);
             var client = DriverTestConfiguration.Client;
@@ -71,9 +71,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Authentication_fails_when_user_is_non_extant_and_mechanism_is_not_specified(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ScramSha256Authentication).Authentication(true);
             var client = DriverTestConfiguration.Client;
@@ -88,9 +88,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Authentication_succeeds_when_user_has_both_Scram_Sha_mechanisms_and_mechanism_is_not_specified(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ScramSha256Authentication).Authentication(true);
             var client = DriverTestConfiguration.Client;
@@ -106,9 +106,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Authentication_succeeds_when_user_has_both_scram_sha_mechanisms_and_mechanism_is_Scram_Sha_256(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ScramSha256Authentication).Authentication(true);
 
@@ -124,9 +124,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Authentication_succeeds_when_user_has_Scram_Sha_1_Mechanism_and_mechanism_is_not_specified(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ScramSha256Authentication).Authentication(true);
             // mechanisms field in createUser command requires server >=4.0
@@ -143,9 +143,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Authentication_succeeds_when_user_has_Scram_Sha_256_mechanism_and_mechanism_is_not_specified(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ScramSha256Authentication).Authentication(true);
             var client = DriverTestConfiguration.Client;
@@ -161,9 +161,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Authentication_succeeds_when_user_has_Scram_Sha_1_mechanism_and_mechanism_is_Scram_Sha_1(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ScramSha256Authentication).Authentication(true);
 
@@ -180,9 +180,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Authentication_succeeds_when_user_has_Scram_Sha_256_mechanism_and_mechanism_is_Scram_Sha_256(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ScramSha256Authentication).Authentication(true);
             var client = DriverTestConfiguration.Client;
@@ -291,9 +291,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Authentication_succeeds_with_MONGODB_X509_mechanism(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireEnvironment.Check().EnvironmentVariable("MONGO_X509_CLIENT_CERTIFICATE_PATH", isDefined: true);
             RequireEnvironment.Check().EnvironmentVariable("MONGO_X509_CLIENT_CERTIFICATE_PASSWORD", isDefined: true);

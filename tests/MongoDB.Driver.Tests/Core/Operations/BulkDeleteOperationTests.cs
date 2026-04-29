@@ -27,8 +27,8 @@ namespace MongoDB.Driver.Core.Operations
     public class BulkDeleteOperationTests : OperationTestBase
     {
         [Theory]
-        [ParameterAttributeData]
-        public async Task Execute_should_set_operation_name([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Execute_should_set_operation_name([CombinatorialValues(false, true)] bool async)
         {
             var subject = new BulkDeleteOperation(_collectionNamespace, new[] { new DeleteRequest(new BsonDocument("x", 1)) }, _messageEncoderSettings);
 
@@ -36,9 +36,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_collation_should_throw_when_collation_is_not_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collation = new Collation("en_US");
             var requests = new List<DeleteRequest>
@@ -54,10 +54,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_hint_should_throw_when_hint_is_not_supported(
-            [Values(0, 1)] int w,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0, 1)] int w,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(w);
             var requests = new List<DeleteRequest>
@@ -91,9 +91,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Let_get_and_set_should_work(
-            [Values(null, "{ name : 'name' }")] string let)
+            [CombinatorialValues(null, "{ name : 'name' }")] string let)
         {
             var requests = new List<DeleteRequest>
             {

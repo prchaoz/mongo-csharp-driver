@@ -38,9 +38,9 @@ namespace MongoDB.Driver.Tests
         private readonly string _databaseName = "step-down";
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Connection_pool_should_be_cleared_when_Shutdown_exceptions(
-            [Values(
+            [CombinatorialValues(
                 ServerErrorCode.ShutdownInProgress, // 91
                 ServerErrorCode.InterruptedAtShutdown)] // 11600
             int errorCode)
@@ -75,8 +75,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Connection_pool_should_not_be_cleared_when_replSetStepDown_and_GetMore([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Connection_pool_should_not_be_cleared_when_replSetStepDown_and_GetMore([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.KeepConnectionPoolWhenReplSetStepDown).ClusterType(ClusterType.ReplicaSet);
 

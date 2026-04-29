@@ -51,9 +51,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Expression_with_comparison_of_different_types_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;

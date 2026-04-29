@@ -70,9 +70,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ExtraElements_should_be_deserialized_correctly(
-            [Values(new string[0], new[] { "x" }, new[] { "x", "y" }, new[] { "ExtraElements" })]
+            [CombinatorialValues(new string[0], new[] { "x" }, new[] { "x", "y" }, new[] { "ExtraElements" })]
             string[] names)
         {
             var document = CreateFilesCollectionDocument();
@@ -209,9 +209,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Metadata_should_be_deserialized_correctly(
-            [Values(null, "{ }", "{ x : 1 }")]
+            [CombinatorialValues(null, "{ }", "{ x : 1 }")]
             string json)
         {
             var document = CreateFilesCollectionDocument();

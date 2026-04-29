@@ -33,9 +33,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_decimals_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -51,9 +51,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_decimals_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -69,9 +69,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_doubles_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -87,9 +87,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_doubles_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -105,9 +105,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_floats_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -123,9 +123,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_floats_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -141,9 +141,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_ints_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -159,9 +159,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_ints_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -177,9 +177,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_longs_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -195,9 +195,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_longs_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -213,9 +213,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_nullable_decimals_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -231,9 +231,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_nullable_decimals_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -249,9 +249,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_nullable_doubles_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -267,9 +267,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_nullable_doubles_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -285,9 +285,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_nullable_floats_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -303,9 +303,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_nullable_floats_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -321,9 +321,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_nullable_ints_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -339,9 +339,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_nullable_ints_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -357,9 +357,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_nullable_longs_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -375,9 +375,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_nullable_longs_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -393,9 +393,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_over_empty_set_of_nullable_values_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -411,9 +411,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_selector_over_empty_set_of_nullable_values_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -429,9 +429,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_over_empty_set_of_non_nullable_values_should_throw(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -446,9 +446,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_selector_over_empty_set_of_non_nullable_values_should_throw(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -463,9 +463,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_over_empty_set_of_non_nullable_values_cast_to_nullable_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -481,9 +481,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Average_with_selector_over_empty_set_of_non_nullable_values_cast_to_nullable_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 

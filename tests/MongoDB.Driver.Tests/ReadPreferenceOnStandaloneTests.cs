@@ -37,9 +37,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadPreference_should_not_be_sent_to_standalone_server(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var eventCapturer = new EventCapturer().Capture<CommandStartedEvent>(e =>
                 e.CommandName.Equals("find") || e.CommandName.Equals("$query"));

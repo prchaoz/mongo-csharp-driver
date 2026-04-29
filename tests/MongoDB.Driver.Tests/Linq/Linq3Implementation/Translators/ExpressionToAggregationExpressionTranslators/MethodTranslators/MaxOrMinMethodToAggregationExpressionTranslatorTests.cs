@@ -32,9 +32,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -50,9 +50,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -68,9 +68,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_decimals_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -86,9 +86,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_decimals_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -104,9 +104,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_doubles_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -122,9 +122,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_doubles_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -140,9 +140,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_floats_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -158,9 +158,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_floats_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -176,9 +176,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_ints_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -194,9 +194,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_ints_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -212,9 +212,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_longs_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -230,9 +230,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_longs_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -248,9 +248,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_nullable_decimals_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -266,9 +266,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_nullable_decimals_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -284,9 +284,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_nullable_doubles_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -302,9 +302,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_nullable_doubles_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -320,9 +320,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_nullable_floats_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -338,9 +338,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_nullable_floats_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -356,9 +356,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_nullable_ints_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -374,9 +374,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_nullable_ints_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -392,9 +392,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_nullable_longs_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -410,9 +410,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_of_nullable_longs_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -428,9 +428,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_should_work(
-           [Values(false, true)] bool withNestedAsQueryable)
+           [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -446,9 +446,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -464,9 +464,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_decimals_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -482,9 +482,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_decimals_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -500,9 +500,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_doubles_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -518,9 +518,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_doubles_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -536,9 +536,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_floats_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -554,9 +554,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_floats_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -572,9 +572,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_ints_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -590,9 +590,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_ints_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -607,9 +607,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_longs_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -625,9 +625,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_longs_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -643,9 +643,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_nullable_decimals_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -661,9 +661,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_nullable_decimals_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -679,9 +679,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_nullable_doubles_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -697,9 +697,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_nullable_doubles_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -715,9 +715,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_nullable_floats_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -733,9 +733,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_nullable_floats_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -751,9 +751,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_nullable_ints_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -768,9 +768,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_nullable_ints_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -786,9 +786,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_nullable_longs_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -804,9 +804,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_of_nullable_longs_with_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 

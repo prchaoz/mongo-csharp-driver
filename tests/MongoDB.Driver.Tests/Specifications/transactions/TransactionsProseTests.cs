@@ -37,8 +37,8 @@ namespace MongoDB.Driver.Tests.Specifications.transactions
 
         // https://github.com/mongodb/specifications/blob/fc7996db26d0ea92091a5034c6acb287ef7282fe/source/transactions/tests/README.md#10-write-concern-not-inherited-from-collection-object-inside-transaction
         [Theory]
-        [ParameterAttributeData]
-        public async Task Ensure_write_concern_is_not_inherited_from_collection_object_inside_transaction([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Ensure_write_concern_is_not_inherited_from_collection_object_inside_transaction([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.LoadBalanced, ClusterType.ReplicaSet, ClusterType.Sharded);
 

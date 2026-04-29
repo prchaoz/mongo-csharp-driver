@@ -23,8 +23,8 @@ namespace MongoDB.Driver.Core.Operations
     public class BulkInsertOperationTests : OperationTestBase
     {
         [Theory]
-        [ParameterAttributeData]
-        public async Task Execute_should_set_operation_name([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Execute_should_set_operation_name([CombinatorialValues(false, true)] bool async)
         {
             var subject = new BulkInsertOperation(_collectionNamespace, new[] { new InsertRequest(new BsonDocument("x", 1)) }, _messageEncoderSettings);
 

@@ -93,9 +93,9 @@ namespace MongoDB.Bson.Tests.ObjectModel
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_double_should_return_new_instance(
-            [Values(-101.0, 101.0)]
+            [CombinatorialValues(-101.0, 101.0)]
             double value)
         {
             var result1 = (BsonDouble)value;
@@ -105,11 +105,12 @@ namespace MongoDB.Bson.Tests.ObjectModel
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_double_should_return_precreated_instance(
-            [Range(-100.0, 100.0, 1.0)]
-            double value)
+            [CombinatorialRange(-100, 100, 1)]
+            int intValue)
         {
+            var value = (double)intValue;
             var result1 = (BsonDouble)value;
             var result2 = (BsonDouble)value;
 
@@ -190,11 +191,12 @@ namespace MongoDB.Bson.Tests.ObjectModel
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void precreated_instances_should_have_the_expected_value(
-            [Range(-100.0, 100.0, 1.0)]
-            double value)
+            [CombinatorialRange(-100, 100, 1)]
+            int intValue)
         {
+            var value = (double)intValue;
             var result = (BsonDouble)value;
 
             result.Value.Should().Be(value);

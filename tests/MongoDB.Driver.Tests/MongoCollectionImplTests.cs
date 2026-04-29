@@ -74,10 +74,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Aggregate_should_execute_an_AggregateOperation_when_out_is_not_specified(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -146,11 +146,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Aggregate_should_execute_an_AggregateToCollectionOperation_and_a_FindOperation_when_out_is_specified(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingDifferentOutputDatabase,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingDifferentOutputDatabase,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(1);
             var readConcern = new ReadConcern(ReadConcernLevel.Majority);
@@ -321,11 +321,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AggregateToCollection_should_execute_an_AggregateToCollectionOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingDifferentOutputDatabase,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingDifferentOutputDatabase,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(1);
             var readConcern = new ReadConcern(ReadConcernLevel.Majority);
@@ -400,10 +400,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AggregateToCollection_should_throw_when_last_stage_is_not_an_output_stage(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -441,8 +441,8 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task BulkWrite_should_enumerate_requests_once([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task BulkWrite_should_enumerate_requests_once([CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var document = new BsonDocument("_id", 1).Add("a", 1);
@@ -472,13 +472,13 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BulkWrite_should_execute_a_BulkMixedWriteOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, false, true)] bool? bypassDocumentValidation,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool isOrdered,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, false, true)] bool? bypassDocumentValidation,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool isOrdered,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -713,8 +713,8 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void BulkWrite_should_throw_if_model_is_invalid([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void BulkWrite_should_throw_if_model_is_invalid([CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
 
@@ -756,10 +756,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Count_should_execute_a_CountOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -822,10 +822,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CountDocuments_should_execute_a_CountDocumentsOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -880,11 +880,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DeleteMany_should_execute_a_BulkMixedOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -930,10 +930,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DeleteMany_should_throw_a_WriteException_when_an_error_occurs(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -989,11 +989,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DeleteOne_should_execute_a_BulkMixedOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -1045,10 +1045,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DeleteOne_should_throw_a_WriteException_when_an_error_occurs(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -1104,10 +1104,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Distinct_should_execute_a_DistinctOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -1170,10 +1170,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Distinct_should_execute_a_DistinctOperation_when_type_parameter_is_array_field_item_type(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<ClassForDistinctWithArrayField>();
             var session = CreateSession(usingSession);
@@ -1232,10 +1232,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Distinct_should_execute_a_DistinctOperation_when_type_parameter_is_string_instead_of_enum(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<ClassForDistinctWithArrayField>();
             var session = CreateSession(usingSession);
@@ -1291,11 +1291,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DistinctMany_should_execute_a_DistinctOperation_when_type_parameter_is_array_field(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool lambda,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool lambda,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<ClassForDistinctWithArrayField>();
             var session = CreateSession(usingSession);
@@ -1357,9 +1357,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void EstimatedDocumentCount_should_execute_an_EstimatedDocumentCount_operation(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var options = new EstimatedDocumentCountOptions
@@ -1389,11 +1389,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Find_should_execute_a_FindOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -1480,10 +1480,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Find_with_an_expression_execute_a_FindOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -1568,10 +1568,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Find_with_Projection_As_should_execute_correctly(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<A>();
             var session = CreateSession(usingSession);
@@ -1619,11 +1619,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndDelete_should_execute_a_FindOneAndDeleteOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -1684,10 +1684,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndDelete_with_Projection_As_should_execute_correctly(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<A>();
             var session = CreateSession(usingSession);
@@ -1738,14 +1738,14 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndReplace_should_execute_a_FindOneAndReplaceOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, false, true)] bool? bypassDocumentValidation,
-            [Values(false, true)] bool isUpsert,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(ReturnDocument.After, ReturnDocument.Before)] ReturnDocument returnDocument,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, false, true)] bool? bypassDocumentValidation,
+            [CombinatorialValues(false, true)] bool isUpsert,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(ReturnDocument.After, ReturnDocument.Before)] ReturnDocument returnDocument,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -1816,10 +1816,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndReplace_with_Projection_As_should_execute_correctly(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<A>();
             var session = CreateSession(usingSession);
@@ -1869,14 +1869,14 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndUpdate_should_execute_a_FindOneAndUpdateOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, false, true)] bool? bypassDocumentValidation,
-            [Values(false, true)] bool isUpsert,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(ReturnDocument.After, ReturnDocument.Before)] ReturnDocument returnDocument,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, false, true)] bool? bypassDocumentValidation,
+            [CombinatorialValues(false, true)] bool isUpsert,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(ReturnDocument.After, ReturnDocument.Before)] ReturnDocument returnDocument,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -1952,9 +1952,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndUpdate_should_throw_if_parameters_are_invalid(
-            [Values(false)] bool async)
+            [CombinatorialValues(false)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var pipeline = new BsonDocumentStagePipelineDefinition<BsonDocument, BsonDocument>(new[] { new BsonDocument("$project", "{ value : 1 }") });
@@ -1986,10 +1986,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndUpdate_with_Projection_As_should_execute_correctly(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<A>();
             var session = CreateSession(usingSession);
@@ -2037,15 +2037,15 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Indexes_CreateOne_should_execute_a_CreateIndexesOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingWildcardIndex,
-            [Values(null, 1, 2)] int? commitQuorumW,
-            [Values(null, -1, 0, 42, 9000)] int? milliseconds,
-            [Values(false, true)] bool usingCreateOneIndexOptions,
-            [Values(null, false, true)] bool? hidden,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingWildcardIndex,
+            [CombinatorialValues(null, 1, 2)] int? commitQuorumW,
+            [CombinatorialValues(null, -1, 0, 42, 9000)] int? milliseconds,
+            [CombinatorialValues(false, true)] bool usingCreateOneIndexOptions,
+            [CombinatorialValues(null, false, true)] bool? hidden,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(1);
             var subject = CreateSubject<BsonDocument>().WithWriteConcern(writeConcern);
@@ -2170,15 +2170,15 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Indexes_CreateMany_should_execute_a_CreateIndexesOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingWildcardIndex,
-            [Values(null, 1, 2)] int? commitQuorumW,
-            [Values(null, -1, 0, 42, 9000)] int? milliseconds,
-            [Values(false, true)] bool usingCreateManyIndexesOptions,
-            [Values(null, false, true)] bool? hidden,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingWildcardIndex,
+            [CombinatorialValues(null, 1, 2)] int? commitQuorumW,
+            [CombinatorialValues(null, -1, 0, 42, 9000)] int? milliseconds,
+            [CombinatorialValues(false, true)] bool usingCreateManyIndexesOptions,
+            [CombinatorialValues(null, false, true)] bool? hidden,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(1);
             var subject = CreateSubject<BsonDocument>().WithWriteConcern(writeConcern);
@@ -2335,10 +2335,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Indexes_DropAll_should_execute_a_DropIndexOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(1);
             var subject = CreateSubject<BsonDocument>().WithWriteConcern(writeConcern);
@@ -2382,10 +2382,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Indexes_DropOne_should_execute_a_DropIndexOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(1);
             var subject = CreateSubject<BsonDocument>().WithWriteConcern(writeConcern);
@@ -2429,10 +2429,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Indexes_DropOne_should_throw_an_exception_if_an_asterisk_is_used(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -2454,11 +2454,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Indexes_List_should_execute_a_ListIndexesOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, 3)] int? batchSize,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, 3)] int? batchSize,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -2528,10 +2528,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void InsertOne_should_execute_a_BulkMixedOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -2574,10 +2574,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void InsertOne_should_throw_a_WriteException_when_an_error_occurs(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -2633,11 +2633,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void InsertOne_should_respect_AssignIdOnInsert(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool assignIdOnInsert,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool assignIdOnInsert,
+            [CombinatorialValues(false, true)] bool async)
         {
             var settings = new MongoCollectionSettings { AssignIdOnInsert = assignIdOnInsert };
             var subject = CreateSubject<BsonDocument>(settings: settings);
@@ -2685,12 +2685,12 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void InsertMany_should_execute_a_BulkMixedOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, false, true)] bool? bypassDocumentValidation,
-            [Values(false, true)] bool isOrdered,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, false, true)] bool? bypassDocumentValidation,
+            [CombinatorialValues(false, true)] bool isOrdered,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -2745,11 +2745,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void InsertMany_should_respect_AssignIdOnInsert(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool assignIdOnInsert,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool assignIdOnInsert,
+            [CombinatorialValues(false, true)] bool async)
         {
             var settings = new MongoCollectionSettings { AssignIdOnInsert = assignIdOnInsert };
             var subject = CreateSubject<BsonDocument>(settings: settings);
@@ -2797,10 +2797,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MapReduce_with_inline_output_mode_should_execute_a_MapReduceOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -2888,10 +2888,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MapReduce_with_collection_output_mode_should_execute_a_MapReduceOutputToCollectionOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(1);
             var subject = CreateSubject<BsonDocument>().WithWriteConcern(writeConcern);
@@ -2991,13 +2991,13 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReplaceOne_should_execute_a_BulkMixedOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, false, true)] bool? bypassDocumentValidation,
-            [Values(false, true)] bool isUpsert,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, false, true)] bool? bypassDocumentValidation,
+            [CombinatorialValues(false, true)] bool isUpsert,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -3147,13 +3147,13 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReplaceOne_should_throw_a_WriteException_when_an_error_occurs(
-            [Values(false, true)] bool usingSession,
-            [Values(null, false, true)] bool? bypassDocumentValidation,
-            [Values(false, true)] bool isUpsert,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, false, true)] bool? bypassDocumentValidation,
+            [CombinatorialValues(false, true)] bool isUpsert,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -3321,13 +3321,13 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UpdateMany_should_execute_a_BulkMixedOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, false, true)] bool? bypassDocumentValidation,
-            [Values(false, true)] bool isUpsert,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, false, true)] bool? bypassDocumentValidation,
+            [CombinatorialValues(false, true)] bool isUpsert,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -3394,13 +3394,13 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UpdateMany_should_throw_a_WriteException_when_an_error_occurs(
-            [Values(false, true)] bool usingSession,
-            [Values(null, false, true)] bool? bypassDocumentValidation,
-            [Values(false, true)] bool isUpsert,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, false, true)] bool? bypassDocumentValidation,
+            [CombinatorialValues(false, true)] bool isUpsert,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -3480,13 +3480,13 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UpdateOne_should_execute_a_BulkMixedOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, false, true)] bool? bypassDocumentValidation,
-            [Values(false, true)] bool isUpsert,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, false, true)] bool? bypassDocumentValidation,
+            [CombinatorialValues(false, true)] bool isUpsert,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -3553,13 +3553,13 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UpdateOne_should_throw_a_WriteException_when_an_error_occurs(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool? bypassDocumentValidation,
-            [Values(false, true)] bool isUpsert,
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool? bypassDocumentValidation,
+            [CombinatorialValues(false, true)] bool isUpsert,
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -3640,17 +3640,17 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Watch_should_execute_a_ChangeStreamOperation(
-            [Values(false, true)] bool usingSession,
-            [Values(null, 1)] int? batchSize,
-            [Values(null, "a")] string locale,
-            [Values(ChangeStreamFullDocumentOption.Default, ChangeStreamFullDocumentOption.WhenAvailable, ChangeStreamFullDocumentOption.UpdateLookup, ChangeStreamFullDocumentOption.Required)] ChangeStreamFullDocumentOption fullDocument,
-            [Values(ChangeStreamFullDocumentBeforeChangeOption.Default, ChangeStreamFullDocumentBeforeChangeOption.Off, ChangeStreamFullDocumentBeforeChangeOption.WhenAvailable, ChangeStreamFullDocumentBeforeChangeOption.Required)] ChangeStreamFullDocumentBeforeChangeOption fullDocumentBeforeChange,
-            [Values(null, 1)] int? maxAwaitTimeMS,
-            [Values(null, ReadConcernLevel.Local)] ReadConcernLevel? readConcernLevel,
-            [Values(null, "{ a : 1 }")] string resumeAferString,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(null, 1)] int? batchSize,
+            [CombinatorialValues(null, "a")] string locale,
+            [CombinatorialValues(ChangeStreamFullDocumentOption.Default, ChangeStreamFullDocumentOption.WhenAvailable, ChangeStreamFullDocumentOption.UpdateLookup, ChangeStreamFullDocumentOption.Required)] ChangeStreamFullDocumentOption fullDocument,
+            [CombinatorialValues(ChangeStreamFullDocumentBeforeChangeOption.Default, ChangeStreamFullDocumentBeforeChangeOption.Off, ChangeStreamFullDocumentBeforeChangeOption.WhenAvailable, ChangeStreamFullDocumentBeforeChangeOption.Required)] ChangeStreamFullDocumentBeforeChangeOption fullDocumentBeforeChange,
+            [CombinatorialValues(null, 1)] int? maxAwaitTimeMS,
+            [CombinatorialValues(null, ReadConcernLevel.Local)] ReadConcernLevel? readConcernLevel,
+            [CombinatorialValues(null, "{ a : 1 }")] string resumeAferString,
+            [CombinatorialValues(false, true)] bool async)
         {
             var collation = locale == null ? null : new Collation(locale);
             var maxAwaitTime = maxAwaitTimeMS == null ? (TimeSpan?)null : TimeSpan.FromMilliseconds(maxAwaitTimeMS.Value);
@@ -3726,10 +3726,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Watch_should_execute_a_ChangeStreamOperation_with_default_options_when_options_is_null(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var session = CreateSession(usingSession);
@@ -3783,9 +3783,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Watch_should_throw_when_pipeline_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             PipelineDefinition<ChangeStreamDocument<BsonDocument>, ChangeStreamDocument<BsonDocument>> pipeline = null;

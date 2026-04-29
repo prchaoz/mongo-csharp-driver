@@ -23,9 +23,9 @@ namespace MongoDB.Driver.Tests
     public class CreateManyIndexesOptionsTest
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CommitQuorum_get_should_return_expected_result(
-            [Values(null, 1, 2)] int? w)
+            [CombinatorialValues(null, 1, 2)] int? w)
         {
             var commitQuorum = w.HasValue ? CreateIndexCommitQuorum.Create(w.Value) : null;
             var subject = new CreateManyIndexesOptions() { CommitQuorum = commitQuorum };
@@ -36,9 +36,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CommitQuorum_set_should_have_expected_result(
-            [Values(null, 1, 2)] int? w)
+            [CombinatorialValues(null, 1, 2)] int? w)
         {
             var commitQuorum = w.HasValue ? CreateIndexCommitQuorum.Create(w.Value) : null;
             var subject = new CreateManyIndexesOptions() { CommitQuorum = commitQuorum };
@@ -59,9 +59,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_have_expected_result(
-            [Values(null, -10000, 0, 1, 9999, 10000, 10001)] int? maxTimeTicks)
+            [CombinatorialValues(null, -10000, 0, 1, 9999, 10000, 10001)] int? maxTimeTicks)
         {
             var subject = new CreateManyIndexesOptions();
             var maxTime = maxTimeTicks == null ? (TimeSpan?)null : TimeSpan.FromTicks(maxTimeTicks.Value);
@@ -72,9 +72,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_throw_when_value_is_invalid(
-            [Values(-10001, -9999, -1)] long maxTimeTicks)
+            [CombinatorialValues(-10001, -9999, -1)] long maxTimeTicks)
         {
             var subject = new CreateManyIndexesOptions();
             var value = TimeSpan.FromTicks(maxTimeTicks);

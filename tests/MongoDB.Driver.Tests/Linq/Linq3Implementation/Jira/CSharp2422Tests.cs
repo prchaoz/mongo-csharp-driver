@@ -41,9 +41,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Where_with_dynamically_created_predicate_should_work(
-            [Values("x", null)] string parameterName)
+            [CombinatorialValues("x", null)] string parameterName)
         {
             var collection = GetCollection();
             var predicate = MakePredicate(parameterName);

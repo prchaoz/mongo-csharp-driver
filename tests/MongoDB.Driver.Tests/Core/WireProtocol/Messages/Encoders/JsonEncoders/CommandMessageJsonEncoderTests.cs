@@ -72,9 +72,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.JsonEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadMessage_should_read_requestId(
-            [Values(1, 2)] int requestId)
+            [CombinatorialValues(1, 2)] int requestId)
         {
             var message = CreateMessage(requestId: requestId);
             var subject = CreateSubject(message);
@@ -98,9 +98,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.JsonEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadMessage_should_read_responseTo(
-            [Values(1, 2)] int responseTo)
+            [CombinatorialValues(1, 2)] int responseTo)
         {
             var message = CreateMessage(responseTo: responseTo);
             var subject = CreateSubject(message);
@@ -124,10 +124,10 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.JsonEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadMessage_should_read_flags(
-            [Values(false, true)] bool exhaustAllowed,
-            [Values(false, true)] bool moreToCome)
+            [CombinatorialValues(false, true)] bool exhaustAllowed,
+            [CombinatorialValues(false, true)] bool moreToCome)
         {
             var message = CreateMessage(moreToCome: moreToCome, exhaustAllowed: exhaustAllowed);
             var subject = CreateSubject(message);
@@ -212,9 +212,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.JsonEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteMessage_should_write_requestId(
-            [Values(1, 2)] int requestId)
+            [CombinatorialValues(1, 2)] int requestId)
         {
             var writer = new StringWriter();
             var subject = CreateSubject(textWriter: writer);
@@ -228,9 +228,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.JsonEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteMessage_should_write_responseTo(
-            [Values(1, 2)] int responseTo)
+            [CombinatorialValues(1, 2)] int responseTo)
         {
             var writer = new StringWriter();
             var subject = CreateSubject(textWriter: writer);
@@ -244,10 +244,10 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.JsonEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteMessage_should_write_flags(
-            [Values(false, true)] bool exhaustAllowed,
-            [Values(false, true)] bool moreToCome)
+            [CombinatorialValues(false, true)] bool exhaustAllowed,
+            [CombinatorialValues(false, true)] bool moreToCome)
         {
             var writer = new StringWriter();
             var subject = CreateSubject(textWriter: writer);

@@ -92,9 +92,9 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Serialize_NaN_or_Infinity_to_integral_should_throw([Values(BsonType.Int64, BsonType.Int32)] BsonType representation,
-            [Values(double.PositiveInfinity, double.NegativeInfinity, double.NaN)] double value)
+        [CombinatorialData]
+        public void Serialize_NaN_or_Infinity_to_integral_should_throw([CombinatorialValues(BsonType.Int64, BsonType.Int32)] BsonType representation,
+            [CombinatorialValues(double.PositiveInfinity, double.NegativeInfinity, double.NaN)] double value)
         {
             var subject = new DoubleSerializer(representation);
 

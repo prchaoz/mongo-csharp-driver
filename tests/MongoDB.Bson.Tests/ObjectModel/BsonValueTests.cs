@@ -26,9 +26,9 @@ namespace MongoDB.Bson.Tests
     public class BsonValueTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_bool_should_return_precreated_instance(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool value)
         {
             var result1 = (BsonValue)value;
@@ -38,9 +38,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_double_should_return_new_instance(
-            [Values(-101.0, 101.0)]
+            [CombinatorialValues(-101.0, 101.0)]
             double value)
         {
             var result1 = (BsonValue)value;
@@ -50,11 +50,12 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_double_should_return_precreated_instance(
-            [Range(-100.0, 100.0, 1.0)]
-            double value)
+            [CombinatorialRange(-100, 100, 1)]
+            int intValue)
         {
+            var value = (double)intValue;
             var result1 = (BsonValue)value;
             var result2 = (BsonValue)value;
 
@@ -62,9 +63,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_int_should_return_new_instance(
-            [Values(-101, 101)]
+            [CombinatorialValues(-101, 101)]
             int value)
         {
             var result1 = (BsonValue)value;
@@ -74,9 +75,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_int_should_return_precreated_instance(
-            [Range(-100, 100)]
+            [CombinatorialRange(-100, 100)]
             int value)
         {
             var result1 = (BsonValue)value;
@@ -86,9 +87,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_long_should_return_new_instance(
-            [Values(-101L, 101L)]
+            [CombinatorialValues(-101L, 101L)]
             long value)
         {
             var result1 = (BsonValue)value;
@@ -98,11 +99,12 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_long_should_return_precreated_instance(
-            [Range(-100L, 100L, 1L)]
-            long value)
+            [CombinatorialRange(-100, 100, 1)]
+            int intValue)
         {
+            var value = (long)intValue;
             var result1 = (BsonValue)value;
             var result2 = (BsonValue)value;
 
@@ -110,9 +112,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_string_should_return_new_instance(
-            [Values("x")]
+            [CombinatorialValues("x")]
             string value)
         {
             var result1 = (BsonValue)value;
@@ -122,9 +124,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_string_should_return_precreated_instance(
-            [Values("")]
+            [CombinatorialValues("")]
             string value)
         {
             var result1 = (BsonValue)value;

@@ -48,7 +48,7 @@ namespace MongoDB.Driver.Tests
 
 #if WINDOWS
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void First_should_add_limit_and_call_ToCursor(
             [Values(false, true)] bool async)
         {
@@ -88,9 +88,9 @@ namespace MongoDB.Driver.Tests
 #endif
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void First_should_throw_when_aggregate_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             IAggregateFluent<Person> subject = null;
 
@@ -109,7 +109,7 @@ namespace MongoDB.Driver.Tests
 
 #if WINDOWS
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FirstOrDefault_should_add_limit_and_call_ToCursor(
             [Values(false, true)] bool async)
         {
@@ -149,9 +149,9 @@ namespace MongoDB.Driver.Tests
 #endif
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FirstOrDefault_should_throw_when_aggregate_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             IAggregateFluent<Person> subject = null;
 
@@ -331,7 +331,7 @@ namespace MongoDB.Driver.Tests
 
 #if WINDOWS
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Single_should_add_limit_and_call_ToCursor(
            [Values(false, true)] bool async)
         {
@@ -370,9 +370,9 @@ namespace MongoDB.Driver.Tests
 #endif
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Single_should_throw_when_aggregate_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             IAggregateFluent<Person> subject = null;
 
@@ -391,7 +391,7 @@ namespace MongoDB.Driver.Tests
 
 #if WINDOWS
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SingleOrDefault_should_add_limit_and_call_ToCursor(
             [Values(false, true)] bool async)
         {
@@ -429,9 +429,9 @@ namespace MongoDB.Driver.Tests
 #endif
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SingleOrDefault_should_throw_when_aggregate_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             IAggregateFluent<Person> subject = null;
 

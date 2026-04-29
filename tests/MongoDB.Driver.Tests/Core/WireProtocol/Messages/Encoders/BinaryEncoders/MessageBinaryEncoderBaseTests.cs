@@ -24,9 +24,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders
     public class MessageBinaryEncoderBaseTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxMessageSize_should_return_expected_result(
-            [Values(null, 1, 2)] int? maxMessageSize)
+            [CombinatorialValues(null, 1, 2)] int? maxMessageSize)
         {
             var encoderSettings = new MessageEncoderSettings();
             encoderSettings.Add(MessageEncoderSettingsName.MaxMessageSize, maxMessageSize);

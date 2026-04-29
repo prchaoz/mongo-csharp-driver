@@ -62,8 +62,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 1.1 Callback is called during authentication
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L47
         [Theory]
-        [ParameterAttributeData]
-        public async Task Callback_authentication_callback_called_during_authentication([Values(false, true)]bool async)
+        [CombinatorialData]
+        public async Task Callback_authentication_callback_called_during_authentication([CombinatorialValues(false, true)]bool async)
         {
             EnsureOidcIsConfigured();
 
@@ -85,8 +85,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 1.2 Callback is called once for multiple connections
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L54
         [Theory]
-        [ParameterAttributeData]
-        public async Task Callback_authentication_callback_called_once_for_multiple_connections([Values(false, true)]bool async)
+        [CombinatorialData]
+        public async Task Callback_authentication_callback_called_once_for_multiple_connections([CombinatorialValues(false, true)]bool async)
         {
             EnsureOidcIsConfigured();
 
@@ -111,8 +111,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 2.1 Valid Callback Inputs
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L63
         [Theory]
-        [ParameterAttributeData]
-        public async Task Callback_validation_valid_callback_inputs([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Callback_validation_valid_callback_inputs([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("test");
 
@@ -134,8 +134,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 2.2 OIDC Callback Returns Null
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L70
         [Theory]
-        [ParameterAttributeData]
-        public async Task Callback_validation_callback_returns_null([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Callback_validation_callback_returns_null([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("test");
 
@@ -155,8 +155,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 2.3 OIDC Callback Returns Missing Data
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L76
         [Theory]
-        [ParameterAttributeData]
-        public async Task Callback_validation_callback_returns_missing_data([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Callback_validation_callback_returns_missing_data([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("test");
 
@@ -179,8 +179,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 2.4 Invalid Client Configuration with Callback
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L83
         [Theory]
-        [ParameterAttributeData]
-        public async Task Callback_validation_invalid_client_configuration([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Callback_validation_invalid_client_configuration([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("test");
 
@@ -202,8 +202,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 2.5 Invalid use of ALLOWED_HOSTS
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L89
         [Theory]
-        [ParameterAttributeData]
-        public async Task Invalid_Allowed_Hosts_Usage([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Invalid_Allowed_Hosts_Usage([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("azure");
 
@@ -223,8 +223,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 3.1 Authentication failure with cached tokens fetch a new token and retry auth
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L97
         [Theory]
-        [ParameterAttributeData]
-        public async Task Authentication_failure_with_cached_tokens_fetch_new_and_retry([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Authentication_failure_with_cached_tokens_fetch_new_and_retry([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("test"); // we do not have technical ability to poison cached access token for non-mocked callbacks.
 
@@ -262,8 +262,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 3.2 Authentication failures without cached tokens return an error
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L105
         [Theory]
-        [ParameterAttributeData]
-        public async Task Authentication_failure_without_cached_tokens_return_error([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Authentication_failure_without_cached_tokens_return_error([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("test");
 
@@ -286,8 +286,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 3.3 Unexpected error code does not clear the cache
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L112
         [Theory]
-        [ParameterAttributeData]
-        public async Task Unexpected_error_does_not_clear_token_cache([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Unexpected_error_does_not_clear_token_cache([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured();
 
@@ -315,8 +315,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 4.1 Reauthentication Succeeds
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L140
         [Theory]
-        [ParameterAttributeData]
-        public async Task ReAuthentication([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task ReAuthentication([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured();
 
@@ -343,8 +343,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 4.2 Read Commands Fail If Reauthentication Fails
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L165
         [Theory]
-        [ParameterAttributeData]
-        public async Task Read_commands_fail_if_reauthentication_fails([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Read_commands_fail_if_reauthentication_fails([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("test");
 
@@ -379,8 +379,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 4.3 Write Commands Fail If Reauthentication Fails
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L190
         [Theory]
-        [ParameterAttributeData]
-        public async Task Write_commands_fail_if_reauthentication_fails([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Write_commands_fail_if_reauthentication_fails([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("test");
 
@@ -422,8 +422,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 4.4 Speculative Authentication should be ignored on Reauthentication
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L215
         [Theory]
-        [ParameterAttributeData]
-        public async Task Speculative_authentication_should_be_ignored_on_reauthentication([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Speculative_authentication_should_be_ignored_on_reauthentication([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("test"); // we do not have technical ability to poison cached access token for non-mocked callbacks.
 
@@ -482,8 +482,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 4.5 Reauthentication Succeeds when a Session is involved
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L245
         [Theory]
-        [ParameterAttributeData]
-        public async Task Reauthentication_Succeeds_when_Session_involved([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Reauthentication_Succeeds_when_Session_involved([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured();
 
@@ -511,8 +511,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 5.1 Azure With No Username
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L277
         [Theory]
-        [ParameterAttributeData]
-        public async Task Azure_auth_no_username([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Azure_auth_no_username([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("azure");
 
@@ -531,8 +531,8 @@ namespace MongoDB.Driver.Tests.Specifications.auth
         // 5.2 Azure with Bad Username
         // https://github.com/mongodb/specifications/blob/44176c1b633819b5a070e05148a989d0c79d406d/source/auth/tests/mongodb-oidc.md?plain=1#L283
         [Theory]
-        [ParameterAttributeData]
-        public async Task Azure_auth_bad_username_return_error([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Azure_auth_bad_username_return_error([CombinatorialValues(false, true)] bool async)
         {
             EnsureOidcIsConfigured("azure");
 

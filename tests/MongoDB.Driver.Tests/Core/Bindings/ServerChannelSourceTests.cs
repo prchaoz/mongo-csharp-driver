@@ -74,9 +74,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetChannel_should_throw_if_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var session = new Mock<ICoreSessionHandle>().Object;
@@ -91,9 +91,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetChannel_should_get_connection_from_server(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var serverMock = new Mock<IServer>();

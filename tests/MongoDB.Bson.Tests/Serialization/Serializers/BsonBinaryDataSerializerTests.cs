@@ -136,15 +136,15 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SerializeValue_should_throw_when_value_representation_is_unspecified(
-            [Values(
+            [CombinatorialValues(
                 GuidRepresentation.CSharpLegacy,
                 GuidRepresentation.JavaLegacy,
                 GuidRepresentation.PythonLegacy,
                 GuidRepresentation.Standard,
                 GuidRepresentation.Unspecified)] GuidRepresentation writerGuidRepresentation,
-            [Values(
+            [CombinatorialValues(
                 GuidRepresentation.CSharpLegacy,
                 GuidRepresentation.JavaLegacy,
                 GuidRepresentation.PythonLegacy,
@@ -167,15 +167,15 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SerializeValue_should_convert_representation_when_required(
-            [Values(
+            [CombinatorialValues(
                 GuidRepresentation.CSharpLegacy,
                 GuidRepresentation.JavaLegacy,
                 GuidRepresentation.PythonLegacy,
                 GuidRepresentation.Standard,
                 GuidRepresentation.Unspecified)] GuidRepresentation writerGuidRepresentation,
-            [Values(
+            [CombinatorialValues(
                 GuidRepresentation.CSharpLegacy,
                 GuidRepresentation.JavaLegacy,
                 GuidRepresentation.PythonLegacy,

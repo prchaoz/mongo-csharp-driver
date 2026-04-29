@@ -73,9 +73,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_throw_if_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new ReadPreferenceBinding(_mockCluster.Object, ReadPreference.Primary, NoCoreSession.NewHandle());
@@ -89,9 +89,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_use_a_read_preference_server_selector_to_select_the_server_from_the_cluster(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new ReadPreferenceBinding(_mockCluster.Object, ReadPreference.Primary, NoCoreSession.NewHandle());
@@ -128,9 +128,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_fork_the_session(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSession = new Mock<ICoreSessionHandle>();
             var subject = new ReadPreferenceBinding(_mockCluster.Object, ReadPreference.Primary, mockSession.Object);

@@ -56,9 +56,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RetryRequested_get_and_set_should_work(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject<BsonDocument>();
 
@@ -131,9 +131,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_call_channel_Command_with_wrapped_command_when_additionalOptions_need_wrapping(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             subject.AdditionalOptions = new BsonDocument("additional", 1);
@@ -185,9 +185,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_call_channel_Command_with_wrapped_command_when_comment_needs_wrapping(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             subject.Comment = "comment";
@@ -238,9 +238,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_call_channel_Command_with_wrapped_command_when_readPreference_needs_wrapping(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             subject.AdditionalOptions = new BsonDocument("additional", 1);
@@ -292,8 +292,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Execute_should_call_GetChannel_only_once([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Execute_should_call_GetChannel_only_once([CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var readPreference = ReadPreference.Primary;

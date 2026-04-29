@@ -26,10 +26,10 @@ namespace MongoDB.Driver.Core.Operations
     public class RetryableUpdateCommandOperationTests : OperationTestBase
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_hint_should_throw_when_hint_is_not_supported(
-            [Values(0, 1)] int w,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0, 1)] int w,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(w);
             var requests = new List<UpdateRequest>
@@ -67,8 +67,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Let_get_and_set_should_work([Values(null, "{ name : 'name' }")] string let)
+        [CombinatorialData]
+        public void Let_get_and_set_should_work([CombinatorialValues(null, "{ name : 'name' }")] string let)
         {
             var requests = new List<UpdateRequest>
             {

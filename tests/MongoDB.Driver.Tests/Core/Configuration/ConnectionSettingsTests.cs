@@ -62,9 +62,9 @@ namespace MongoDB.Driver.Core.Configuration
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_maxIdleTime_is_negative_or_zero(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int maxIdleTime)
         {
             Action action = () => new ConnectionSettings(maxIdleTime: TimeSpan.FromSeconds(maxIdleTime));
@@ -73,9 +73,9 @@ namespace MongoDB.Driver.Core.Configuration
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_maxLifeTime_is_negative_or_zero(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int maxLifeTime)
         {
             Action action = () => new ConnectionSettings(maxLifeTime: TimeSpan.FromSeconds(maxLifeTime));

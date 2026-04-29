@@ -27,9 +27,9 @@ namespace MongoDB.Bson.Tests.IO
     public class BsonBinaryWriterTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BsonBinaryWriter_should_support_writing_multiple_documents(
-            [Range(0, 3)]
+            [CombinatorialRange(0, 3)]
             int numberOfDocuments)
         {
             var document = new BsonDocument("x", 1);

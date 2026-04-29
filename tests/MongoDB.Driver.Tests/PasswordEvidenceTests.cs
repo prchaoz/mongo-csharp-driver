@@ -25,9 +25,9 @@ namespace MongoDB.Driver.Tests
     public class PasswordEvidenceTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_SecureString_should_initialize_instance(
-            [Values("", "a", "ab", "abc")] string value)
+            [CombinatorialValues("", "a", "ab", "abc")] string value)
         {
             var securePassword = CreateSecureString(value);
 
@@ -61,9 +61,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_string_should_initialize_instance(
-            [Values("", "a", "ab", "abc")] string value)
+            [CombinatorialValues("", "a", "ab", "abc")] string value)
         {
             var result = new PasswordEvidence(value);
 
@@ -91,9 +91,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SecurePassword_should_return_expected_result(
-            [Values("", "a", "ab", "abc")] string value)
+            [CombinatorialValues("", "a", "ab", "abc")] string value)
         {
             var subject = CreateSubject(value);
 
@@ -104,9 +104,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_return_true_when_both_all_fields_are_equal(
-            [Values("", "a", "ab", "abc")] string value)
+            [CombinatorialValues("", "a", "ab", "abc")] string value)
         {
             var subject = CreateSubject(value);
             var other = CreateSubject(value);

@@ -344,8 +344,8 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void IsMongocryptd_should_return_expected_result([Values(false, true, null)] bool? isMongocryptd)
+        [CombinatorialData]
+        public void IsMongocryptd_should_return_expected_result([CombinatorialValues(false, true, null)] bool? isMongocryptd)
         {
             var helloResultDocument = new BsonDocument
             {

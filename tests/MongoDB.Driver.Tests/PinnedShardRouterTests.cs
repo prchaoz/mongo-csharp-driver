@@ -57,8 +57,8 @@ namespace MongoDB.Driver.Tests
         /// session and normal server selection is performed for the next operation.
         /// </summary>
         [Theory]
-        [ParameterAttributeData]
-        public async void Test_Unpin_For_Next_Transaction([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async void Test_Unpin_For_Next_Transaction([CombinatorialValues(false, true)] bool async)
         {
             RequireServer
                 .Check()
@@ -117,8 +117,8 @@ namespace MongoDB.Driver.Tests
         /// session and normal server selection is performed.
         /// </summary>
         [Theory]
-        [ParameterAttributeData]
-        public async void Test_Unpin_For_Non_Transaction_Operation([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async void Test_Unpin_For_Non_Transaction_Operation([CombinatorialValues(false, true)] bool async)
         {
             RequireServer
                 .Check()

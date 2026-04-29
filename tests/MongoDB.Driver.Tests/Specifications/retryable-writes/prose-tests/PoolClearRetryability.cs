@@ -37,8 +37,8 @@ namespace MongoDB.Driver.Tests.Specifications.retryable_writes.prose_tests
     public class PoolClearRetryability
     {
         [Theory]
-        [ParameterAttributeData]
-        public async Task PoolClearedError_write_retryablity_test([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task PoolClearedError_write_retryablity_test([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check()
                 .Supports(Feature.FailPointsBlockConnection)

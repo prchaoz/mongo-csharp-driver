@@ -103,10 +103,10 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_send_serverApi_with_command_wire_protocol(
-            [Values(false, true)] bool useServerApi,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool useServerApi,
+            [CombinatorialValues(false, true)] bool async)
         {
             var serverApi = useServerApi ? new ServerApi(ServerApiVersion.V1, true, true) : null;
             var subject = CreateScramSha256SaslAuthenticator(_clientNonce, serverApi);
@@ -140,9 +140,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_with_loadBalancedConnection_should_use_command_wire_protocol(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateScramSha256SaslAuthenticator(_clientNonce, null);
 
@@ -175,10 +175,10 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_throw_an_AuthenticationException_when_authentication_fails(
-            [Values("MongoConnectionException", "MongoNotPrimaryException")] string exceptionName,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("MongoConnectionException", "MongoNotPrimaryException")] string exceptionName,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateScramSha256SaslAuthenticator(_clientNonce, null);
 
@@ -195,9 +195,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_throw_when_server_provides_invalid_r_value(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateScramSha256SaslAuthenticator(_clientNonce, null);
             var poisonedSaslStart = PoisonSaslMessage(message: __clientRequest1, poison: "bluePill");
@@ -220,9 +220,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_throw_when_server_provides_invalid_serverSignature(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateScramSha256SaslAuthenticator(_clientNonce, null);
 
@@ -252,11 +252,11 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_not_throw_when_authentication_succeeds(
-            [Values(false, true)] bool useSpeculativeAuthenticate,
-            [Values(false, true)] bool useLongAuthentication,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool useSpeculativeAuthenticate,
+            [CombinatorialValues(false, true)] bool useLongAuthentication,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateScramSha256SaslAuthenticator(_clientNonce, null);
 
@@ -410,9 +410,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_use_cache(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateScramSha256SaslAuthenticator(_clientNonce, null);
 
@@ -452,10 +452,10 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public Task Authenticate_should_work_regardless_of_culture(
-            [Values("da-DK", "en-US")] string name,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("da-DK", "en-US")] string name,
+            [CombinatorialValues(false, true)] bool async)
         {
             return SetCultureAndResetAfterTest(name, async Task() =>
             {

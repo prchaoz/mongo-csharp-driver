@@ -40,9 +40,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToMaxTimeMS_should_throw_when_value_is_invalid(
-            [Values(-10001, -9999, -1)] int maxTimeTicks)
+            [CombinatorialValues(-10001, -9999, -1)] int maxTimeTicks)
         {
             var value = TimeSpan.FromTicks(maxTimeTicks);
 

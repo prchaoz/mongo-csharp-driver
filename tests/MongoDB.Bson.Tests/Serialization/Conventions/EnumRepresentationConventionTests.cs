@@ -308,10 +308,10 @@ namespace MongoDB.Bson.Tests.Serialization.Conventions
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_representation_and_should_apply_to_collection_should_return_expected_result(
-            [Values((BsonType)0, BsonType.Int32, BsonType.Int64, BsonType.String)] BsonType representation,
-            [Values(true, false)] bool topLevelOnly)
+            [CombinatorialValues((BsonType)0, BsonType.Int32, BsonType.Int64, BsonType.String)] BsonType representation,
+            [CombinatorialValues(true, false)] bool topLevelOnly)
         {
             var subject = new EnumRepresentationConvention(representation, topLevelOnly);
 

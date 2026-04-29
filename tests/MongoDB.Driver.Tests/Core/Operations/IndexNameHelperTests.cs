@@ -55,9 +55,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetIndexName_with_wildcard_keys_should_return_expected_result(
-            [Values("$**", "a.$**")] string key)
+            [CombinatorialValues("$**", "a.$**")] string key)
         {
             var keys = new[] { key };
             var expectedResult = key + "_1";

@@ -676,8 +676,8 @@ namespace MongoDB.Driver.Tests
 
 
         [Theory]
-        [ParameterAttributeData]
-        public void TestLoadBalanced([Values(false, true)] bool value)
+        [CombinatorialData]
+        public void TestLoadBalanced([CombinatorialValues(false, true)] bool value)
         {
             var subject = new MongoUrlBuilder { LoadBalanced = value };
 
@@ -687,8 +687,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void TestMaxConnecting([Values(0, -1)] int incorrectMaxConnecting)
+        [CombinatorialData]
+        public void TestMaxConnecting([CombinatorialValues(0, -1)] int incorrectMaxConnecting)
         {
             var value = 3;
 

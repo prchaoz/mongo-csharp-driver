@@ -33,9 +33,9 @@ namespace MongoDB.Driver.Core.Operations
     {
         // public methods
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AdditionalOptions_get_and_set_should_work(
-            [Values(null, "{ additional : 1 }")] string additionalOptionsString)
+            [CombinatorialValues(null, "{ additional : 1 }")] string additionalOptionsString)
         {
             var subject = CreateSubject<BsonDocument>();
             var additionalOptions = additionalOptionsString == null ? null : BsonDocument.Parse(additionalOptionsString);
@@ -69,9 +69,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Comment_get_and_set_should_work(
-           [Values(null, "comment")] string comment)
+           [CombinatorialValues(null, "comment")] string comment)
         {
             var subject = CreateSubject<BsonDocument>();
 
@@ -150,9 +150,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MessageEncoderSettings_get_should_return_expected_result(
-           [Values(false, true)] bool useNull)
+           [CombinatorialValues(false, true)] bool useNull)
         {
             var messageEncoderSettings = useNull ? null : new MessageEncoderSettings();
             var subject = CreateSubject<BsonDocument>(messageEncoderSettings: messageEncoderSettings);

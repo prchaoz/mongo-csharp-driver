@@ -31,9 +31,9 @@ namespace MongoDB.Driver.Core.Operations
 
         // test methods
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Collation_should_get_and_set_value(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings);
@@ -46,9 +46,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CollectionNamespace_should_get_value(
-            [Values("a", "b")]
+            [CombinatorialValues("a", "b")]
             string collectionName)
         {
             var collectionNamespace = new CollectionNamespace(_collectionNamespace.DatabaseNamespace, collectionName);
@@ -138,9 +138,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_Collation_is_provided(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var collation = locale == null ? null : new Collation(locale);
@@ -166,9 +166,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_Filter_is_provided(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string filterString)
         {
             var filter = filterString == null ? null : BsonDocument.Parse(filterString);
@@ -193,9 +193,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_FinalizeFunction_is_provided(
-            [Values(null, "a", "b")]
+            [CombinatorialValues(null, "a", "b")]
             string code)
         {
             var finalizeFunction = code == null ? null : new BsonJavaScript(code);
@@ -220,9 +220,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_JavaScriptMode_is_provided(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? javaScriptMode)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings)
@@ -248,9 +248,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_Limit_is_provided(
-            [Values(null, 1L, 2L)]
+            [CombinatorialValues(null, 1L, 2L)]
             long? limit)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings)
@@ -322,9 +322,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_Scope_is_provided(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string scopeString)
         {
             var scope = scopeString == null ? null : BsonDocument.Parse(scopeString);
@@ -349,9 +349,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_Sort_is_provided(
-            [Values(null, "{ x : 1 }", "{ x : -1 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : -1 }")]
             string sortString)
         {
             var sort = sortString == null ? null : BsonDocument.Parse(sortString);
@@ -376,9 +376,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_Verbose_is_provided(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? verbose)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings)
@@ -402,9 +402,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Filter_should_get_and_set_value(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string valueString)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings);
@@ -417,9 +417,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FinalizeFunction_should_get_and_set_value(
-            [Values(null, "a", "b")]
+            [CombinatorialValues(null, "a", "b")]
             string code)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings);
@@ -432,9 +432,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void JavaScriptMode_should_get_and_set_value(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings);
@@ -448,9 +448,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Limit_should_get_and_set_value(
-            [Values(null, 0L, 1L)]
+            [CombinatorialValues(null, 0L, 1L)]
             long? value)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings);
@@ -462,9 +462,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MapFunction_should_get_value(
-            [Values("a", "b")]
+            [CombinatorialValues("a", "b")]
             string code)
         {
             var mapFunction = new BsonJavaScript(code);
@@ -476,9 +476,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_get_and_set_should_work(
-            [Values(-10000, 0, 1, 10000, 99999)] long maxTimeTicks)
+            [CombinatorialValues(-10000, 0, 1, 10000, 99999)] long maxTimeTicks)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings);
             var value = TimeSpan.FromTicks(maxTimeTicks);
@@ -490,9 +490,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_throw_when_value_is_invalid(
-            [Values(-10001, -9999, -1)] long maxTimeTicks)
+            [CombinatorialValues(-10001, -9999, -1)] long maxTimeTicks)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings);
             var value = TimeSpan.FromTicks(maxTimeTicks);
@@ -524,9 +524,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Scope_should_get_and_set_value(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string valueString)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings);
@@ -539,9 +539,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Sort_should_get_and_set_value(
-            [Values(null, "{ x : 1 }", "{ x : -1 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : -1 }")]
             string valueString)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings);
@@ -554,9 +554,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Verbose_should_get_and_set_value(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
             var subject = new FakeMapReduceOperation(_collectionNamespace, _mapFunction, _reduceFunction, _messageEncoderSettings);

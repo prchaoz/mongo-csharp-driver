@@ -64,8 +64,8 @@ namespace MongoDB.Driver.Core.Tests.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Constructor_should_handle_directConnection_correctly([Values(false, true)]bool directConnection)
+        [CombinatorialData]
+        public void Constructor_should_handle_directConnection_correctly([CombinatorialValues(false, true)]bool directConnection)
         {
             _settings = _settings.With(directConnection: directConnection);
 
@@ -82,8 +82,8 @@ namespace MongoDB.Driver.Core.Tests.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Constructor_should_handle_loadBalanced_correctly([Values(false, true)] bool loadBalanced)
+        [CombinatorialData]
+        public void Constructor_should_handle_loadBalanced_correctly([CombinatorialValues(false, true)] bool loadBalanced)
         {
             _settings = _settings.With(loadBalanced: loadBalanced);
 
@@ -309,10 +309,10 @@ namespace MongoDB.Driver.Core.Tests.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_return_expected_server(
-            [Values(ConnectionStringScheme.MongoDB, ConnectionStringScheme.MongoDBPlusSrv)] ConnectionStringScheme connectionStringScheme,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(ConnectionStringScheme.MongoDB, ConnectionStringScheme.MongoDBPlusSrv)] ConnectionStringScheme connectionStringScheme,
+            [CombinatorialValues(false, true)] bool async)
         {
             var settings = _settings.With(scheme: connectionStringScheme);
             var mockDnsMonitorFactory = CreateMockDnsMonitorFactory();
@@ -336,10 +336,10 @@ namespace MongoDB.Driver.Core.Tests.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_throw_server_selection_timeout_if_server_has_not_been_created_in_time(
-            [Values(ConnectionStringScheme.MongoDB, ConnectionStringScheme.MongoDBPlusSrv)] ConnectionStringScheme connectionStringScheme,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(ConnectionStringScheme.MongoDB, ConnectionStringScheme.MongoDBPlusSrv)] ConnectionStringScheme connectionStringScheme,
+            [CombinatorialValues(false, true)] bool async)
         {
             var serverSelectionTimeout = TimeSpan.FromMilliseconds(500);
             var settings = _settings.With(scheme: connectionStringScheme, serverSelectionTimeout: serverSelectionTimeout);
@@ -373,10 +373,10 @@ namespace MongoDB.Driver.Core.Tests.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_be_cancelled_by_cancellationToken(
-            [Values(ConnectionStringScheme.MongoDB, ConnectionStringScheme.MongoDBPlusSrv)] ConnectionStringScheme connectionStringScheme,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(ConnectionStringScheme.MongoDB, ConnectionStringScheme.MongoDBPlusSrv)] ConnectionStringScheme connectionStringScheme,
+            [CombinatorialValues(false, true)] bool async)
         {
             var settings = _settings.With(scheme: connectionStringScheme);
             var mockDnsMonitorFactory = CreateMockDnsMonitorFactory();

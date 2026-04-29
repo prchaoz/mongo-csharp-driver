@@ -29,9 +29,9 @@ namespace MongoDB.Bson.Tests.IO
     public class BsonStreamExtensionsTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BackpatchSize_should_backpatch_the_size(
-            [Values(0, 1, 5)]
+            [CombinatorialValues(0, 1, 5)]
             int startPosition)
         {
             var bytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -71,9 +71,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BackpatchSize_should_throw_when_startPosition_is_out_of_range(
-            [Values(-1, 4)]
+            [CombinatorialValues(-1, 4)]
             int startPosition)
         {
             var mockStream = new Mock<BsonStream>();
@@ -296,9 +296,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadBytes_with_buffer_should_return_expected_result(
-            [Values(0, 1, 2, 16)]
+            [CombinatorialValues(0, 1, 2, 16)]
             int length)
         {
             var bytes = Enumerable.Range(0, length).Select(n => (byte)n).ToArray();
@@ -316,9 +316,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadBytes_with_buffer_should_throw_when_at_end_of_stream(
-            [Values(0, 1, 2, 16)]
+            [CombinatorialValues(0, 1, 2, 16)]
             int length)
         {
             var bytes = Enumerable.Range(0, length).Select(n => (byte)n).ToArray();
@@ -422,9 +422,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadBytes_with_count_should_return_expected_result(
-            [Values(0, 1, 2, 16)]
+            [CombinatorialValues(0, 1, 2, 16)]
             int length)
         {
             var bytes = Enumerable.Range(0, length).Select(n => (byte)n).ToArray();
@@ -712,11 +712,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteSlice_should_have_expected_effect(
-            [Values(0, 1, 2, 16)]
+            [CombinatorialValues(0, 1, 2, 16)]
             int length,
-            [Values(1, 2, 3)]
+            [CombinatorialValues(1, 2, 3)]
             int numberOfChunks)
         {
             numberOfChunks = length == 0 ? 1 : length < numberOfChunks ? length : numberOfChunks;

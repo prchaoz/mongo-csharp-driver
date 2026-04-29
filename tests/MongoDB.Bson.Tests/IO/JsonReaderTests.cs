@@ -32,9 +32,9 @@ namespace MongoDB.Bson.Tests.IO
         private IBsonReader _bsonReader;
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void JsonReader_should_support_reading_multiple_documents(
-            [Range(0, 3)]
+            [CombinatorialRange(0, 3)]
             int numberOfDocuments)
         {
             var document = new BsonDocument("x", 1);

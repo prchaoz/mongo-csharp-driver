@@ -92,11 +92,11 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
 
         // public methods
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AutomaticDataEncryptionKeysTest(
-            [Values("aws", "local")] string kmsProvider,
-            [Range(1, 4)] int testCase,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("aws", "local")] string kmsProvider,
+            [CombinatorialRange(1, 4)] int testCase,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.Csfle2QEv2).ClusterTypes(ClusterType.ReplicaSet, ClusterType.Sharded, ClusterType.LoadBalanced);
 
@@ -165,8 +165,8 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void BsonSizeLimitAndBatchSizeSplittingTest([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void BsonSizeLimitAndBatchSizeSplittingTest([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 
@@ -329,9 +329,9 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BypassMongocryptdClientWhenSharedLibraryTest(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
             RequireEnvironment.Check().EnvironmentVariable("CRYPT_SHARED_LIB_PATH", isDefined: true, allowEmpty: false);
@@ -397,9 +397,9 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BypassSpawningMongocryptdViaMongocryptdBypassSpawnTest(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
             RequireEnvironment.Check().EnvironmentVariable("CRYPT_SHARED_LIB_PATH", isDefined: false);
@@ -432,10 +432,10 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BypassSpawningMongocryptdTest(
-            [Values(BypassSpawningMongocryptd.BypassQueryAnalysis, BypassSpawningMongocryptd.BypassAutoEncryption, BypassSpawningMongocryptd.SharedLibrary)] BypassSpawningMongocryptd bypassSpawning,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(BypassSpawningMongocryptd.BypassQueryAnalysis, BypassSpawningMongocryptd.BypassAutoEncryption, BypassSpawningMongocryptd.SharedLibrary)] BypassSpawningMongocryptd bypassSpawning,
+            [CombinatorialValues(false, true)] bool async)
         {
             using (var clientEncrypted = EnsureEnvironmentAndConfigureTestClientEncrypted())
             using (var mongocryptdClient = new MongoClient("mongodb://localhost:27021/?serverSelectionTimeoutMS=1000"))
@@ -526,10 +526,10 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CorpusTest(
-            [Values(false, true)] bool useLocalSchema,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool useLocalSchema,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 
@@ -691,10 +691,10 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateDataKeyAndDoubleEncryptionTest(
-            [Values("local", "aws", "azure", "gcp", "kmip")] string kmsProvider,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("local", "aws", "azure", "gcp", "kmip")] string kmsProvider,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 
@@ -1131,10 +1131,10 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DecryptionEvents(
-            [Range(1, 4)] int testCase,
-            [Values(false, true)] bool async)
+            [CombinatorialRange(1, 4)] int testCase,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 
@@ -1245,10 +1245,10 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ExplicitEncryptionTest(
-            [Range(1, 5)] int testCase,
-            [Values(false, true)] bool async)
+            [CombinatorialRange(1, 5)] int testCase,
+            [CombinatorialValues(false, true)] bool async)
         {
             // CSHARP-4606: Skip all fle2v2 tests on Mac until https://jira.mongodb.org/browse/SERVER-69563 propagates to EG Macs.
             RequirePlatform.Check().SkipWhen(SupportedOperatingSystem.MacOS);
@@ -1377,10 +1377,10 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ExternalKeyVaultTest(
-            [Values(false, true)] bool withExternalKeyVault,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool withExternalKeyVault,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 
@@ -1428,11 +1428,11 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task KmsRetryTest(
-            [Values("aws", "azure", "gcp")] string kmsProvider,
-            [Values("network", "http")] string failureType,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("aws", "azure", "gcp")] string kmsProvider,
+            [CombinatorialValues("network", "http")] string failureType,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
             RequireEnvironment.Check().EnvironmentVariable("KMS_MOCK_SERVERS_ENABLED", isDefined: true);
@@ -1571,11 +1571,11 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void KmsTlsOptionsTest(
-            [Values("aws", "aws:name1", "azure", "azure:name1", "gcp", "gcp:name1", "kmip", "kmip:name1")] string kmsProvider,
-            [Values(CertificateType.TlsWithoutClientCert, CertificateType.TlsWithClientCert, CertificateType.Expired, CertificateType.InvalidHostName)] CertificateType certificateType,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("aws", "aws:name1", "azure", "azure:name1", "gcp", "gcp:name1", "kmip", "kmip:name1")] string kmsProvider,
+            [CombinatorialValues(CertificateType.TlsWithoutClientCert, CertificateType.TlsWithClientCert, CertificateType.Expired, CertificateType.InvalidHostName)] CertificateType certificateType,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
             RequireEnvironment.Check().EnvironmentVariable("KMS_MOCK_SERVERS_ENABLED", isDefined: true);
@@ -1928,11 +1928,11 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         [Trait("Category", "CsfleAZUREKMS")]
         [Trait("Category", "CsfleGCPKMS")]
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void OnDemandCredentialsTest(
-            [Values("aws", "azure", "gcp")] string kmsProvider,
-            [Values(false, true)] bool expectedEnvironment,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("aws", "azure", "gcp")] string kmsProvider,
+            [CombinatorialValues(false, true)] bool expectedEnvironment,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 
@@ -2092,10 +2092,10 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task OnDemandAzureIMDSCredentialsUnitTest(
-            [Range(1, 6)] int testCase,
-            [Values(false, true)] bool async)
+            [CombinatorialRange(1, 6)] int testCase,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireEnvironment
                 .Check()
@@ -2181,12 +2181,12 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task RangeExplicitEncryptionTest(
-            [Range(1, 8)] int testCase,
+            [CombinatorialRange(1, 8)] int testCase,
             // test case rangeType values correspond to keys used in test configuration files
-            [Values("DecimalNoPrecision", "DecimalPrecision", "DoubleNoPrecision", "DoublePrecision", "Date", "Int", "Long")] string rangeType,
-            [Values(true, false)] bool async)
+            [CombinatorialValues("DecimalNoPrecision", "DecimalPrecision", "DoubleNoPrecision", "DoublePrecision", "Date", "Int", "Long")] string rangeType,
+            [CombinatorialValues(true, false)] bool async)
         {
             // CSHARP-4606: Skip all fle2v2 tests on Mac until https://jira.mongodb.org/browse/SERVER-69563 propagates to EG Macs.
             RequirePlatform.Check().SkipWhen(SupportedOperatingSystem.MacOS);
@@ -2451,11 +2451,11 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RewrapTest(
-            [Values("local", "aws", "azure", "gcp", "kmip")] string srcProvider,
-            [Values("local", "aws", "azure", "gcp", "kmip")] string dstProvider,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("local", "aws", "azure", "gcp", "kmip")] string srcProvider,
+            [CombinatorialValues("local", "aws", "azure", "gcp", "kmip")] string dstProvider,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.Csfle2);
 
@@ -2734,10 +2734,10 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
 
         // https://github.com/mongodb/specifications/blob/master/source/client-side-encryption/tests/README.md#27-text-explicit-encryption
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void TextExplicitEncryptionTest(
-            [Range(1, 7)] int testCase,
-            [Values(true, false)] bool async)
+            [CombinatorialRange(1, 7)] int testCase,
+            [CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check()
                 .Supports(Feature.Csfle2QEv2TextPreviewAlgorithm)
@@ -2949,8 +2949,8 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void ViewAreProhibitedTest([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void ViewAreProhibitedTest([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 
@@ -2977,10 +2977,10 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UniqueIndexOnKeyAltNames(
-            [Range(1, 2)] int testCase,
-            [Values(false, true)] bool async)
+            [CombinatorialRange(1, 2)] int testCase,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 
@@ -3049,10 +3049,10 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
 
         // NOTE: this test is not presented in the prose tests
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UnsupportedPlatformsTests(
-            [Values("gcp")] string kmsProvider, // the rest kms providers are supported on all supported TFs
-            [Values(false, true)] bool async)
+            [CombinatorialValues("gcp")] string kmsProvider, // the rest kms providers are supported on all supported TFs
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 

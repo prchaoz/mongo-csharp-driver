@@ -112,8 +112,8 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Open_should_always_create_description_if_handshake_was_successful([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Open_should_always_create_description_if_handshake_was_successful([CombinatorialValues(false, true)] bool async)
         {
             var serviceId = ObjectId.GenerateNewId();
             var connectionDescription = new ConnectionDescription(
@@ -144,9 +144,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Open_should_create_authenticators_only_once(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             using var memoryStream = new MemoryStream();
             var clonedMessageEncoderSettings = _messageEncoderSettings.Clone();
@@ -212,9 +212,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Open_should_throw_an_ObjectDisposedException_if_the_connection_is_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             _subject.Dispose();
@@ -227,9 +227,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Open_should_raise_the_correct_events_upon_failure(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             _mockConnectionInitializer.Setup(i => i.SendHelloAsync(It.IsAny<OperationContext>(), It.IsAny<IConnection>()))
@@ -251,9 +251,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Open_should_setup_the_description(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             if (async)
@@ -273,11 +273,11 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Open_should_not_complete_the_second_call_until_the_first_is_completed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async1,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async2)
         {
             var task1IsBlocked = false;
@@ -319,9 +319,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Reauthentication_should_use_the_same_auth_context_as_in_initial_authentication(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             _subject._connectionInitializerContext().Should().BeNull();
 
@@ -351,11 +351,11 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ReceiveMessage_should_throw_a_FormatException_when_message_is_an_invalid_size(
-            [Values(-1, 48000001)]
+            [CombinatorialValues(-1, 48000001)]
             int length,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             using (var stream = new BlockingMemoryStream())
@@ -384,9 +384,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ReceiveMessage_should_throw_an_ArgumentNullException_when_the_encoderSelector_is_null(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var exception = async ?
@@ -398,9 +398,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ReceiveMessage_should_throw_an_ObjectDisposedException_if_the_connection_is_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var encoderSelector = new Mock<IMessageEncoderSelector>().Object;
@@ -414,9 +414,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ReceiveMessage_should_throw_an_InvalidOperationException_if_the_connection_is_not_open(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var encoderSelector = new Mock<IMessageEncoderSelector>().Object;
@@ -429,9 +429,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ReceiveMessage_should_complete_when_reply_is_already_on_the_stream(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             using (var stream = new BlockingMemoryStream())
@@ -464,9 +464,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ReceiveMessage_should_complete_when_reply_is_not_already_on_the_stream(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             using (var stream = new BlockingMemoryStream())
@@ -593,11 +593,11 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ReceiveMessage_should_throw_MongoConnectionClosedException_when_connection_has_failed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async1,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async2)
         {
             var mockStream = new Mock<Stream>();
@@ -635,9 +635,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SendMessage_should_throw_an_ArgumentNullException_if_message_is_null(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var exception = async ?
@@ -648,9 +648,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SendMessage_should_throw_an_ObjectDisposedException_if_the_connection_is_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var message = MessageHelper.BuildQuery();
@@ -664,9 +664,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SendMessage_should_throw_an_InvalidOperationException_if_the_connection_is_not_open(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var message = MessageHelper.BuildQuery();
@@ -679,9 +679,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SendMessage_should_put_the_message_on_the_stream_and_raise_the_correct_events(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             using (var stream = new MemoryStream())

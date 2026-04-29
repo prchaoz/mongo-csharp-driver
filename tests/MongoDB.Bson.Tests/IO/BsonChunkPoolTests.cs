@@ -53,9 +53,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_chunkSize_is_less_than_zero(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int chunkSize)
         {
             Action action = () => new BsonChunkPool(1, chunkSize);
@@ -126,9 +126,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetChunk_should_return_expected_result(
-            [Values(1, 15, 16, 17, 32)]
+            [CombinatorialValues(1, 15, 16, 17, 32)]
             int requestedSize)
         {
             var subject = new BsonChunkPool(1, 16);
@@ -236,11 +236,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Dispose_should_return_chunk_to_the_pool_after_all_handles_have_been_disposed(
-            [Values(0, 1, 2, 3, 4, 16)]
+            [CombinatorialValues(0, 1, 2, 3, 4, 16)]
             int numberOfHandles,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool disposeSubjectLast)
         {
             var pool = new BsonChunkPool(1, 16);

@@ -110,9 +110,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BypassDocumentValidation_get_and_set_should_work(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
@@ -124,9 +124,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Collation_get_and_set_should_work(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
@@ -139,9 +139,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Hint_get_and_set_should_work(
-            [Values(null, "_id_")] string hintString)
+            [CombinatorialValues(null, "_id_")] string hintString)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
             var value = (BsonValue)hintString;
@@ -153,9 +153,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsUpsert_get_and_set_should_work(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool value)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
@@ -167,9 +167,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Let_get_and_set_should_work(
-            [Values(null, "{ name : 'name' }")] string let)
+            [CombinatorialValues(null, "{ name : 'name' }")] string let)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
             var value = let != null ? BsonDocument.Parse(let) : null;
@@ -181,9 +181,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_get_and_set_should_work(
-            [Values(-10000, 0, 1, 10000, 99999)] long maxTimeTicks)
+            [CombinatorialValues(-10000, 0, 1, 10000, 99999)] long maxTimeTicks)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
             var value = TimeSpan.FromTicks(maxTimeTicks);
@@ -195,9 +195,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_throw_when_value_is_invalid(
-            [Values(-10001, -9999, -1)] long maxTimeTicks)
+            [CombinatorialValues(-10001, -9999, -1)] long maxTimeTicks)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
             var value = TimeSpan.FromTicks(maxTimeTicks);
@@ -209,9 +209,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Projection_get_and_set_should_work(
-            [Values(null, "{ x : 1 }", "{ y : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ y : 2 }")]
             string valueString)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
@@ -224,9 +224,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReturnDocument_get_and_set_should_work(
-            [Values(ReturnDocument.After, ReturnDocument.Before)]
+            [CombinatorialValues(ReturnDocument.After, ReturnDocument.Before)]
             ReturnDocument value)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
@@ -238,9 +238,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Sort_get_and_set_should_work(
-            [Values(null, "{ x : 1 }", "{ y : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ y : 2 }")]
             string valueString)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
@@ -253,9 +253,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteConcern_get_and_set_should_work(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? w)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings);
@@ -268,10 +268,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result(
-            [Values(null, "{ name : 'name' }")] string let,
-            [Values(null, 100L)] long? transactionNumber)
+            [CombinatorialValues(null, "{ name : 'name' }")] string let,
+            [CombinatorialValues(null, 100L)] long? transactionNumber)
         {
             var letDocument = let != null ? BsonDocument.Parse(let) : null;
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings)
@@ -295,9 +295,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_BypassDocumentValidation_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings)
@@ -320,9 +320,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_Collation_is_set(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var collation = locale == null ? null : new Collation(locale);
@@ -346,9 +346,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_Hint_is_set(
-            [Values(null, "_id_")] string hintString)
+            [CombinatorialValues(null, "_id_")] string hintString)
         {
             var hint = (BsonValue)hintString;
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings)
@@ -371,9 +371,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_IsUpsert_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool value)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings)
@@ -443,9 +443,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_Projection_is_set(
-            [Values(null, "{ x : 1 }", "{ y : 1 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ y : 1 }")]
             string projectionString)
         {
             var projection = projectionString == null ? null : BsonDocument.Parse(projectionString);
@@ -469,9 +469,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_ReturnDocument_is_set(
-            [Values(ReturnDocument.After, ReturnDocument.Before)]
+            [CombinatorialValues(ReturnDocument.After, ReturnDocument.Before)]
             ReturnDocument value)
         {
             var subject = new FindOneAndReplaceOperation<BsonDocument>(_collectionNamespace, _filter, _replacement, BsonDocumentSerializer.Instance, _messageEncoderSettings)
@@ -494,9 +494,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_Sort_is_set(
-            [Values(null, "{ x : 1 }", "{ y : 1 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ y : 1 }")]
             string sortString)
         {
             var sort = sortString == null ? null : BsonDocument.Parse(sortString);
@@ -520,11 +520,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_WriteConcern_is_set(
-            [Values(null, 1, 2)] int? w,
-            [Values(null, 100)] int? wtimeout,
-            [Values(true, false)] bool hasOperationTimeout)
+            [CombinatorialValues(null, 1, 2)] int? w,
+            [CombinatorialValues(null, 100)] int? wtimeout,
+            [CombinatorialValues(true, false)] bool hasOperationTimeout)
         {
             var writeConcern = w.HasValue ? new WriteConcern(w.Value) : null;
             if (wtimeout.HasValue)
@@ -559,9 +559,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_against_an_existing_document_returning_the_original(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -581,9 +581,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_against_an_existing_document_returning_the_replacement(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -603,9 +603,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_against_a_non_existing_document_returning_the_original(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -626,9 +626,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_against_a_non_existing_document_returning_the_replacement(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -649,9 +649,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_against_a_non_existing_document_returning_the_original_with_upsert(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -675,9 +675,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_against_a_non_existing_document_returning_the_replacement_with_upsert(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -701,8 +701,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Execute_should_set_operation_name([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Execute_should_set_operation_name([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -712,9 +712,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_maxTime_is_exceeded(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
             var filter = BsonDocument.Parse("{ x : 1 }");
@@ -730,9 +730,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_there_is_a_write_concern_error(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterType(ClusterType.ReplicaSet);
@@ -755,10 +755,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_hint_should_throw_when_hint_is_not_supported(
-            [Values(0, 1)] int w,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0, 1)] int w,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(w);
             var maxWireVersion = CoreTestConfiguration.MaxWireVersion;
@@ -789,9 +789,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_let_should_return_correct_results(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().VersionGreaterThanOrEqualTo("5.0.0");
             EnsureTestData();

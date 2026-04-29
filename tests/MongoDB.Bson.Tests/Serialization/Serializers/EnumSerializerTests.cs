@@ -14,6 +14,7 @@
 */
 
 using System;
+using System.Collections;
 using System.IO;
 using System.Linq;
 using FluentAssertions;
@@ -103,18 +104,26 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
             Max = ulong.MaxValue,
         }
 
-        public class EnumPrototypes : IValueGenerator
+        public class EnumPrototypes : IEnumerable
         {
-            public object[] GenerateValues()
+            public IEnumerator GetEnumerator()
             {
-                return new object[] { EnumByte.Min, EnumInt16.Min, EnumInt32.Min, EnumInt64.Min, EnumSByte.Min, EnumUInt16.Min, EnumUInt32.Min, EnumUInt64.Min };
+                yield return EnumByte.Min;
+                yield return EnumInt16.Min;
+                yield return EnumInt32.Min;
+                yield return EnumInt64.Min;
+                yield return EnumSByte.Min;
+                yield return EnumUInt16.Min;
+                yield return EnumUInt16.Min;
+                yield return EnumUInt32.Min;
+                yield return EnumUInt64.Min;
             }
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_no_arguments_should_return_expected_result<TEnum>(
-            [ClassValues(typeof(EnumPrototypes))] TEnum _)
+            [CombinatorialClassData(typeof(EnumPrototypes))] TEnum _)
             where TEnum : struct, Enum
         {
             var subject = new EnumSerializer<TEnum>();
@@ -124,11 +133,11 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_representation_should_return_expected_result<TEnum>(
-            [ClassValues(typeof(EnumPrototypes))]
+            [CombinatorialClassData(typeof(EnumPrototypes))]
             TEnum _,
-            [Values((BsonType)0, BsonType.Int32, BsonType.Int64, BsonType.String)]
+            [CombinatorialValues((BsonType)0, BsonType.Int32, BsonType.Int64, BsonType.String)]
             BsonType representation)
             where TEnum : struct, Enum
         {
@@ -139,11 +148,11 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_representation_should_throw_when_representation_is_invalid<TEnum>(
-            [ClassValues(typeof(EnumPrototypes))]
+            [CombinatorialClassData(typeof(EnumPrototypes))]
             TEnum _,
-            [Values(-1, 1, 3, 9, 11, 13)] // these are the values adjacent to the valid values
+            [CombinatorialValues(-1, 1, 3, 9, 11, 13)] // these are the values adjacent to the valid values
             BsonType representation)
             where TEnum : struct, Enum
         {
@@ -154,11 +163,11 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Deserialize_should_throw_when_bson_type_is_invalid<TEnum>(
-            [ClassValues(typeof(EnumPrototypes))]
+            [CombinatorialClassData(typeof(EnumPrototypes))]
             TEnum _,
-            [Values("{ x : false }")]
+            [CombinatorialValues("{ x : false }")]
             string json)
             where TEnum : struct, Enum
         {
@@ -476,13 +485,13 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WithRepresentation_should_return_expected_result<TEnum>(
-            [ClassValues(typeof(EnumPrototypes))]
+            [CombinatorialClassData(typeof(EnumPrototypes))]
             TEnum _,
-            [Values((BsonType)0, BsonType.Int32, BsonType.Int64, BsonType.String)]
+            [CombinatorialValues((BsonType)0, BsonType.Int32, BsonType.Int64, BsonType.String)]
             BsonType originalRepresentation,
-            [Values((BsonType)0, BsonType.Int32, BsonType.Int64, BsonType.String)]
+            [CombinatorialValues((BsonType)0, BsonType.Int32, BsonType.Int64, BsonType.String)]
             BsonType newRepresentation)
             where TEnum : struct, Enum
         {

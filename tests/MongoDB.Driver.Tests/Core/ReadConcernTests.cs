@@ -77,9 +77,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Constructor_with_level_should_initialize_instance(
-            [Values(ReadConcernLevel.Local, ReadConcernLevel.Majority, null)]
+            [CombinatorialValues(ReadConcernLevel.Local, ReadConcernLevel.Majority, null)]
             ReadConcernLevel? level)
         {
             var result = new ReadConcern(level);

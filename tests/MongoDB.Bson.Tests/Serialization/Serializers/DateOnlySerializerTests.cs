@@ -60,9 +60,9 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Constructor_with_representation_should_return_expected_result(
-            [Values(BsonType.DateTime, BsonType.String, BsonType.Int64, BsonType.Document)]
+            [CombinatorialValues(BsonType.DateTime, BsonType.String, BsonType.Int64, BsonType.Document)]
             BsonType representation)
         {
             var subject = new DateOnlySerializer(representation);
@@ -71,11 +71,11 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Constructor_with_representation_and_format_should_return_expected_result(
-            [Values(BsonType.DateTime, BsonType.String, BsonType.Int64, BsonType.Document)]
+            [CombinatorialValues(BsonType.DateTime, BsonType.String, BsonType.Int64, BsonType.Document)]
             BsonType representation,
-            [Values(DateOnlyDocumentFormat.DateTimeTicks, DateOnlyDocumentFormat.YearMonthDay)]
+            [CombinatorialValues(DateOnlyDocumentFormat.DateTimeTicks, DateOnlyDocumentFormat.YearMonthDay)]
             DateOnlyDocumentFormat format)
         {
             var subject = new DateOnlySerializer(representation, format);
@@ -233,11 +233,11 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_with_different_representation_and_format_should_return_correct(
-            [Values(BsonType.DateTime, BsonType.String, BsonType.Int64, BsonType.Document)]
+            [CombinatorialValues(BsonType.DateTime, BsonType.String, BsonType.Int64, BsonType.Document)]
             BsonType representation,
-            [Values(DateOnlyDocumentFormat.DateTimeTicks, DateOnlyDocumentFormat.YearMonthDay)]
+            [CombinatorialValues(DateOnlyDocumentFormat.DateTimeTicks, DateOnlyDocumentFormat.YearMonthDay)]
             DateOnlyDocumentFormat format)
         {
             var x = new DateOnlySerializer();
@@ -340,10 +340,10 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WithRepresentation_should_return_expected_result(
-            [Values(BsonType.Document, BsonType.DateTime, BsonType.String)] BsonType oldRepresentation,
-            [Values(BsonType.Document, BsonType.DateTime, BsonType.String)] BsonType newRepresentation)
+            [CombinatorialValues(BsonType.Document, BsonType.DateTime, BsonType.String)] BsonType oldRepresentation,
+            [CombinatorialValues(BsonType.Document, BsonType.DateTime, BsonType.String)] BsonType newRepresentation)
         {
             var subject = new DateOnlySerializer(oldRepresentation);
 

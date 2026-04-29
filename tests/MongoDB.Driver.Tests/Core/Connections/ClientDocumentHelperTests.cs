@@ -44,21 +44,21 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateClientDocument_with_args_should_return_expected_result(
-            [Values(null, "app1", "app2")]
+            [CombinatorialValues(null, "app1", "app2")]
             string applicationName,
-            [Values("{ name : 'mongo-csharp-driver', version : '3.6.0' }", "{ name : 'mongo-csharp-driver', version : '3.6.1' }")]
+            [CombinatorialValues("{ name : 'mongo-csharp-driver', version : '3.6.0' }", "{ name : 'mongo-csharp-driver', version : '3.6.1' }")]
             string driverDocumentString,
-            [Values(
+            [CombinatorialValues(
                 "{ type : 'Windows', name : 'Windows 10', architecture : 'x86_64', version : '10.0' }",
                 "{ type : 'Windows', name : 'Windows 10', architecture : 'x86_64', version : '10.1' }")]
             string osDocumentString,
-            [Values("net45", "net46")]
+            [CombinatorialValues("net45", "net46")]
             string platformString,
-            [Values(null, "aws.lambda", "versel")]
+            [CombinatorialValues(null, "aws.lambda", "versel")]
             string env,
-            [Values(null, "libName;", "libName;1.0.0")]
+            [CombinatorialValues(null, "libName;", "libName;1.0.0")]
             string libraryInfoString)
         {
             var driverDocument = BsonDocument.Parse(driverDocumentString);
@@ -129,9 +129,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateDriverDocument_with_args_should_return_expected_result(
-            [Values("3.6.0", "3.6.1")]
+            [CombinatorialValues("3.6.0", "3.6.1")]
             string driverVersion)
         {
             var result = ClientDocumentHelper.CreateDriverDocument(driverVersion);
@@ -173,15 +173,15 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateOSDocument_with_args_should_return_expected_result(
-            [Values("Windows", "Linux")]
+            [CombinatorialValues("Windows", "Linux")]
             string osType,
-            [Values("Windows 10", "macOS")]
+            [CombinatorialValues("Windows 10", "macOS")]
             string osName,
-            [Values("x86_32", "x86_64")]
+            [CombinatorialValues("x86_32", "x86_64")]
             string architecture,
-            [Values("8.1", "10.0")]
+            [CombinatorialValues("8.1", "10.0")]
             string osVersion)
         {
             var result = ClientDocumentHelper.CreateOSDocument(osType, osName, architecture, osVersion);
@@ -198,9 +198,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RemoveOneOptionalField_should_return_expected_result(
-            [Range(0, 5)]
+            [CombinatorialRange(0, 5)]
             int timesCalled)
         {
             var clientDocument = CreateClientDocument();
@@ -239,10 +239,10 @@ namespace MongoDB.Driver.Core.Connections
         const string vercelName = "vercel";
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Prefer_vercel_over_aws_env_name_when_both_specified(
-            [Values(awsEnv, azureEnv, gcpEnv, vercelEnv)] string left,
-            [Values(awsEnv, azureEnv, gcpEnv, vercelEnv)] string right)
+            [CombinatorialValues(awsEnv, azureEnv, gcpEnv, vercelEnv)] string left,
+            [CombinatorialValues(awsEnv, azureEnv, gcpEnv, vercelEnv)] string right)
         {
             var environmentVariableProviderMock = EnvironmentVariableProviderMock.Create(left, right);
 
@@ -272,9 +272,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RemoveOptionalFieldsUntilDocumentIsLessThan512Bytes_should_return_expected_result(
-            [Range(-1, 3)]
+            [CombinatorialRange(-1, 3)]
             int largeOptionalFieldNameIndex)
         {
             var optionalFieldNames = new[] { "env.region", "os.version", "env.name", "platform" };

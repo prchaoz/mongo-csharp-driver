@@ -142,9 +142,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_return_expected_result(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSession = new Mock<ICoreSessionHandle>();
             var subject = CreateSubject(session: mockSession.Object);
@@ -162,9 +162,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_throw_when_disposed(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateDisposedSubject();
 
@@ -177,9 +177,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_throw_TimeoutException_when_server_remains_disconnected(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockServer = new Mock<IServer>();
             mockServer.Setup(s => s.Description).Returns(new ServerDescription(

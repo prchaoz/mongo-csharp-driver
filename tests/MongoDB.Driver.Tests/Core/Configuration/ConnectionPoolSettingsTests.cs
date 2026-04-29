@@ -48,8 +48,8 @@ namespace MongoDB.Driver.Core.Configuration
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void constructor_should_throw_when_maxConnecting_is_invalid([Values(0, -1)] int invalidMaxConnecting)
+        [CombinatorialData]
+        public void constructor_should_throw_when_maxConnecting_is_invalid([CombinatorialValues(0, -1)] int invalidMaxConnecting)
         {
             var exception = Record.Exception(() => new ConnectionPoolSettings(maxConnecting: invalidMaxConnecting));
 
@@ -58,9 +58,9 @@ namespace MongoDB.Driver.Core.Configuration
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_maxConnections_is_negative_or_zero(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int maxConnections)
         {
             Action action = () => new ConnectionPoolSettings(maxConnections: maxConnections);

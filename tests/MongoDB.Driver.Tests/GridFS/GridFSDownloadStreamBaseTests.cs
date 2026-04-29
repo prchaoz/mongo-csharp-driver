@@ -53,9 +53,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Close_can_be_called_more_than_once(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -72,9 +72,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Close_should_dispose_subject(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -91,9 +91,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Close_with_cancellationToken_can_be_called_more_than_once(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -110,9 +110,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Close_with_cancellationToken_should_dispose_subject(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -145,12 +145,12 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [Trait("Category", "Integration")]
         public void CopyTo_should_copy_stream(
-            [Values(0.0, 0.5, 1.0, 1.5, 2.0, 2.5)] double contentSizeMultiple,
-            [Values(null, 128)] int? bufferSize,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0.0, 0.5, 1.0, 1.5, 2.0, 2.5)] double contentSizeMultiple,
+            [CombinatorialValues(null, 128)] int? bufferSize,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var bucket = CreateBucket(128);
@@ -219,10 +219,10 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [Trait("Category", "Integration")]
         public void Flush_should_not_throw(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var bucket = CreateBucket(128);
             var content = CreateContent();
@@ -265,9 +265,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Write_should_throw(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var buffer = new byte[0];

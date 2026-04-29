@@ -215,9 +215,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task AcquireConnection_should_throw_an_InvalidOperationException_if_not_initialized(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             _capturedEvents.Clear();
@@ -235,9 +235,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task AcquireConnection_should_throw_an_ObjectDisposedException_after_disposing(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             _capturedEvents.Clear();
@@ -259,9 +259,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task AcquireConnection_should_return_a_connection(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             InitializeAndWait();
@@ -283,9 +283,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task AcquireConnection_should_invoke_error_handling_before_releasing_maxConnectionsQueue(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             const int maxConnections = 1;
             ExclusiveConnectionPool subject = null;
@@ -339,11 +339,11 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         internal async Task AcquireConnection_should_track_checked_out_reasons(
-            [Values(CheckOutReason.Cursor, CheckOutReason.Transaction)] CheckOutReason reason,
-            [Values(1, 3, 5)] int attempts,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(CheckOutReason.Cursor, CheckOutReason.Transaction)] CheckOutReason reason,
+            [CombinatorialValues(1, 3, 5)] int attempts,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subjectSettings = new ConnectionPoolSettings(minConnections: 0, maintenanceInterval: TimeSpan.FromDays(1));
 
@@ -416,9 +416,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task AcquireConnection_should_increase_count_up_to_the_max_number_of_connections(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             InitializeAndWait();
@@ -456,9 +456,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task AcquiredConnection_should_return_connections_to_the_pool_when_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             InitializeAndWait();
@@ -479,9 +479,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task AcquiredConnection_should_not_return_connections_to_the_pool_when_disposed_and_expired(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var createdConnections = new List<MockConnection>();
@@ -516,9 +516,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task AcquireConnection_should_throw_a_TimeoutException_when_all_connections_are_checked_out(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             InitializeAndWait();
@@ -546,10 +546,10 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AcquireConnection_should_timeout_when_non_sufficient_reused_connections(
-            [Values(true, false)] bool async,
-            [Values(1, 10, null)] int? maxConnectingOptional)
+            [CombinatorialValues(true, false)] bool async,
+            [CombinatorialValues(1, 10, null)] int? maxConnectingOptional)
         {
             int maxConnecting = maxConnectingOptional ?? MongoInternalDefaults.ConnectionPool.MaxConnecting;
             int initalAcquiredCount = maxConnecting;
@@ -672,9 +672,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task AcquiredConnection_should_not_throw_exceptions_when_disposed_after_the_pool_was_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             InitializeAndWait();
@@ -712,12 +712,12 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Acquire_and_release_connection_stress_test(
-            [RandomSeed(new[] { 0 })] int seed,
-            [Values(2, 10, 30)] int threadsCount,
-            [Values(true, false, null)] bool? asyncOrRandom,
-            [Values(0, 1, null)] int? minPoolSizeOrRandom)
+            [CombinatorialRandomData, CombinatorialValues(0)] int seed,
+            [CombinatorialValues(2, 10, 30)] int threadsCount,
+            [CombinatorialValues(true, false, null)] bool? asyncOrRandom,
+            [CombinatorialValues(0, 1, null)] int? minPoolSizeOrRandom)
         {
             var random = new Random(seed);
 
@@ -853,9 +853,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Clear_should_cause_existing_connections_to_be_expired(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             _subject.Initialize();
@@ -871,9 +871,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Clear_with_serviceId_should_cause_only_expected_connections_to_be_expired(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var serviceId = ObjectId.GenerateNewId();
             var mockConnectionFactory = new Mock<IConnectionFactory> { DefaultValue = DefaultValue.Mock };
@@ -948,11 +948,11 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void In_use_marker_should_work_as_expected(
-            [Values(0, 1)] int minPoolSize,
-            [Values(false, true)] bool openConnectionFailed,
-            [Values(true, false)] bool async)
+            [CombinatorialValues(0, 1)] int minPoolSize,
+            [CombinatorialValues(false, true)] bool openConnectionFailed,
+            [CombinatorialValues(true, false)] bool async)
         {
             var timeout = TimeSpan.FromSeconds(5);
             var acquiredCompletionSource = new TaskCompletionSource<bool>();
@@ -1103,9 +1103,9 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Maintenance_should_run_with_finite_maintenanceInterval(
-            [Values(0, 1, 1000)] int intervalMilliseconds)
+            [CombinatorialValues(0, 1, 1000)] int intervalMilliseconds)
         {
             var settings = _settings.With(maintenanceInterval: TimeSpan.FromMilliseconds(intervalMilliseconds));
 
@@ -1131,10 +1131,10 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxConnecting_queue_should_be_cleared_on_pool_clear(
-           [Values(true, false)] bool isAsync,
-           [Values(1, 2, 5)] int blockedInMaxConnecting)
+           [CombinatorialValues(true, false)] bool isAsync,
+           [CombinatorialValues(1, 2, 5)] int blockedInMaxConnecting)
         {
             const int maxConnecting = 2;
             int threadsCount = maxConnecting + blockedInMaxConnecting;
@@ -1225,10 +1225,10 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Prune_should_respect_generation_when_closing_inUse_connections(
-            [RandomSeed(new[] { 0 })] int seed,
-            [Values(
+            [CombinatorialRandomData, CombinatorialValues(0)] int seed,
+            [CombinatorialValues(
                 new[] { 1, 10 },
                 new[] { 9, 10 },
                 new[] { 50, 100 },
@@ -1303,8 +1303,8 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void PrunePoolAsync_should_remove_all_expired_connections([RandomSeed] int seed)
+        [CombinatorialData]
+        public void PrunePoolAsync_should_remove_all_expired_connections([CombinatorialRandomData] int seed)
         {
             const int connectionsCount = 10;
 
@@ -1378,10 +1378,10 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WaitQueue_should_throw_when_full(
-            [Values(true, false)] bool isAsync,
-            [Values(1, 10)] int waitQueueSize)
+            [CombinatorialValues(true, false)] bool isAsync,
+            [CombinatorialValues(1, 10)] int waitQueueSize)
         {
             var maxConnections = waitQueueSize + 1;
             var settings = _settings
@@ -1468,10 +1468,10 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WaitQueue_should_be_cleared_on_pool_clear(
-            [Values(true, false)] bool isAsync,
-            [Values(1, 2, 5)] int blockedInQueueCount)
+            [CombinatorialValues(true, false)] bool isAsync,
+            [CombinatorialValues(1, 2, 5)] int blockedInQueueCount)
         {
             const int maxConnecting = 2;
             var threadsCount = maxConnecting + blockedInQueueCount;
@@ -1558,10 +1558,10 @@ namespace MongoDB.Driver.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WaitQueue_should_release_slot_after_connection_checkout(
-            [Values(true, false)] bool isAsync,
-            [Values(1, 10)] int waitQueueSize)
+            [CombinatorialValues(true, false)] bool isAsync,
+            [CombinatorialValues(1, 10)] int waitQueueSize)
         {
             var settings = _settings.With(
                 waitQueueSize: waitQueueSize,

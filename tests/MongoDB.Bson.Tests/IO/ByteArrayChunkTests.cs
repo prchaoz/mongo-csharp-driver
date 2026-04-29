@@ -50,9 +50,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_bytes_should_initialize_subject(
-            [Values(1, 2, 16)]
+            [CombinatorialValues(1, 2, 16)]
             int size)
         {
             var bytes = new byte[size];
@@ -74,9 +74,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_size_should_initialize_subject(
-            [Values(1, 2, 16)]
+            [CombinatorialValues(1, 2, 16)]
             int size)
         {
             var subject = new ByteArrayChunk(size);

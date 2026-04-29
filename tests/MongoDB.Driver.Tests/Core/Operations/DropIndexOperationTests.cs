@@ -193,11 +193,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expectedResult_when_WriteConcern_is_set(
-            [Values(null, 1, 2)] int? w,
-            [Values(null, 100)] int? wtimeout,
-            [Values(true, false)] bool hasOperationTimeout)
+            [CombinatorialValues(null, 1, 2)] int? w,
+            [CombinatorialValues(null, 100)] int? wtimeout,
+            [CombinatorialValues(true, false)] bool hasOperationTimeout)
         {
             var indexName = "x_1";
             var writeConcern = w.HasValue ? new WriteConcern(w.Value) : null;
@@ -231,9 +231,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_not_throw_when_collection_does_not_exist(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -249,9 +249,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -265,9 +265,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_binding_is_null(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var indexName = "x_1";
@@ -280,9 +280,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_maxTime_is_exceeded(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
             var indexName = "x_1";
@@ -297,9 +297,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_a_write_concern_error_occurs(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterType(ClusterType.ReplicaSet);
@@ -316,9 +316,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             EnsureIndexExists();
@@ -329,8 +329,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Execute_should_set_operation_name([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Execute_should_set_operation_name([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             EnsureIndexExists();
@@ -351,9 +351,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_get_and_set_should_work(
-            [Values(null, -10000, 0, 1, 42, 9000, 10000, 10001)] int? maxTimeTicks)
+            [CombinatorialValues(null, -10000, 0, 1, 42, 9000, 10000, 10001)] int? maxTimeTicks)
         {
             var indexName = "x_1";
             var subject = new DropIndexOperation(_collectionNamespace, indexName, _messageEncoderSettings);
@@ -366,9 +366,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_throw_when_value_is_invalid(
-            [Values(-10001, -9999, -42, -1)] long maxTimeTicks)
+            [CombinatorialValues(-10001, -9999, -42, -1)] long maxTimeTicks)
         {
             var indexName = "x_1";
             var subject = new DropIndexOperation(_collectionNamespace, indexName, _messageEncoderSettings);
@@ -392,9 +392,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteConcern_get_and_set_should_work(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? w)
         {
             var indexName = "x_1";

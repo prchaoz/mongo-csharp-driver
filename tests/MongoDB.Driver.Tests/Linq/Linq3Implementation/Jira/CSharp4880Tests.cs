@@ -31,9 +31,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Select_SequenceEqual_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 

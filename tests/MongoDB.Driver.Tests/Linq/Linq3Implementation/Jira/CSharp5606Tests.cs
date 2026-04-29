@@ -32,9 +32,9 @@ public class CSharp5606Tests : LinqIntegrationTest<CSharp5606Tests.ClassFixture>
     }
 
     [Theory]
-    [ParameterAttributeData]
+    [CombinatorialData]
     public void Aggregate_Match_with_checked_or_unchecked_int_to_long_conversion_should_work(
-        [Values(false, true)] bool @checked)
+        [CombinatorialValues(false, true)] bool @checked)
     {
         var collection = Fixture.Collection;
 
@@ -64,9 +64,9 @@ public class CSharp5606Tests : LinqIntegrationTest<CSharp5606Tests.ClassFixture>
     }
 
     [Theory]
-    [ParameterAttributeData]
+    [CombinatorialData]
     public void Aggregate_Group_with_checked_or_unchecked_int_to_long_conversion_should_work(
-            [Values(false, true)] bool @checked)
+            [CombinatorialValues(false, true)] bool @checked)
     {
         var collection = Fixture.Collection;
 
@@ -103,9 +103,9 @@ public class CSharp5606Tests : LinqIntegrationTest<CSharp5606Tests.ClassFixture>
     }
 
     [Theory]
-    [ParameterAttributeData]
+    [CombinatorialData]
     public void Queryable_Where_with_checked_or_unchecked_int_to_long_conversion_should_work(
-        [Values(false, true)] bool @checked)
+        [CombinatorialValues(false, true)] bool @checked)
     {
         var collection = Fixture.Collection;
 
@@ -135,9 +135,9 @@ public class CSharp5606Tests : LinqIntegrationTest<CSharp5606Tests.ClassFixture>
     }
 
     [Theory]
-    [ParameterAttributeData]
+    [CombinatorialData]
     public void Queryable_GroupBy_with_checked_or_unchecked_int_to_long_conversion_should_work(
-        [Values(false, true)] bool @checked)
+        [CombinatorialValues(false, true)] bool @checked)
     {
         var collection = Fixture.Collection;
 

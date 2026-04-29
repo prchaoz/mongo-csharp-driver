@@ -124,9 +124,9 @@ namespace MongoDB.Driver.Core.Misc.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetChars_should_return_expected_result(
-            [Values("", "a", "ab", "abc")] string value)
+            [CombinatorialValues("", "a", "ab", "abc")] string value)
         {
             var subject = CreateSubject(value);
 
@@ -136,9 +136,9 @@ namespace MongoDB.Driver.Core.Misc.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetUtf8Bytes_should_return_expected_result(
-            [Values("", "a", "ab", "abc")] string value)
+            [CombinatorialValues("", "a", "ab", "abc")] string value)
         {
             var subject = CreateSubject(value);
             var expectedResult = Utf8Encodings.Strict.GetBytes(subject.GetChars());

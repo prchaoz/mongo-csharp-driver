@@ -33,12 +33,12 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
     public class CommandMessageTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values(1, 2)] int requestId,
-            [Values(3, 4)] int responseTo,
-            [Values(1, 2, 3)] int numberOfSections,
-            [Values(false, true)] bool moreToCome)
+            [CombinatorialValues(1, 2)] int requestId,
+            [CombinatorialValues(3, 4)] int responseTo,
+            [CombinatorialValues(1, 2, 3)] int numberOfSections,
+            [CombinatorialValues(false, true)] bool moreToCome)
         {
             var sections = CreateSections(numberOfSections);
 
@@ -63,9 +63,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MoreToCome_get_should_return_expected_result(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject(moreToCome: value);
 
@@ -75,9 +75,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MoreToCome_set_should_have_expected_result(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject();
 
@@ -87,9 +87,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void PostWriteAction_get_should_return_expected_result(
-            [Values(false, true)] bool isNull)
+            [CombinatorialValues(false, true)] bool isNull)
         {
             var value = isNull ? null : (Action<IMessageEncoderPostProcessor>)(operations => { });
             var subject = CreateSubject(postWriteAction: value);
@@ -100,9 +100,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void PostWriteAction_set_should_have_expected_result(
-            [Values(false, true)] bool isNull)
+            [CombinatorialValues(false, true)] bool isNull)
         {
             var subject = CreateSubject();
             var value = isNull ? null : (Action<IMessageEncoderPostProcessor>)(operations => { });
@@ -113,9 +113,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RequestId_should_return_expected_result(
-            [Values(1, 2)] int requestId)
+            [CombinatorialValues(1, 2)] int requestId)
         {
             var subject = CreateSubject(requestId: requestId);
 
@@ -125,9 +125,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ResponseExpected_get_should_return_expected_result(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject(moreToCome: !value);
 
@@ -137,9 +137,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ResponseTo_should_return_expected_result(
-            [Values(1, 2)] int responseTo)
+            [CombinatorialValues(1, 2)] int responseTo)
         {
             var subject = CreateSubject(responseTo: responseTo);
 
@@ -149,9 +149,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Sections_should_return_expected_result(
-            [Values(1, 2, 3)] int numberOfSections)
+            [CombinatorialValues(1, 2, 3)] int numberOfSections)
         {
             var sections = CreateSections(numberOfSections);
             var subject = CreateSubject(sections: sections);

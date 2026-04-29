@@ -75,9 +75,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSourceAsync_should_throw_if_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new ChannelSourceReadWriteBinding(_mockChannelSource.Object, ReadPreference.Primary, NoCoreSession.NewHandle());
@@ -91,9 +91,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_fork_the_channelSource(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new ChannelSourceReadWriteBinding(_mockChannelSource.Object, ReadPreference.Primary, NoCoreSession.NewHandle());
@@ -105,9 +105,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetWriteChannelSource_should_throw_if_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new ChannelSourceReadWriteBinding(_mockChannelSource.Object, ReadPreference.Primary, NoCoreSession.NewHandle());
@@ -121,9 +121,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetWriteChannelSource_should_fork_the_channelSource(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new ChannelSourceReadWriteBinding(_mockChannelSource.Object, ReadPreference.Primary, NoCoreSession.NewHandle());

@@ -55,8 +55,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void AddRetryableWriteErrorLabelIfRequired_should_add_RetryableWriteError_for_network_errors([Values(false, true)] bool serverReturnsRetryableWriteErrorLabel)
+        [CombinatorialData]
+        public void AddRetryableWriteErrorLabelIfRequired_should_add_RetryableWriteError_for_network_errors([CombinatorialValues(false, true)] bool serverReturnsRetryableWriteErrorLabel)
         {
             var exception = (MongoException)CoreExceptionHelper.CreateException(typeof(MongoConnectionException));
             var feature = Feature.ServerReturnsRetryableWriteErrorLabel;
@@ -197,8 +197,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void IsResumableChangeStreamException_should_return_expected_result_for_servers_with_new_behavior([Values(false, true)] bool hasResumableChangeStreamErrorLabel)
+        [CombinatorialData]
+        public void IsResumableChangeStreamException_should_return_expected_result_for_servers_with_new_behavior([CombinatorialValues(false, true)] bool hasResumableChangeStreamErrorLabel)
         {
             var exception = CoreExceptionHelper.CreateMongoCommandException(-1);
             if (hasResumableChangeStreamErrorLabel)
@@ -274,8 +274,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void IsRetryableWriteException_should_return_expected_result([Values(false, true)] bool hasRetryableWriteLabel)
+        [CombinatorialData]
+        public void IsRetryableWriteException_should_return_expected_result([CombinatorialValues(false, true)] bool hasRetryableWriteLabel)
         {
             var exception = CoreExceptionHelper.CreateMongoCommandException(-1);
             if (hasRetryableWriteLabel)

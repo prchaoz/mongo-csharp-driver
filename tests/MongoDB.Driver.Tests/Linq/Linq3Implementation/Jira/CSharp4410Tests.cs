@@ -184,9 +184,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Comparison_of_enum_and_enum_with_mismatched_serializers_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -214,9 +214,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Comparison_of_enum_and_nullable_enum_with_mismatched_serializers_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -244,9 +244,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Comparison_of_nullable_enum_and_enum_with_mismatched_serializers_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -274,9 +274,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Comparison_of_nullable_enum_and_nullable_enum_with_mismatched_serializers_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -304,9 +304,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Arithmetic_with_enum_represented_as_string_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -334,9 +334,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Arithmetic_with_nullable_enum_represented_as_string_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;

@@ -52,8 +52,8 @@ namespace MongoDB.Driver.Core.Clusters
 
         // static member tests
         [Theory]
-        [ParameterAttributeData]
-        public void CreateInitial_should_return_initial_description([Values(true, false)] bool directConnection)
+        [CombinatorialData]
+        public void CreateInitial_should_return_initial_description([CombinatorialValues(true, false)] bool directConnection)
         {
             var subject = ClusterDescription.CreateInitial(__clusterId, directConnection);
 
@@ -304,8 +304,8 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void ToString_with_directConnection_should_return_string_representation([Values(true, false)] bool directConnection)
+        [CombinatorialData]
+        public void ToString_with_directConnection_should_return_string_representation([CombinatorialValues(true, false)] bool directConnection)
         {
             var subject = new ClusterDescription(new ClusterId(1), directConnection, dnsMonitorException: null, ClusterType.Standalone, [__serverDescription1 ]);
             var directConnectionString = directConnection ? $", DirectConnection : \"true\"" : string.Empty;

@@ -68,9 +68,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AddErrorLabels_should_have_expected_result(
-            [Values(0, 1, 2, 3)] int existingCount)
+            [CombinatorialValues(0, 1, 2, 3)] int existingCount)
         {
             var subject = new MongoException(_message);
             for (var i = 0; i < existingCount; i++)
@@ -98,9 +98,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void HasErrorLabel_should_have_expected_result(
-            [Values(0, 1, 2, 3)] int existingCount)
+            [CombinatorialValues(0, 1, 2, 3)] int existingCount)
         {
             var subject = new MongoException(_message);
             for (var i = 0; i < existingCount; i++)

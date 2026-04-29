@@ -137,9 +137,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AllowDiskUse_get_and_set_should_work(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings);
@@ -151,9 +151,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BypassDocumentValidation_get_and_set_should_work(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings);
@@ -165,9 +165,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Collation_get_and_set_should_work(
-            [Values(null, "en_US")]
+            [CombinatorialValues(null, "en_US")]
             string locale)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings);
@@ -216,9 +216,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_get_and_set_should_work(
-            [Values(-10000, 0, 1, 10000, 99999)] long maxTimeTicks)
+            [CombinatorialValues(-10000, 0, 1, 10000, 99999)] long maxTimeTicks)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings);
             var value = TimeSpan.FromTicks(maxTimeTicks);
@@ -230,9 +230,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_throw_when_value_is_invalid(
-            [Values(-10001, -9999, -1)] long maxTimeTicks)
+            [CombinatorialValues(-10001, -9999, -1)] long maxTimeTicks)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings);
             var value = TimeSpan.FromTicks(maxTimeTicks);
@@ -244,8 +244,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void ReadConcern_get_and_set_should_work([Values(ReadConcernLevel.Local, ReadConcernLevel.Majority)] ReadConcernLevel level)
+        [CombinatorialData]
+        public void ReadConcern_get_and_set_should_work([CombinatorialValues(ReadConcernLevel.Local, ReadConcernLevel.Majority)] ReadConcernLevel level)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings);
             var value = new ReadConcern(new Optional<ReadConcernLevel?>(level));
@@ -269,9 +269,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteConcern_get_and_set_should_work(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int w)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings);
@@ -319,9 +319,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_AllowDiskUse_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? allowDiskUse)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings)
@@ -344,9 +344,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_BypassDocumentValidation_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? bypassDocumentValidation)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings)
@@ -369,9 +369,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_Collation_is_set(
-            [Values(null, "en_US")]
+            [CombinatorialValues(null, "en_US")]
             string locale)
         {
             var collation = locale == null ? null : new Collation(locale);
@@ -395,9 +395,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_Comment_is_set(
-            [Values(null, "test")]
+            [CombinatorialValues(null, "test")]
             string comment)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings)
@@ -420,9 +420,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_Hint_is_set(
-            [Values(null, "{x: 1}")]
+            [CombinatorialValues(null, "{x: 1}")]
             string hintJson)
         {
             var hint = hintJson == null ? null : BsonDocument.Parse(hintJson);
@@ -446,9 +446,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_Let_is_set(
-            [Values(null, "{ y : 'z' }")]
+            [CombinatorialValues(null, "{ y : 'z' }")]
             string letJson)
         {
             var let = letJson == null ? null : BsonDocument.Parse(letJson);
@@ -519,10 +519,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_ReadConcern_is_set(
-            [Values(ReadConcernLevel.Majority)] ReadConcernLevel readConcernLevel,
-            [Values(false, true)] bool withReadConcern)
+            [CombinatorialValues(ReadConcernLevel.Majority)] ReadConcernLevel readConcernLevel,
+            [CombinatorialValues(false, true)] bool withReadConcern)
         {
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings);
             if (withReadConcern)
@@ -545,9 +545,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_WriteConcern_is_set(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? w)
         {
             var writeConcern = w.HasValue ? new WriteConcern(w.Value) : null;
@@ -571,11 +571,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result(
-            [Values("$out", "$merge")] string lastStageName,
-            [Values(false, true)] bool usingDifferentOutputDatabase,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("$out", "$merge")] string lastStageName,
+            [CombinatorialValues(false, true)] bool usingDifferentOutputDatabase,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var pipeline = new List<BsonDocument> { BsonDocument.Parse("{ $match : { _id : 1 } }") };
@@ -627,10 +627,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_to_time_series_collection_should_work(
-            [Values(false, true)] bool usingDifferentOutputDatabase,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingDifferentOutputDatabase,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.AggregateOutTimeSeries);
 
@@ -664,11 +664,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_AllowDiskUse_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? allowDiskUse,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -686,11 +686,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_BypassDocumentValidation_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? bypassDocumentValidation,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -708,11 +708,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_Collation_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool caseSensitive,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -736,9 +736,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_maxTime_is_exceeded(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
             var pipeline = new[]
@@ -760,9 +760,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_Comment_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
@@ -786,9 +786,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_Hint_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -805,9 +805,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_Let_is_set_with_match_expression(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().Supports(Feature.AggregateOptionsLet);
@@ -832,9 +832,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_Let_is_set_with_project(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().Supports(Feature.AggregateOptionsLet);
@@ -860,11 +860,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_MaxTime_is_set(
-            [Values(null, 1000)]
+            [CombinatorialValues(null, 1000)]
             int? milliseconds,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -883,9 +883,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_a_write_concern_error_occurs(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterType(ClusterType.ReplicaSet);
@@ -901,9 +901,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             EnsureTestData();
@@ -913,8 +913,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Execute_should_set_operation_name([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Execute_should_set_operation_name([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var subject = new AggregateToCollectionOperation(_collectionNamespace, __pipeline, _messageEncoderSettings);

@@ -71,11 +71,11 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Constructor_with_representation_should_return_expected_result(
-            [Values(BsonType.String, BsonType.Int64, BsonType.Int32, BsonType.Double, BsonType.Document)]
+            [CombinatorialValues(BsonType.String, BsonType.Int64, BsonType.Int32, BsonType.Double, BsonType.Document)]
             BsonType representation,
-            [Values(TimeOnlyUnits.Ticks, TimeOnlyUnits.Hours, TimeOnlyUnits.Minutes, TimeOnlyUnits.Seconds,
+            [CombinatorialValues(TimeOnlyUnits.Ticks, TimeOnlyUnits.Hours, TimeOnlyUnits.Minutes, TimeOnlyUnits.Seconds,
                 TimeOnlyUnits.Milliseconds, TimeOnlyUnits.Microseconds, TimeOnlyUnits.Nanoseconds)]
             TimeOnlyUnits units)
         {
@@ -474,10 +474,10 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WithRepresentation_should_return_expected_result(
-            [Values(BsonType.String, BsonType.Int64, BsonType.Int32, BsonType.Double, BsonType.Document)] BsonType oldRepresentation,
-            [Values(BsonType.String, BsonType.Int64, BsonType.Int32, BsonType.Double, BsonType.Document)] BsonType newRepresentation)
+            [CombinatorialValues(BsonType.String, BsonType.Int64, BsonType.Int32, BsonType.Double, BsonType.Document)] BsonType oldRepresentation,
+            [CombinatorialValues(BsonType.String, BsonType.Int64, BsonType.Int32, BsonType.Double, BsonType.Document)] BsonType newRepresentation)
         {
             var subject = new TimeOnlySerializer(oldRepresentation);
 

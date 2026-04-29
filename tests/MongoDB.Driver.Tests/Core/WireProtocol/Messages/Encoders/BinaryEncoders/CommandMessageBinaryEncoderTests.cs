@@ -83,9 +83,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadMessage_should_read_requestId(
-            [Values(1, 2)] int requestId)
+            [CombinatorialValues(1, 2)] int requestId)
         {
             var bytes = CreateMessageBytes(requestId: requestId);
             var subject = CreateSubject(bytes);
@@ -96,9 +96,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadMessage_should_read_responseTo(
-            [Values(1, 2)] int responseTo)
+            [CombinatorialValues(1, 2)] int responseTo)
         {
             var bytes = CreateMessageBytes(responseTo: responseTo);
             var subject = CreateSubject(bytes);
@@ -122,10 +122,10 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadMessage_should_read_flags(
-            [Values(false, true)] bool exhaustAllowed,
-            [Values(false, true)] bool moreToCome)
+            [CombinatorialValues(false, true)] bool exhaustAllowed,
+            [CombinatorialValues(false, true)] bool moreToCome)
         {
             var bytes = CreateMessageBytes(moreToCome: moreToCome, exhaustAllowed: exhaustAllowed);
             var subject = CreateSubject(bytes);
@@ -137,9 +137,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadMessage_should_throw_when_flags_is_invalid(
-           [Values(-1, 1, 4)] int flags)
+           [CombinatorialValues(-1, 1, 4)] int flags)
         {
             var bytes = CreateMessageBytes();
             BinaryPrimitives.WriteInt32LittleEndian(bytes.AsSpan(16, 4), flags);
@@ -277,9 +277,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteMessage_should_write_requestId(
-            [Values(1, 2)] int requestId)
+            [CombinatorialValues(1, 2)] int requestId)
         {
             var message = CreateMessage(requestId: requestId);
             var stream = new MemoryStream();
@@ -293,9 +293,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteMessage_should_write_responseTo(
-            [Values(1, 2)] int responseTo)
+            [CombinatorialValues(1, 2)] int responseTo)
         {
             var message = CreateMessage(responseTo: responseTo);
             var stream = new MemoryStream();
@@ -323,10 +323,10 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteMessage_should_write_flags(
-            [Values(false, true)] bool moreToCome,
-            [Values(false, true)] bool exhaustAllowed)
+            [CombinatorialValues(false, true)] bool moreToCome,
+            [CombinatorialValues(false, true)] bool exhaustAllowed)
         {
             var message = CreateMessage(moreToCome: moreToCome, exhaustAllowed: exhaustAllowed);
             var stream = new MemoryStream();

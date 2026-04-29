@@ -25,9 +25,9 @@ namespace MongoDB.Driver.Core.Misc
     public class BatchableSourceTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_list_should_initialize_instance(
-            [Values(0, 1, 2, 3)] int length)
+            [CombinatorialValues(0, 1, 2, 3)] int length)
         {
             var list = new List<int>();
             for (var i = 0; i < length; i++)
@@ -54,10 +54,10 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_list_and_canBeSplit_should_initialize_instance(
-            [Values(0, 1, 2, 3)] int length,
-            [Values(false, true)] bool canBeSplit)
+            [CombinatorialValues(0, 1, 2, 3)] int length,
+            [CombinatorialValues(false, true)] bool canBeSplit)
         {
             var list = new List<int>();
             for (var i = 0; i < length; i++)
@@ -84,12 +84,12 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_list_offset_count_and_canBeSplit_should_initialize_instance(
-            [Values(3, 4)] int length,
-            [Values(0, 1)] int offset,
-            [Values(1, 2)] int count,
-            [Values(false, true)] bool canBeSplit)
+            [CombinatorialValues(3, 4)] int length,
+            [CombinatorialValues(0, 1)] int offset,
+            [CombinatorialValues(1, 2)] int count,
+            [CombinatorialValues(false, true)] bool canBeSplit)
         {
             var list = new List<int>();
             for (var i = 0; i < length; i++)
@@ -175,9 +175,9 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CanBeSplit_should_return_expected_result(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject(canBeSplit: value);
 
@@ -187,9 +187,9 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Count_should_return_expected_result(
-            [Values(0, 1, 2, 3)] int value)
+            [CombinatorialValues(0, 1, 2, 3)] int value)
         {
             var subject = CreateSubject(count: value);
 
@@ -199,9 +199,9 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Items_should_return_expected_result(
-            [Values(0, 1, 2, 3)] int length)
+            [CombinatorialValues(0, 1, 2, 3)] int length)
         {
             var items = Enumerable.Range(0, length).ToList();
             var subject = new BatchableSource<int>(items);
@@ -212,9 +212,9 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Offset_should_return_expected_result(
-            [Values(0, 1, 2, 3)] int value)
+            [CombinatorialValues(0, 1, 2, 3)] int value)
         {
             var subject = CreateSubject(length: 4, offset: value, count: 1);
 
@@ -224,9 +224,9 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ProcessedCount_should_return_expected_result(
-            [Values(0, 1, 2, 3)] int value)
+            [CombinatorialValues(0, 1, 2, 3)] int value)
         {
             var subject = CreateSubject();
             subject.SetProcessedCount(value);

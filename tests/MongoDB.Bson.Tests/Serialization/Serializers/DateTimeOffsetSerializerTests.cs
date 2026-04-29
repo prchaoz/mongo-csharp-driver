@@ -35,9 +35,9 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Constructor_with_representation_should_return_expected_result(
-            [Values(BsonType.Array, BsonType.DateTime, BsonType.Document, BsonType.String)] BsonType representation)
+            [CombinatorialValues(BsonType.Array, BsonType.DateTime, BsonType.Document, BsonType.String)] BsonType representation)
         {
             var subject = new DateTimeOffsetSerializer(representation);
 
@@ -212,10 +212,10 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WithRepresentation_should_return_expected_result(
-            [Values(BsonType.Array, BsonType.DateTime, BsonType.Document, BsonType.String)] BsonType oldRepresentation,
-            [Values(BsonType.Array, BsonType.DateTime, BsonType.Document, BsonType.String)] BsonType newRepresentation)
+            [CombinatorialValues(BsonType.Array, BsonType.DateTime, BsonType.Document, BsonType.String)] BsonType oldRepresentation,
+            [CombinatorialValues(BsonType.Array, BsonType.DateTime, BsonType.Document, BsonType.String)] BsonType newRepresentation)
         {
             var subject = new DateTimeOffsetSerializer(oldRepresentation);
 

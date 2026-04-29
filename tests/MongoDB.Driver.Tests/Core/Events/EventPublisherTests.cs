@@ -52,8 +52,8 @@ namespace MongoDB.Driver.Core.Events
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Publish_should_not_try_get_handler_twice([Values(false, true)] bool isHandlerRegistered)
+        [CombinatorialData]
+        public void Publish_should_not_try_get_handler_twice([CombinatorialValues(false, true)] bool isHandlerRegistered)
         {
             var eventsSubscriber = new Mock<IEventSubscriber>();
 
@@ -80,8 +80,8 @@ namespace MongoDB.Driver.Core.Events
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void IsEventTracked_should_return_correct_value([Values(false, true)] bool isEventTracked)
+        [CombinatorialData]
+        public void IsEventTracked_should_return_correct_value([CombinatorialValues(false, true)] bool isEventTracked)
         {
             var eventsSubscriber = new Mock<IEventSubscriber>();
             if (isEventTracked)

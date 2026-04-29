@@ -38,9 +38,9 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_representation_should_initialize_instance(
-            [Values(BsonType.Binary, BsonType.String)]
+            [CombinatorialValues(BsonType.Binary, BsonType.String)]
             BsonType representation)
         {
             var subject = new GuidSerializer(representation);
@@ -59,9 +59,9 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_guid_representation_should_initialize_instance(
-            [Values(GuidRepresentation.CSharpLegacy, GuidRepresentation.JavaLegacy, GuidRepresentation.PythonLegacy, GuidRepresentation.Standard, GuidRepresentation.Unspecified)]
+            [CombinatorialValues(GuidRepresentation.CSharpLegacy, GuidRepresentation.JavaLegacy, GuidRepresentation.PythonLegacy, GuidRepresentation.Standard, GuidRepresentation.Unspecified)]
             GuidRepresentation guidRepresentation)
         {
             var subject = new GuidSerializer(guidRepresentation);
@@ -71,9 +71,9 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GuidRepresentation_should_return_expected_result(
-            [Values(GuidRepresentation.CSharpLegacy, GuidRepresentation.JavaLegacy, GuidRepresentation.PythonLegacy, GuidRepresentation.Standard, GuidRepresentation.Unspecified)]
+            [CombinatorialValues(GuidRepresentation.CSharpLegacy, GuidRepresentation.JavaLegacy, GuidRepresentation.PythonLegacy, GuidRepresentation.Standard, GuidRepresentation.Unspecified)]
             GuidRepresentation guidRepresentation)
         {
             var subject = new GuidSerializer(guidRepresentation);
@@ -84,9 +84,9 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Representation_should_return_expected_result(
-            [Values(BsonType.Binary, BsonType.String)]
+            [CombinatorialValues(BsonType.Binary, BsonType.String)]
             BsonType representation)
         {
             var subject = new GuidSerializer(representation);

@@ -59,9 +59,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AccessBackingBytes_should_throw_when_position_is_invalid(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject(2);
@@ -145,9 +145,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Clear_should_throw_when_position_is_invalid(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject(2);
@@ -178,11 +178,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_bytes_and_length_should_initialize_subject(
-            [Values(0, 1)]
+            [CombinatorialValues(0, 1)]
             int length,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool isReadOnly)
         {
             var bytes = new byte[1];
@@ -217,9 +217,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_bytes_should_initialize_subject(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool isReadOnly)
         {
             var bytes = new byte[1];
@@ -325,9 +325,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetByte_should_throw_when_position_is_invalid(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject(2);
@@ -431,9 +431,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetBytes_should_throw_when_offset_is_invalid(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int offset)
         {
             var subject = CreateSubject(4);
@@ -445,9 +445,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetBytes_should_throw_when_position_is_invalid(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject(2);
@@ -524,9 +524,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetSlice_should_throw_when_position_is_invalid(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject(2, isReadOnly: true);
@@ -557,9 +557,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsReadOnly_get_should_return_expected_result(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool isReadOnly)
         {
             var subject = CreateSubject(0, isReadOnly: isReadOnly);
@@ -580,9 +580,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Length_get_should_return_expected_result(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int length)
         {
             var subject = CreateSubject(2, length);
@@ -603,9 +603,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Length_set_should_have_expected_effect(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int length)
         {
             var subject = CreateSubject(2, 0);
@@ -650,9 +650,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MakeReadOnly_should_have_expected_effect(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool isReadOnly)
         {
             var subject = CreateSubject(isReadOnly: isReadOnly);
@@ -686,9 +686,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SetByte_should_throw_when_position_is_invalid(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject(2);
@@ -789,9 +789,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SetBytes_should_throw_when_offset_is_invalid(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int offset)
         {
             var subject = CreateSubject(0);
@@ -803,9 +803,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SetBytes_should_throw_when_position_is_invalid(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject(2);

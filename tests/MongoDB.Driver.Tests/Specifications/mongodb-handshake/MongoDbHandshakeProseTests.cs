@@ -42,8 +42,8 @@ namespace MongoDB.Driver.Tests.Specifications.mongodb_handshake
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task DriverAcceptsArbitraryAuthMechanism([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task DriverAcceptsArbitraryAuthMechanism([CombinatorialValues(false, true)] bool async)
         {
             var capturedEvents = new EventCapturer();
             var mockStreamFactory = new Mock<IStreamFactory>();

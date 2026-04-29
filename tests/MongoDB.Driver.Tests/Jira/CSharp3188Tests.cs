@@ -30,8 +30,8 @@ namespace MongoDB.Driver.Tests.Jira
     public class CSharp3188Tests
     {
         [Theory]
-        [ParameterAttributeData]
-        public void Connection_timeout_should_throw_expected_exception([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Connection_timeout_should_throw_expected_exception([CombinatorialValues(false, true)] bool async)
         {
             RequireServer
                 .Check()

@@ -25,8 +25,8 @@ namespace MongoDB.Driver.Core.Misc
     public class TaskExtensionsTests
     {
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_throw_on_negative_timeout([Values(true, false)] bool isPromiseTask, [Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Wait_should_throw_on_negative_timeout([CombinatorialValues(true, false)] bool isPromiseTask, [CombinatorialValues(true, false)] bool async)
         {
             var task = CreateSubject(isPromiseTask);
 
@@ -38,8 +38,8 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_work_for_task([Values(true, false)] bool isPromiseTask, [Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Wait_should_work_for_task([CombinatorialValues(true, false)] bool isPromiseTask, [CombinatorialValues(true, false)] bool async)
         {
             var task = CreateSubject(isPromiseTask);
 
@@ -56,8 +56,8 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_rethrow_for_failed_task([Values(true, false)] bool isPromiseTask, [Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Wait_should_rethrow_for_failed_task([CombinatorialValues(true, false)] bool isPromiseTask, [CombinatorialValues(true, false)] bool async)
         {
             var ex = new InvalidOperationException();
             var task = CreateSubject(isPromiseTask, ex);
@@ -70,8 +70,8 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_throw_on_cancellation([Values(true, false)]bool async)
+        [CombinatorialData]
+        public async Task Wait_should_throw_on_cancellation([CombinatorialValues(true, false)]bool async)
         {
             var task = CreateSubject(true);
             using var cts = new CancellationTokenSource(5);
@@ -92,8 +92,8 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_throw_on_timeout([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Wait_should_throw_on_timeout([CombinatorialValues(true, false)] bool async)
         {
             var task = CreateSubject(true);
 
@@ -106,8 +106,8 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task WaitAsyncTResult_should_throw_on_negative_timeout([Values(true, false)] bool isPromiseTask)
+        [CombinatorialData]
+        public async Task WaitAsyncTResult_should_throw_on_negative_timeout([CombinatorialValues(true, false)] bool isPromiseTask)
         {
             var task = CreateSubject(42, isPromiseTask);
 
@@ -117,8 +117,8 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task WaitAsyncTResult_should_not_throw_on_infinite_timeout([Values(true, false)] bool isPromiseTask)
+        [CombinatorialData]
+        public async Task WaitAsyncTResult_should_not_throw_on_infinite_timeout([CombinatorialValues(true, false)] bool isPromiseTask)
         {
             var task = CreateSubject(42, isPromiseTask);
 
@@ -128,8 +128,8 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task WaitAsyncTResult_should_work_for_task([Values(true, false)] bool isPromiseTask)
+        [CombinatorialData]
+        public async Task WaitAsyncTResult_should_work_for_task([CombinatorialValues(true, false)] bool isPromiseTask)
         {
             var task = CreateSubject(42, isPromiseTask);
 
@@ -139,8 +139,8 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task WaitAsyncTResult_should_rethrow_for_failed_task([Values(true, false)] bool isPromiseTask)
+        [CombinatorialData]
+        public async Task WaitAsyncTResult_should_rethrow_for_failed_task([CombinatorialValues(true, false)] bool isPromiseTask)
         {
             var ex = new InvalidOperationException();
             var task = CreateSubject(42, isPromiseTask, ex);

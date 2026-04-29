@@ -155,9 +155,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BsonBinaryReader_should_support_reading_multiple_documents(
-            [Range(0, 3)]
+            [CombinatorialRange(0, 3)]
             int numberOfDocuments)
         {
             var document = new BsonDocument("x", 1);

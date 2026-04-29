@@ -110,9 +110,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Negate_decimal_as_string_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;

@@ -324,8 +324,8 @@ namespace MongoDB.Driver.Tests.Encryption
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Encryption_should_use_correct_binarySubType([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Encryption_should_use_correct_binarySubType([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 

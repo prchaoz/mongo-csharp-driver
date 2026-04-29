@@ -148,9 +148,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void OrderBy_on_entire_object_followed_by_ThenBy_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.SortArrayOperator);
             var collection = Fixture.Collection;
@@ -179,9 +179,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void OrderByDescending_on_entire_object_followed_by_ThenBy_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.SortArrayOperator);
             var collection = Fixture.Collection;
@@ -210,9 +210,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ThenBy_on_entire_object_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.SortArrayOperator);
             var collection = Fixture.Collection;
@@ -240,9 +240,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ThenByDescending_on_entire_object_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.SortArrayOperator);
             var collection = Fixture.Collection;

@@ -32,9 +32,9 @@ namespace MongoDB.Driver.Core.Operations
     {
         // test methods
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Capped_get_and_set_should_work(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -46,9 +46,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Collation_get_and_set_should_work(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -108,9 +108,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_Capped_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? capped)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings)
@@ -153,9 +153,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_ClusteredIndex_is_set(
-            [Values(null, "{ key : { _id : 1 }, unique : true }", "{ key : { _id : 1 }, unique : true, name: 'clustered index name' }")]
+            [CombinatorialValues(null, "{ key : { _id : 1 }, unique : true }", "{ key : { _id : 1 }, unique : true, name: 'clustered index name' }")]
             string clusteredIndex)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings)
@@ -175,9 +175,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_Collation_is_set(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var collation = locale == null ? null : new Collation(locale);
@@ -198,9 +198,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_IndexOptionDefaults_is_set(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string indexOptionDefaultsString)
         {
             var indexOptionDefaults = indexOptionDefaultsString == null ? null : BsonDocument.Parse(indexOptionDefaultsString);
@@ -221,9 +221,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_MaxDocuments_is_set(
-            [Values(null, 1L, 2L)]
+            [CombinatorialValues(null, 1L, 2L)]
             long? maxDocuments)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings)
@@ -243,9 +243,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_MaxSize_is_set(
-            [Values(null, 1L, 2L)]
+            [CombinatorialValues(null, 1L, 2L)]
             long? maxSize)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings)
@@ -265,9 +265,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_StorageEngine_is_set(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string storageEngineString)
         {
             var storageEngine = storageEngineString == null ? null : BsonDocument.Parse(storageEngineString);
@@ -288,9 +288,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_ValidationAction_is_set(
-            [Values(null, DocumentValidationAction.Error, DocumentValidationAction.Warn)]
+            [CombinatorialValues(null, DocumentValidationAction.Error, DocumentValidationAction.Warn)]
             DocumentValidationAction? validationAction)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings)
@@ -310,9 +310,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_ValidationLevel_is_set(
-            [Values(null, DocumentValidationLevel.Moderate, DocumentValidationLevel.Off)]
+            [CombinatorialValues(null, DocumentValidationLevel.Moderate, DocumentValidationLevel.Off)]
             DocumentValidationLevel? validationLevel)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings)
@@ -332,9 +332,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_Validator_is_set(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string validatorString)
         {
             var validator = validatorString == null ? null : BsonDocument.Parse(validatorString);
@@ -355,11 +355,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_WriteConcern_is_set(
-            [Values(null, 1, 2)] int? w,
-            [Values(null, 100)] int? wtimeout,
-            [Values(true, false)] bool hasOperationTimeout)
+            [CombinatorialValues(null, 1, 2)] int? w,
+            [CombinatorialValues(null, 100)] int? wtimeout,
+            [CombinatorialValues(true, false)] bool hasOperationTimeout)
         {
             var writeConcern = w.HasValue ? new WriteConcern(w.Value) : null;
             if (wtimeout.HasValue)
@@ -514,9 +514,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_collection(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -534,11 +534,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_collection_when_Capped_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool capped,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -565,9 +565,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_collection_when_Collation_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -588,9 +588,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_collection_when_IndexOptionDefaults_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
@@ -616,11 +616,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_collection_when_MaxDocuments_is_set(
-            [Values(1L, 2L)]
+            [CombinatorialValues(1L, 2L)]
             long maxDocuments,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -643,11 +643,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_collection_when_MaxSize_is_set(
-            [Values(10000L, 20000L)]
+            [CombinatorialValues(10000L, 20000L)]
             long maxSize,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -669,11 +669,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_collection_when_StorageEngine_is_set(
-            [Values("abc", "def")]
+            [CombinatorialValues("abc", "def")]
             string metadata,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().StorageEngine("wiredTiger");
@@ -698,9 +698,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_collection_when_Validator_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -726,9 +726,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_a_write_concern_error_occurs(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterType(ClusterType.ReplicaSet);
@@ -750,9 +750,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             DropCollection();
@@ -762,8 +762,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Execute_should_set_operation_name([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Execute_should_set_operation_name([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             DropCollection();
@@ -773,9 +773,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IndexOptionDefaults_get_and_set_should_work(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string valueString)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -788,9 +788,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxDocuments_get_and_set_should_work(
-            [Values(null, 1L, 2L)]
+            [CombinatorialValues(null, 1L, 2L)]
             long? value)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -802,9 +802,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxDocuments_set_should_throw_when_value_is_invalid(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             long maxDocuments)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -816,9 +816,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxSize_get_and_set_should_work(
-            [Values(null, 1L, 2L)]
+            [CombinatorialValues(null, 1L, 2L)]
             long? value)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -830,9 +830,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxSize_set_should_throw_when_value_is_invalid(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             long maxSize)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -844,9 +844,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void StorageEngine_get_and_set_should_work(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string valueString)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -859,9 +859,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ValidationAction_get_and_set_should_work(
-            [Values(null, DocumentValidationAction.Error, DocumentValidationAction.Warn)]
+            [CombinatorialValues(null, DocumentValidationAction.Error, DocumentValidationAction.Warn)]
             DocumentValidationAction? value)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -873,9 +873,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ValidationLevel_get_and_set_should_work(
-            [Values(null, DocumentValidationLevel.Moderate, DocumentValidationLevel.Off)]
+            [CombinatorialValues(null, DocumentValidationLevel.Moderate, DocumentValidationLevel.Off)]
             DocumentValidationLevel? value)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -887,9 +887,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Validator_get_and_set_should_work(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string valueString)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);
@@ -902,9 +902,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteConcern_get_and_set_should_work(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? w)
         {
             var subject = new CreateCollectionOperation(_collectionNamespace, _messageEncoderSettings);

@@ -42,7 +42,7 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [InlineData("A B", "A\u00A0B")]
         [InlineData("A B", "A\u1680B")]
         public void SaslPrepStored_maps_space_equivalents_to_space(string expected, string input)
@@ -51,7 +51,7 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [InlineData("IX", "\u2168")] // "IX", Roman numeral nine
         [InlineData("IV", "\u2163")] // "IV", Roman numeral four
         public void SaslPrepStored_returns_expected_output_when_passed_nonNormalized_strings(
@@ -62,7 +62,7 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [InlineData("IX", "I\u00ADX")] // "IX", "I-X"
         [InlineData("IV", "I\u00ADV")] // "IV", "I-V"
         public void SaslPrepStored_returns_expected_output_when_passed_partially_SaslPrepped_strings(
@@ -73,7 +73,7 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [InlineData("IX", "I\u00ADX")]
         [InlineData("user", "user")]
         [InlineData("user=", "user=")]
@@ -86,7 +86,7 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [InlineData("Prohibited character at position 0", "\u0007")]
         [InlineData("First character is RandALCat, but last character is not", "\u0627\u0031")]
         public void SaslPrep_throws_argument_exception_when_passed_Rfc4013_examples(string expectedError, string input)

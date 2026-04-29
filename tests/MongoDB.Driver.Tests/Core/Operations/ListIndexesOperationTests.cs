@@ -69,9 +69,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RetryRequested_get_should_return_expected_result(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = new ListIndexesOperation(_collectionNamespace, _messageEncoderSettings);
 
@@ -82,9 +82,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -98,8 +98,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Execute_should_return_the_expected_result_when_batchSize_is_used([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Execute_should_return_the_expected_result_when_batchSize_is_used([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             EnsureCollectionExists(async);
@@ -116,9 +116,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_collection_does_not_exist(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -132,9 +132,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_database_does_not_exist(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -148,9 +148,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_binding_is_null(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new ListIndexesOperation(_collectionNamespace, _messageEncoderSettings);
@@ -162,9 +162,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             EnsureCollectionExists(async);
@@ -174,8 +174,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Execute_should_set_operation_name([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Execute_should_set_operation_name([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var subject = new ListIndexesOperation(_collectionNamespace, _messageEncoderSettings);

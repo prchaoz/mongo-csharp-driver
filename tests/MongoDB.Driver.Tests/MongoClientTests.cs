@@ -122,10 +122,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DropDatabase_should_invoke_the_correct_operation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var operationExecutor = new MockOperationExecutor();
             var writeConcern = new WriteConcern(1);
@@ -174,10 +174,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ListDatabaseNames_should_invoke_the_correct_operation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var operationExecutor = new MockOperationExecutor();
             var subject = new MongoClient(DriverTestConfiguration.GetClientSettings(), _ => operationExecutor);
@@ -268,10 +268,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ListDatabases_should_invoke_the_correct_operation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var operationExecutor = new MockOperationExecutor();
             var subject = new MongoClient(DriverTestConfiguration.GetClientSettings(), _ => operationExecutor);
@@ -327,10 +327,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Watch_should_invoke_the_correct_operation(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var operationExecutor = new MockOperationExecutor();
             var clientSettings = DriverTestConfiguration.GetClientSettings();

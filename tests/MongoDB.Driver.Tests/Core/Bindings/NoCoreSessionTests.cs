@@ -224,9 +224,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Dispose_should_do_nothing(
-            [Values(1, 2)] int timesCalled)
+            [CombinatorialValues(1, 2)] int timesCalled)
         {
             var subject = CreateSubject();
 

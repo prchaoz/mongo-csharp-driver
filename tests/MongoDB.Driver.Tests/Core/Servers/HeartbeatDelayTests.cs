@@ -35,8 +35,8 @@ namespace MongoDB.Driver.Core.Servers
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void RequestHeartbeat_should_respect_to_minHeartbeatInterval([Values(10, -1)]int heartbeatIntervalInMinutes)
+        [CombinatorialData]
+        public void RequestHeartbeat_should_respect_to_minHeartbeatInterval([CombinatorialValues(10, -1)]int heartbeatIntervalInMinutes)
         {
             var heartbeatInterval = heartbeatIntervalInMinutes == -1 ? Timeout.InfiniteTimeSpan : TimeSpan.FromMinutes(heartbeatIntervalInMinutes);
             var minHeartbeatInterval = TimeSpan.FromSeconds(2);

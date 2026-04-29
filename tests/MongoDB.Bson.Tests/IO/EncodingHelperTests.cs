@@ -98,8 +98,8 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void GetBytesUsingThreadStaticBuffer_should_return_expected_result_when_multiple_threads_are_used([RandomSeed] int seed)
+        [CombinatorialData]
+        public void GetBytesUsingThreadStaticBuffer_should_return_expected_result_when_multiple_threads_are_used([CombinatorialRandomData] int seed)
         {
             const int threadsCount = 10;
             const int iterationsCount = 10;

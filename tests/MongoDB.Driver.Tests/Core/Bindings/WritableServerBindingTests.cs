@@ -75,9 +75,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_throw_if_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new WritableServerBinding(_mockCluster.Object, NoCoreSession.NewHandle());
@@ -91,9 +91,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_use_a_writable_server_selector_to_select_the_server_from_the_cluster(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new WritableServerBinding(_mockCluster.Object, NoCoreSession.NewHandle());
@@ -132,9 +132,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetWriteChannelSource_should_throw_if_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new WritableServerBinding(_mockCluster.Object, NoCoreSession.NewHandle());
@@ -148,9 +148,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetWriteChannelSourceAsync_should_use_a_writable_server_selector_to_select_the_server_from_the_cluster(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new WritableServerBinding(_mockCluster.Object, NoCoreSession.NewHandle());
@@ -188,9 +188,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetWriteChannelSource_should_use_a_deprioritized_servers_server_selector_to_select_the_server_from_the_cluster_when_deprioritized_servers_present(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new WritableServerBinding(_mockCluster.Object, NoCoreSession.NewHandle());
@@ -229,9 +229,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetWriteChannelSource_with_mayUseSecondary_should_pass_mayUseSecondary_to_server_selector(
-             [Values(false, true)]
+             [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new WritableServerBinding(_mockCluster.Object, NoCoreSession.NewHandle());

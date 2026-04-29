@@ -31,9 +31,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CausalConsistency_get_should_return_expected_result(
-            [Values(null, false, true)] bool? value)
+            [CombinatorialValues(null, false, true)] bool? value)
         {
             var subject = CreateSubject(causalConsistency: value);
 
@@ -43,9 +43,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CausalConsistency_set_should_have_expected_result(
-            [Values(null, false, true)] bool? value)
+            [CombinatorialValues(null, false, true)] bool? value)
         {
             var subject = CreateSubject();
 
@@ -55,9 +55,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DefaultTransactionOptions_get_should_return_expected_result(
-            [Values(false, true)] bool nullValue)
+            [CombinatorialValues(false, true)] bool nullValue)
         {
             var value = nullValue ? null : new TransactionOptions();
             var subject = CreateSubject(defaultTransactionOptions: value);
@@ -68,9 +68,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DefaultTransactionOptions_set_should_have_expected_result(
-            [Values(false, true)] bool nullValue)
+            [CombinatorialValues(false, true)] bool nullValue)
         {
             var subject = CreateSubject();
             var value = nullValue ? null : new TransactionOptions();
@@ -81,9 +81,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SnapshotTime_get_should_return_expected_result(
-            [Values(false, true)] bool nullValue)
+            [CombinatorialValues(false, true)] bool nullValue)
         {
             var value = nullValue ? null : new BsonTimestamp(1234567890, 1);
             var subject = CreateSubject(snapshotTime: value);
@@ -94,9 +94,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SnapshotTime_set_should_have_expected_result(
-            [Values(false, true)] bool nullValue)
+            [CombinatorialValues(false, true)] bool nullValue)
         {
             var subject = CreateSubject();
             var value = nullValue ? null : new BsonTimestamp(1234567890, 1);
@@ -107,13 +107,13 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToCore_should_return_expected_result(
-            [Values(null, false, true)] bool? causalConsistency,
-            [Values(false, true)] bool isImplicit,
-            [Values(false, true)] bool snapshot,
-            [Values(false, true)] bool nullDefaultTransactionOptions,
-            [Values(false, true)] bool nullSnapshotTime)
+            [CombinatorialValues(null, false, true)] bool? causalConsistency,
+            [CombinatorialValues(false, true)] bool isImplicit,
+            [CombinatorialValues(false, true)] bool snapshot,
+            [CombinatorialValues(false, true)] bool nullDefaultTransactionOptions,
+            [CombinatorialValues(false, true)] bool nullSnapshotTime)
         {
             // Skip invalid combinations: snapshotTime can only be set if snapshot is true
             if (!snapshot && !nullSnapshotTime)

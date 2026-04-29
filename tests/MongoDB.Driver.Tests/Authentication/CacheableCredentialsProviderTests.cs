@@ -29,8 +29,8 @@ namespace MongoDB.Driver.Tests.Authentication
     public class CacheableCredentialsProviderTests
     {
         [Theory]
-        [ParameterAttributeData]
-        public async Task CreateCredentialsFromExternalSource_should_return_the_same_result_until_cache_valid([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task CreateCredentialsFromExternalSource_should_return_the_same_result_until_cache_valid([CombinatorialValues(false, true)] bool async)
         {
             bool isExpired = false;
             Func<bool> isExpiredFunc = () => isExpired;
@@ -54,8 +54,8 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Cache_should_not_be_in_play_when_expiration_date_is_null([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Cache_should_not_be_in_play_when_expiration_date_is_null([CombinatorialValues(false, true)] bool async)
         {
             DateTime? expiredDate = null;
             Func<DateTime?> expiredDateFunc = () => expiredDate;

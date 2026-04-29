@@ -290,10 +290,10 @@ namespace MongoDB.Driver.Tests.Encryption
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToCryptClientSettings_should_return_expected_result(
-            [Values(false, true)] bool cryptSharedLibRequired,
-            [Values(false, true)] bool bypassAutoEncryption)
+            [CombinatorialValues(false, true)] bool cryptSharedLibRequired,
+            [CombinatorialValues(false, true)] bool bypassAutoEncryption)
         {
             var subject = CreateSubject(
                 extraOptions: new Dictionary<string, object>

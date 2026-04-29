@@ -24,10 +24,10 @@ namespace MongoDB.Driver.Tests
     public class IMongoClientExtensionsTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Watch_should_call_client_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockClient = new Mock<IMongoClient>();
             var client = mockClient.Object;

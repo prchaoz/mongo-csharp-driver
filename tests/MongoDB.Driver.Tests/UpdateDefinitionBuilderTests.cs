@@ -446,11 +446,11 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void PushEach(
-            [Values(null, 10)] int? slice,
-            [Values(null, 20)] int? position,
-            [Values(null, "{b: 1}")] string sort)
+            [CombinatorialValues(null, 10)] int? slice,
+            [CombinatorialValues(null, 20)] int? position,
+            [CombinatorialValues(null, "{b: 1}")] string sort)
         {
             var subject = CreateSubject<BsonDocument>();
 
@@ -474,11 +474,11 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void PushEach_Typed(
-            [Values(null, 10)] int? slice,
-            [Values(null, 20)] int? position,
-            [Values(null, "{b: 1}")] string sort)
+            [CombinatorialValues(null, 10)] int? slice,
+            [CombinatorialValues(null, 20)] int? position,
+            [CombinatorialValues(null, "{b: 1}")] string sort)
         {
             var subject = CreateSubject<Person>();
 

@@ -46,9 +46,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AuthorizedDatabases_get_and_set_should_work(
-            [Values(null, false, true)] bool? authorizedDatabases)
+            [CombinatorialValues(null, false, true)] bool? authorizedDatabases)
         {
             var subject = new ListDatabasesOperation(_messageEncoderSettings);
 
@@ -71,9 +71,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void NameOnly_get_and_set_should_work(
-            [Values(false, true)] bool nameOnly)
+            [CombinatorialValues(false, true)] bool nameOnly)
         {
             var subject = new ListDatabasesOperation(_messageEncoderSettings);
 
@@ -84,9 +84,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RetryRequested_get_and_set_should_work(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = new ListDatabasesOperation(_messageEncoderSettings);
 
@@ -97,11 +97,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result(
-            [Values(null, false, true)] bool? authorizedDatabases,
-            [Values(null, "cake")] string filterString,
-            [Values(null, false, true)] bool? nameOnly)
+            [CombinatorialValues(null, false, true)] bool? authorizedDatabases,
+            [CombinatorialValues(null, "cake")] string filterString,
+            [CombinatorialValues(null, false, true)] bool? nameOnly)
         {
             var filter = filterString != null
                 ? BsonDocument.Parse($"{{ name : \"{filterString}\" }}")
@@ -129,9 +129,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var subject = new ListDatabasesOperation(_messageEncoderSettings);
@@ -144,9 +144,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_the_expected_result_when_filter_is_used(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -163,10 +163,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_the_expected_result_when_nameOnly_is_used(
-            [Values(false, true)] bool nameOnly,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool nameOnly,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -195,8 +195,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Execute_should_set_operation_name([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Execute_should_set_operation_name([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var subject = new ListDatabasesOperation(_messageEncoderSettings);
@@ -205,9 +205,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_binding_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = new ListDatabasesOperation(_messageEncoderSettings);
             IReadBinding binding = null;

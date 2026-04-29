@@ -81,9 +81,9 @@ namespace MongoDB.Driver.Core.Configuration
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_receiveBufferSize_is_negative_or_zero(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int receiveBufferSize)
         {
             Action action = () => new TcpStreamSettings(receiveBufferSize: receiveBufferSize);
@@ -92,9 +92,9 @@ namespace MongoDB.Driver.Core.Configuration
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_sendBufferSize_is_negative_or_zero(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int sendBufferSize)
         {
             Action action = () => new TcpStreamSettings(sendBufferSize: sendBufferSize);

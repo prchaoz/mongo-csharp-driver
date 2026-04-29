@@ -123,9 +123,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_return_true_if_schema_maps_have_the_same_items_but_with_different_order(
-            [Values(false, true)] bool withReverse)
+            [CombinatorialValues(false, true)] bool withReverse)
         {
             var schemaMap1 = GetMaps();
             var schemaMap2 = GetMaps(withReverse: withReverse);
@@ -136,9 +136,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_return_true_if_encryptedFields_maps_have_the_same_items_but_with_different_order(
-            [Values(false, true)] bool withReverse)
+            [CombinatorialValues(false, true)] bool withReverse)
         {
             var map1 = GetMaps();
             var map2 = GetMaps(withReverse: withReverse);

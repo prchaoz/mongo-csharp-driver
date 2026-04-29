@@ -32,9 +32,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task IQueryable_Any_should_add_expected_stages(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collection = Fixture.Collection;
             var queryable = collection.AsQueryable();
@@ -49,9 +49,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task IQueryable_First_should_add_expected_stages(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collection = Fixture.Collection;
             var queryable = collection.AsQueryable();
@@ -63,9 +63,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task IQueryable_FirstOrDefault_should_add_expected_stages(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collection = Fixture.Collection;
             var queryable = collection.AsQueryable();
@@ -77,9 +77,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task IQueryable_Single_should_add_expected_stages(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collection = Fixture.Collection;
             var queryable = collection.AsQueryable().Where(x => x.X == 1);
@@ -94,9 +94,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task IQueryable_SingleOrDefault_should_add_expected_stages(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collection = Fixture.Collection;
             var queryable = collection.AsQueryable().Where(x => x.X == 1);

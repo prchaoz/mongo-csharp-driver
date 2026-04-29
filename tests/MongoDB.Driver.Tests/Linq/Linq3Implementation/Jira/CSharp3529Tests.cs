@@ -151,9 +151,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Bottom_without_GroupBy_should_have_helpful_error_message(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.PickAccumulatorsNewIn52);
             var collection = CreateDocumentsWithArrayCollection();
@@ -383,9 +383,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BottomN_without_GroupBy_should_have_helpful_error_message(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.PickAccumulatorsNewIn52);
             var collection = CreateDocumentsWithArrayCollection();
@@ -1645,9 +1645,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Top_without_GroupBy_should_have_helpful_error_message(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.PickAccumulatorsNewIn52);
             var collection = CreateDocumentsWithArrayCollection();
@@ -1877,9 +1877,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void TopN_without_GroupBy_should_have_helpful_error_message(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.PickAccumulatorsNewIn52);
             var collection = CreateDocumentsWithArrayCollection();

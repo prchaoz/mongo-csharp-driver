@@ -68,9 +68,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BatchSize_set_should_throw_when_value_is_invalid(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int value)
         {
             var subject = new GridFSFindOptions();
@@ -125,9 +125,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_have_expected_result(
-            [Values(-10000, 0, 1, 9999, 10000, 10001)] long maxTimeTicks)
+            [CombinatorialValues(-10000, 0, 1, 9999, 10000, 10001)] long maxTimeTicks)
         {
             var subject = new GridFSFindOptions();
             var value = TimeSpan.FromTicks(maxTimeTicks);
@@ -138,9 +138,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_throw_when_value_is_invalid(
-            [Values(-10001, -9999, -1)] long maxTimeTicks)
+            [CombinatorialValues(-10001, -9999, -1)] long maxTimeTicks)
         {
             var subject = new GridFSFindOptions();
             var value = TimeSpan.FromTicks(maxTimeTicks);

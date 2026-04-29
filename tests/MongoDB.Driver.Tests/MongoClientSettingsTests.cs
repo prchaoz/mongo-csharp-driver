@@ -723,8 +723,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void TestFromUrlWithMongoDBAWS_should_parse_credentials_correctly([Values(false, true)] bool escapeToken)
+        [CombinatorialData]
+        public void TestFromUrlWithMongoDBAWS_should_parse_credentials_correctly([CombinatorialValues(false, true)] bool escapeToken)
         {
             const string authMechanism = "MONGODB-AWS";
             const string username = "AKIAIOSFODNN7EXAMPLE";
@@ -1433,8 +1433,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void TestSrvMaxHosts([Values(0, 1, 5)]int srvMaxHosts)
+        [CombinatorialData]
+        public void TestSrvMaxHosts([CombinatorialValues(0, 1, 5)]int srvMaxHosts)
         {
             var subject = new MongoClientSettings { Scheme = ConnectionStringScheme.MongoDBPlusSrv };
             subject.SrvMaxHosts.Should().Be(0);

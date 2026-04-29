@@ -25,9 +25,9 @@ namespace MongoDB.Driver.Core.Operations
     public class CreateIndexRequestTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AdditionalOptions_get_and_set_should_work(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string valueString)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -40,9 +40,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Background_get_and_set_should_work(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -54,9 +54,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Bits_get_and_set_should_work(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -68,9 +68,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BucketSize_get_and_set_should_work(
-            [Values(null, 1.0, 2.0)]
+            [CombinatorialValues(null, 1.0, 2.0)]
             double? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -84,9 +84,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Collation_get_and_set_should_work(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -157,9 +157,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_AdditionalOptions_is_set(
-            [Values(null, "{ x : 123 }", "{ x : 123, sparse : false }")]
+            [CombinatorialValues(null, "{ x : 123 }", "{ x : 123, sparse : false }")]
             string additionalOptionsString)
         {
             var keys = new BsonDocument("x", 1);
@@ -183,9 +183,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_Background_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? background)
         {
             var keys = new BsonDocument("x", 1);
@@ -206,9 +206,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_Bits_is_set(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? bits)
         {
             var keys = new BsonDocument("x", 1);
@@ -229,9 +229,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_BucketSize_is_set(
-            [Values(null, 1.0, 2.0)]
+            [CombinatorialValues(null, 1.0, 2.0)]
             double? bucketSize)
         {
             var keys = new BsonDocument("x", 1);
@@ -254,9 +254,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_Collation_is_set(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var keys = new BsonDocument("x", 1);
@@ -278,9 +278,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_DefaultLanguage_is_set(
-            [Values(null, "en", "fr")]
+            [CombinatorialValues(null, "en", "fr")]
             string defaultLanguage)
         {
             var keys = new BsonDocument("x", 1);
@@ -301,9 +301,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_ExpireAfter_is_set(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? seconds)
         {
             var keys = new BsonDocument("x", 1);
@@ -325,8 +325,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void CreateIndexDocument_should_return_expected_result_when_Hidden_is_set([Values(null, false, true)] bool? hidden)
+        [CombinatorialData]
+        public void CreateIndexDocument_should_return_expected_result_when_Hidden_is_set([CombinatorialValues(null, false, true)] bool? hidden)
         {
             var keys = new BsonDocument("x", 1);
             var subject = new CreateIndexRequest(keys)
@@ -346,9 +346,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_LanguageOverride_is_set(
-            [Values(null, "en", "fr")]
+            [CombinatorialValues(null, "en", "fr")]
             string languageOverride)
         {
             var keys = new BsonDocument("x", 1);
@@ -369,9 +369,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_Max_is_set(
-            [Values(null, 1.0, 2.0)]
+            [CombinatorialValues(null, 1.0, 2.0)]
             double? max)
         {
             var keys = new BsonDocument("x", 1);
@@ -392,9 +392,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_Min_is_set(
-            [Values(null, 1.0, 2.0)]
+            [CombinatorialValues(null, 1.0, 2.0)]
             double? min)
         {
             var keys = new BsonDocument("x", 1);
@@ -415,11 +415,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_Name_is_set(
-            [Values(null, "a", "b")]
+            [CombinatorialValues(null, "a", "b")]
             string name,
-            [Values(null, "{ name : 'x' }", "{ name : 'y' }")]
+            [CombinatorialValues(null, "{ name : 'x' }", "{ name : 'y' }")]
             string additionalOptionsString)
         {
             var keys = new BsonDocument("x", 1);
@@ -441,9 +441,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_PartialFilterExpression_is_set(
-            [Values(null, "{ x : { $gt : 1 } }", "{ x : { $gt : 2 } }")]
+            [CombinatorialValues(null, "{ x : { $gt : 1 } }", "{ x : { $gt : 2 } }")]
             string partialFilterExpressionString)
         {
             var keys = new BsonDocument("x", 1);
@@ -465,9 +465,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_Sparse_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? sparse)
         {
             var keys = new BsonDocument("x", 1);
@@ -488,9 +488,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_SphereIndexVersion_is_set(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? sphereIndexVersion)
         {
             var keys = new BsonDocument("x", 1);
@@ -511,9 +511,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_StorageEngine_is_set(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string storageEngineString)
         {
             var keys = new BsonDocument("x", 1);
@@ -535,9 +535,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_TextIndexVersion_is_set(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? textIndexVersion)
         {
             var keys = new BsonDocument("x", 1);
@@ -558,9 +558,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_Unique_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? unique)
         {
             var keys = new BsonDocument("x", 1);
@@ -581,9 +581,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_Version_is_set(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? version)
         {
             var keys = new BsonDocument("x", 1);
@@ -604,9 +604,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_Weights_is_set(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string weightsString)
         {
             var keys = new BsonDocument("x", 1);
@@ -628,9 +628,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_wildcard_index_is_set(
-            [Values("{ '$**' : 1 }", "{ 'tags.$**' : 1 }")] string wildcardIndexString)
+            [CombinatorialValues("{ '$**' : 1 }", "{ 'tags.$**' : 1 }")] string wildcardIndexString)
         {
             var wildcardIndexKey = BsonDocument.Parse(wildcardIndexString);
             var subject = new CreateIndexRequest(wildcardIndexKey);
@@ -646,9 +646,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateIndexDocument_should_return_expected_result_when_wildcardProjection_is_set(
-            [Values(null, "{ x : 123 }", "{ x : 123, y : 234 }")] string wildcardProjectionString)
+            [CombinatorialValues(null, "{ x : 123 }", "{ x : 123, y : 234 }")] string wildcardProjectionString)
         {
             var keys = new BsonDocument("$**", 1);
             var wildcardProjection = wildcardProjectionString == null ? null : BsonDocument.Parse(wildcardProjectionString);
@@ -669,9 +669,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DefaultLanguage_get_and_set_should_work(
-            [Values(null, "x", "y")]
+            [CombinatorialValues(null, "x", "y")]
             string value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -683,9 +683,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ExpireAfter_get_and_set_should_work(
-            [Values(null, 1L, 2L)]
+            [CombinatorialValues(null, 1L, 2L)]
             long? milliseconds)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -698,9 +698,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Hidden_get_and_set_should_work(
-            [Values(null, false, true)] bool? value)
+            [CombinatorialValues(null, false, true)] bool? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
 
@@ -711,9 +711,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void LanguageOverride_get_and_set_should_work(
-            [Values(null, "en", "fr")]
+            [CombinatorialValues(null, "en", "fr")]
             string value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -725,9 +725,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Max_get_and_set_should_work(
-            [Values(null, 1.0, 2.0)]
+            [CombinatorialValues(null, 1.0, 2.0)]
             double? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -739,9 +739,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Min_get_and_set_should_work(
-            [Values(null, 1.0, 2.0)]
+            [CombinatorialValues(null, 1.0, 2.0)]
             double? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -753,9 +753,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Name_get_and_set_should_work(
-            [Values(null, "name")]
+            [CombinatorialValues(null, "name")]
             string value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -767,9 +767,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void PartialFilterExpression_get_and_set_should_work(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string valueString)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -782,9 +782,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Sparse_get_and_set_should_work(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -796,9 +796,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SphereIndexVersion_get_and_set_should_work(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -810,9 +810,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void StorageEngine_get_and_set_should_work(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string valueString)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -825,9 +825,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void TextIndexVersion_get_and_set_should_work(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -839,9 +839,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Unique_get_and_set_should_work(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -853,9 +853,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Version_get_and_set_should_work(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? value)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -867,9 +867,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Weights_get_and_set_should_work(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string valueString)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
@@ -882,9 +882,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WildcardProjection_get_and_set_should_work(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")] string valueString)
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")] string valueString)
         {
             var subject = new CreateIndexRequest(new BsonDocument("x", 1));
             var value = valueString == null ? null : BsonDocument.Parse(valueString);

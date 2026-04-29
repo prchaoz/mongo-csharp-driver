@@ -29,9 +29,9 @@ namespace MongoDB.Driver
     public class BatchTransformingAsyncCursorTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Should_provide_back_all_results(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var source = Enumerable.Range(0, 15);
@@ -59,9 +59,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Should_provide_back_a_filtered_list(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var source = Enumerable.Range(0, 15);
@@ -89,9 +89,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Should_skip_empty_batches(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var source = Enumerable.Range(0, 15);
@@ -115,9 +115,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Should_return_false_when_all_remaining_batches_are_empty(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var source = Enumerable.Range(0, 15);

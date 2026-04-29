@@ -84,9 +84,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BypassDocumentValidation_get_and_set_should_work(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -100,9 +100,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Filter_should_get_and_set_value(
-            [Values(null, "{ x : 1 }", "{ x : 2 }")]
+            [CombinatorialValues(null, "{ x : 1 }", "{ x : 2 }")]
             string valueString)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -117,9 +117,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void NonAtomicOutput_get_and_set_should_work(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -135,9 +135,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void OutputCollectionNamespace_get_and_set_should_work(
-            [Values("a", "b")]
+            [CombinatorialValues("a", "b")]
             string collectionName)
         {
             var outputCollectionNamespace = new CollectionNamespace(_databaseNamespace, collectionName);
@@ -151,10 +151,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void OutputMode_get_and_set_should_work(
 #pragma warning disable CS0618 // Type or member is obsolete
-            [Values((int)MapReduceOutputMode.Merge, (int)MapReduceOutputMode.Reduce)]
+            [CombinatorialValues((int)MapReduceOutputMode.Merge, (int)MapReduceOutputMode.Reduce)]
             int valueInt)
         {
             var value = (MapReduceOutputMode)valueInt;
@@ -168,9 +168,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ShardedOutput_get_and_set_should_work(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? value)
         {
 #pragma warning disable 618
@@ -184,9 +184,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteConcern_get_and_set_should_work(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? w)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -201,9 +201,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_BypassDocumentValidation_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? bypassDocumentValidation)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -229,9 +229,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_WriteConcern_is_set(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? w)
         {
             var writeConcern = w.HasValue ? new WriteConcern(w.Value) : null;
@@ -276,9 +276,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateOutputOptions_should_return_expected_result_when_ShardedOutput_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? shardedOutput)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -303,9 +303,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateOutputOptions_should_return_expected_result_when_NonAtomicOutput_is_provided(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? nonAtomicOutput)
         {
 #pragma warning disable 618
@@ -328,9 +328,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
@@ -347,11 +347,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_Collation_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool caseSensitive,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
@@ -394,9 +394,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_Filter_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
@@ -417,9 +417,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_FinalizeFunction_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
@@ -442,7 +442,7 @@ namespace MongoDB.Driver.Core.Operations
         // TODO: figure out why test fails when JavaScriptMode = true (server bug?)
 
         //[Theory]
-        //[ParameterAttributeData]
+        //[CombinatorialData]
         //public void Execute_should_return_expected_results_when_JavaScriptMode_is_set(
         //    [Values(null, false, true)]
         //    bool? javaScriptMode,
@@ -465,11 +465,11 @@ namespace MongoDB.Driver.Core.Operations
         //}
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_Limit_is_set(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             long limit,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
@@ -491,11 +491,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_MaxTime_is_set(
-            [Values(null, 1000)]
+            [CombinatorialValues(null, 1000)]
             int? seconds,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
@@ -517,9 +517,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_Scope_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
@@ -542,11 +542,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_Sort_is_set(
-            [Values(1, -1)]
+            [CombinatorialValues(1, -1)]
             int direction,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
@@ -582,9 +582,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_binding_is_null(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -598,9 +598,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_a_write_concern_error_occurs(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterType(ClusterType.ReplicaSet);
@@ -617,9 +617,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
             EnsureTestData();

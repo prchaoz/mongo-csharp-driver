@@ -165,10 +165,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_delete_with_hint_should_throw_when_hint_is_not_supported(
-            [Values(0, 1)] int w,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0, 1)] int w,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(w);
             var requests = new List<WriteRequest>
@@ -202,10 +202,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Execute_should_set_operation_name(
-            [Values(false, true)] bool async,
-            [Values("delete", "insert", "update")] string operationName)
+            [CombinatorialValues(false, true)] bool async,
+            [CombinatorialValues("delete", "insert", "update")] string operationName)
         {
             RequireServer.Check();
 
@@ -223,10 +223,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_update_with_hint_should_throw_when_hint_is_not_supported(
-            [Values(0, 1)] int w,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0, 1)] int w,
+            [CombinatorialValues(false, true)] bool async)
         {
             var writeConcern = new WriteConcern(w);
             var requests = new List<WriteRequest>
@@ -263,9 +263,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_zero_requests_should_throw_an_exception(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = new BulkMixedWriteOperation(_collectionNamespace, Enumerable.Empty<WriteRequest>(), _messageEncoderSettings);
@@ -276,10 +276,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_collation_should_throw_when_collation_is_not_supported(
-            [Values(typeof(DeleteRequest), typeof(UpdateRequest))] Type requestWithCollationType,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(typeof(DeleteRequest), typeof(UpdateRequest))] Type requestWithCollationType,
+            [CombinatorialValues(false, true)] bool async)
         {
             DropCollection();
 
@@ -306,8 +306,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Execute_with_one_delete_and_let([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Execute_with_one_delete_and_let([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().VersionGreaterThanOrEqualTo("5.0.0");
             EnsureTestData();
@@ -335,9 +335,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_one_delete_against_a_matching_document(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -363,9 +363,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_one_delete_against_a_matching_document_with_multi(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -391,9 +391,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_one_delete_without_matching_a_document(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -419,9 +419,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_multiple_deletes(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -451,8 +451,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Execute_with_multiple_deletes_and_let([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Execute_with_multiple_deletes_and_let([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().VersionGreaterThanOrEqualTo("5.0.0");
             EnsureTestData();
@@ -488,9 +488,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_fewer_deletes_than_maxBatchCount(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -524,9 +524,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_more_deletes_than_maxBatchCount(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -560,9 +560,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_one_insert(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -588,9 +588,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_fewer_inserts_than_maxBatchCount(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -623,9 +623,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_more_inserts_than_maxBatchCount(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -660,9 +660,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_one_update_against_a_matching_document(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -691,9 +691,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_one_update_and_let(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().VersionGreaterThanOrEqualTo("5.0.0");
             EnsureTestData();
@@ -728,9 +728,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_one_update_against_a_matching_document_with_multi(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -756,9 +756,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_one_update_without_matching_a_document(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -784,9 +784,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_fewer_updates_than_maxBatchCount(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -819,9 +819,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_more_updates_than_maxBatchCount(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -856,9 +856,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_a_very_large_upsert(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -891,9 +891,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_an_upsert_matching_multiple_documents(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -922,9 +922,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_an_upsert_matching_no_documents(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -953,9 +953,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_an_upsert_matching_one_document(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -984,9 +984,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_mixed_requests_and_ordered_is_false(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1021,9 +1021,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_mixed_requests_and_let(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().VersionGreaterThanOrEqualTo("5.0.0");
             EnsureTestData();
@@ -1067,9 +1067,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_mixed_requests_and_ordered_is_true(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1104,9 +1104,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_mixed_upserts_and_ordered_is_false(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1141,9 +1141,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_mixed_upserts_and_ordered_is_true(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1178,9 +1178,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_an_error_in_the_first_batch_and_ordered_is_false(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1219,9 +1219,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_an_error_in_the_first_batch_and_ordered_is_true(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1266,9 +1266,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_an_error_in_the_second_batch_and_ordered_is_false(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1308,9 +1308,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_an_error_in_the_second_batch_and_ordered_is_true(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1350,11 +1350,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_unacknowledged_with_an_error_in_the_first_batch_and_ordered_is_false(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool retryRequested,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1391,11 +1391,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_unacknowledged_with_an_error_in_the_first_batch_and_ordered_is_true(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool retryRequested,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1437,11 +1437,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_unacknowledged_with_an_error_in_the_second_batch_and_ordered_is_false(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool retryRequested,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1478,11 +1478,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_unacknowledged_with_an_error_in_the_second_batch_and_ordered_is_true(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool retryRequested,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -1519,11 +1519,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_delete_should_not_send_session_id_when_unacknowledged_writes(
-            [Values(false, true)] bool retryRequested,
-            [Values(false, true)] bool useImplicitSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool retryRequested,
+            [CombinatorialValues(false, true)] bool useImplicitSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -1540,9 +1540,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_delete_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var requests = new[] { new DeleteRequest(BsonDocument.Parse("{ x : 1 }")) };
@@ -1553,11 +1553,11 @@ namespace MongoDB.Driver.Core.Operations
 
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_insert_should_not_send_session_id_when_unacknowledged_writes(
-            [Values(false, true)] bool retryRequested,
-            [Values(false, true)] bool useImplicitSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool retryRequested,
+            [CombinatorialValues(false, true)] bool useImplicitSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -1574,9 +1574,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_insert_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             DropCollection();
@@ -1587,11 +1587,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_update_should_not_send_session_id_when_unacknowledged_writes(
-            [Values(false, true)] bool retryRequested,
-            [Values(false, true)] bool useImplicitSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool retryRequested,
+            [CombinatorialValues(false, true)] bool useImplicitSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -1608,9 +1608,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_with_update_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var requests = new[] { new UpdateRequest(UpdateType.Update, BsonDocument.Parse("{ x : 1 }"), BsonDocument.Parse("{ $set : { a : 1 } }")) };

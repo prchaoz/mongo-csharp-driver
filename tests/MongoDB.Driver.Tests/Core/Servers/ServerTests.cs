@@ -177,9 +177,9 @@ namespace MongoDB.Driver.Core.Servers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetChannel_should_clear_connection_pool_when_opening_connection_throws_MongoAuthenticationException(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var connectionId = new ConnectionId(new ServerId(_clusterId, _endPoint));
             var mockConnectionPool = new Mock<IConnectionPool>();
@@ -222,9 +222,9 @@ namespace MongoDB.Driver.Core.Servers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetChannel_should_get_a_connection(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             _subject.Initialize();
@@ -237,10 +237,10 @@ namespace MongoDB.Driver.Core.Servers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetChannel_should_not_increase_operations_count_on_exception(
-            [Values(false, true)] bool async,
-            [Values(false, true)] bool connectionOpenException)
+            [CombinatorialValues(false, true)] bool async,
+            [CombinatorialValues(false, true)] bool connectionOpenException)
         {
             IClusterableServer server = SetupServer(connectionOpenException, !connectionOpenException);
 
@@ -253,10 +253,10 @@ namespace MongoDB.Driver.Core.Servers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetChannel_should_set_operations_count_correctly(
-            [Values(false, true)] bool async,
-            [Values(0, 1, 2, 10)] int operationsCount)
+            [CombinatorialValues(false, true)] bool async,
+            [CombinatorialValues(0, 1, 2, 10)] int operationsCount)
         {
             IClusterableServer server = SetupServer(false, false);
 
@@ -279,9 +279,9 @@ namespace MongoDB.Driver.Core.Servers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetChannel_should_throw_when_not_initialized(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var exception = async ?
                 await Record.ExceptionAsync(() => _subject.GetChannelAsync(OperationContext.NoTimeout)) :
@@ -291,9 +291,9 @@ namespace MongoDB.Driver.Core.Servers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetChannel_should_throw_when_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             _subject.Dispose();
@@ -306,10 +306,10 @@ namespace MongoDB.Driver.Core.Servers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetChannel_should_update_topology_and_clear_connection_pool_on_network_error_or_timeout(
-            [Values("TimedOutSocketException", "NetworkUnreachableSocketException")] string errorType,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("TimedOutSocketException", "NetworkUnreachableSocketException")] string errorType,
+            [CombinatorialValues(false, true)] bool async)
         {
             var serverId = new ServerId(_clusterId, _endPoint);
             var connectionId = new ConnectionId(serverId);
@@ -906,8 +906,8 @@ namespace MongoDB.Driver.Core.Servers
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Command_should_use_serverApi([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Command_should_use_serverApi([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 

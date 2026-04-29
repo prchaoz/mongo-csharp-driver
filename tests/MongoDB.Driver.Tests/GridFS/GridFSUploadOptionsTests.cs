@@ -45,9 +45,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BatchSize_set_should_throw_when_value_is_invalid(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int value)
         {
             var subject = new GridFSUploadOptions();
@@ -78,9 +78,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ChunkSizeBytes_set_should_throw_when_value_is_invalid(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int value)
         {
             var subject = new GridFSUploadOptions();

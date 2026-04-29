@@ -59,9 +59,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SelectMany_nested_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -86,9 +86,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Aggregate_Project_SelectMany_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 

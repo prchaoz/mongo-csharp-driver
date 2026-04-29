@@ -72,9 +72,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CommitQuorum_get_and_set_should_work(
-            [Values(null, 1, 2)] int? w)
+            [CombinatorialValues(null, 1, 2)] int? w)
         {
             var subject = new CreateIndexesOperation(_collectionNamespace, Enumerable.Empty<CreateIndexRequest>(), _messageEncoderSettings);
             var value = w.HasValue ? CreateIndexCommitQuorum.Create(w.Value) : null;
@@ -126,9 +126,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_CommitQuorum_with_mode_is_Set(
-            [Values("abc", "def")] string mode)
+            [CombinatorialValues("abc", "def")] string mode)
         {
             var requests = new[] { new CreateIndexRequest(new BsonDocument("x", 1)) };
             var commitQuorum = CreateIndexCommitQuorum.Create(mode);
@@ -152,9 +152,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_CommitQuorum_with_w_is_Set(
-            [Values(1, 2, 3)] int w)
+            [CombinatorialValues(1, 2, 3)] int w)
         {
             var requests = new[] { new CreateIndexRequest(new BsonDocument("x", 1)) };
             var commitQuorum = CreateIndexCommitQuorum.Create(w);
@@ -226,9 +226,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_WriteConcern_is_set(
-             [Values(1, 2)]
+             [CombinatorialValues(1, 2)]
             int w)
         {
             var requests = new[] { new CreateIndexRequest(new BsonDocument("x", 1)) };
@@ -269,9 +269,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_maxTime_is_exceeded(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
             var requests = new[] { new CreateIndexRequest(new BsonDocument("x", 1)) };
@@ -286,9 +286,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_work_when_background_is_true(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -304,10 +304,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_work_when_commitQuorum_is_specified(
-            [Values(1, "majority", "votingMembers")] object commitQuorumCase,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(1, "majority", "votingMembers")] object commitQuorumCase,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.ReplicaSet, ClusterType.Sharded).Supports(Feature.CreateIndexCommitQuorum);
             DropCollection();
@@ -339,9 +339,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_work_when_creating_one_index(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -356,9 +356,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_work_when_creating_two_indexes(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -377,9 +377,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_work_when_partialFilterExpression_has_value(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -395,9 +395,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_work_when_sparse_is_true(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -413,11 +413,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_work_when_Collation_has_value(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -434,9 +434,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_work_when_expireAfter_has_value(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -453,10 +453,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_work_when_hidden_has_value(
-            [Values(null, false, true)] bool? hidden,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(null, false, true)] bool? hidden,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.HiddenIndex);
             DropCollection();
@@ -478,9 +478,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_work_when_unique_is_true(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -496,9 +496,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_a_write_concern_error_occurs(
-           [Values(false, true)]
+           [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterType(ClusterType.ReplicaSet);
@@ -515,9 +515,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             DropCollection();
@@ -528,8 +528,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Execute_should_set_operation_name([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Execute_should_set_operation_name([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             DropCollection();
@@ -540,9 +540,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_get_and_set_should_work(
-            [Values(null, -10000, 0, 1, 42, 9000, 10000, 10001)] int? maxTimeTicks)
+            [CombinatorialValues(null, -10000, 0, 1, 42, 9000, 10000, 10001)] int? maxTimeTicks)
         {
             var requests = new[] { new CreateIndexRequest(new BsonDocument("x", 1)) };
             var subject = new CreateIndexesOperation(_collectionNamespace, requests, _messageEncoderSettings);
@@ -554,9 +554,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_throw_when_value_is_invalid(
-            [Values(-10001, -9999, -42, -1)] long maxTimeTicks)
+            [CombinatorialValues(-10001, -9999, -42, -1)] long maxTimeTicks)
         {
             var requests = new[] { new CreateIndexRequest(new BsonDocument("x", 1)) };
             var subject = new CreateIndexesOperation(_collectionNamespace, requests, _messageEncoderSettings);
@@ -569,9 +569,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteConcern_get_and_set_should_work(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int w)
         {
             var subject = new CreateIndexesOperation(_collectionNamespace, Enumerable.Empty<CreateIndexRequest>(), _messageEncoderSettings);

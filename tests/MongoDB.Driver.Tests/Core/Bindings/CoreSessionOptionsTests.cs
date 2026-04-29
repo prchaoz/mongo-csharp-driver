@@ -24,11 +24,11 @@ namespace MongoDB.Driver.Core.Bindings
     public class CoreSessionOptionsTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values(false, true)] bool nullDefaultTransactionOptions,
-            [Values(false, true)] bool isCausallyConsistent,
-            [Values(false, true)] bool isImplicit)
+            [CombinatorialValues(false, true)] bool nullDefaultTransactionOptions,
+            [CombinatorialValues(false, true)] bool isCausallyConsistent,
+            [CombinatorialValues(false, true)] bool isImplicit)
         {
             var defaultTransactionOptions = nullDefaultTransactionOptions ? null : new TransactionOptions();
 
@@ -65,9 +65,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DefaultTransactionOptions_should_return_expected_result(
-            [Values(false, true)] bool nullDefaultTransactionOptions)
+            [CombinatorialValues(false, true)] bool nullDefaultTransactionOptions)
         {
             var defaultTransactionOptions = nullDefaultTransactionOptions ? null : new TransactionOptions();
             var subject = new CoreSessionOptions(defaultTransactionOptions: defaultTransactionOptions);
@@ -78,9 +78,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsCausallyConsistent_should_return_expected_result(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = new CoreSessionOptions(isCausallyConsistent: value);
 
@@ -90,9 +90,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsImplicit_should_return_expected_result(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = new CoreSessionOptions(isImplicit: value);
 
@@ -102,9 +102,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SnapshotTime_should_return_expected_result(
-            [Values(false, true)] bool nullValue)
+            [CombinatorialValues(false, true)] bool nullValue)
         {
             var snapshotTime = nullValue ? null : new BsonTimestamp(1234567890, 1);
             var subject = new CoreSessionOptions(isSnapshot: true, snapshotTime: snapshotTime);

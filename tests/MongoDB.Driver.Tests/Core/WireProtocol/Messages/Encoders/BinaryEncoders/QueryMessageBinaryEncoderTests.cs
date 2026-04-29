@@ -201,9 +201,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteMessage_should_invoke_encoding_post_processor(
-            [Values(false, true)] bool wrapped)
+            [CombinatorialValues(false, true)] bool wrapped)
         {
             var stream = new MemoryStream();
             var subject = new QueryMessageBinaryEncoder(stream, new MessageEncoderSettings());

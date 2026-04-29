@@ -93,9 +93,9 @@ namespace MongoDB.Bson.Tests.ObjectModel
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_long_should_return_new_instance(
-            [Values(-101L, 101L)]
+            [CombinatorialValues(-101L, 101L)]
             long value)
         {
             var result1 = (BsonInt64)value;
@@ -105,11 +105,12 @@ namespace MongoDB.Bson.Tests.ObjectModel
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_long_should_return_precreated_instance(
-            [Range(-100L, 100L, 1L)]
-            long value)
+            [CombinatorialRange(-100, 100, 1)]
+            int intValue)
         {
+            var value = (long)intValue;
             var result1 = (BsonInt64)value;
             var result2 = (BsonInt64)value;
 
@@ -188,11 +189,12 @@ namespace MongoDB.Bson.Tests.ObjectModel
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void precreated_instances_should_have_the_expected_value(
-            [Range(-100L, 100L, 1L)]
-            long value)
+            [CombinatorialRange(-100, 100, 1)]
+            int intValue)
         {
+            var value = (long)intValue;
             var result = (BsonInt64)value;
 
             result.Value.Should().Be(value);

@@ -33,9 +33,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Where_with_bool_field_represented_as_boolean_should_work(
-            [Values(false, true)] bool justField)
+            [CombinatorialValues(false, true)] bool justField)
         {
             var collection = Fixture.Collection;
 
@@ -51,9 +51,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Where_with_bool_field_represented_as_int32_should_work(
-            [Values(false, true)] bool justField)
+            [CombinatorialValues(false, true)] bool justField)
         {
             var collection = Fixture.Collection;
 
@@ -69,9 +69,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Where_with_bool_field_represented_as_string_should_work(
-            [Values(false, true)] bool justField)
+            [CombinatorialValues(false, true)] bool justField)
         {
             var collection = Fixture.Collection;
 
@@ -129,9 +129,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Where_with_bool_property_represented_as_boolean_should_work(
-            [Values(false, true)] bool justProperty)
+            [CombinatorialValues(false, true)] bool justProperty)
         {
             var collection = Fixture.Collection;
 
@@ -147,9 +147,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Where_with_bool_property_represented_as_int32_should_work(
-            [Values(false, true)] bool justProperty)
+            [CombinatorialValues(false, true)] bool justProperty)
         {
             var collection = Fixture.Collection;
 
@@ -165,9 +165,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Where_with_bool_property_represented_as_string_should_work(
-            [Values(false, true)] bool justProperty)
+            [CombinatorialValues(false, true)] bool justProperty)
         {
             var collection = Fixture.Collection;
 

@@ -45,8 +45,8 @@ namespace MongoDB.Driver.Tests.Specifications.server_discovery_and_monitoring.pr
 
         // public methods
         [Theory]
-        [ParameterAttributeData]
-        public void Topology_secondary_discovery_with_directConnection_false_should_work_as_expected([Values(false, true, null)] bool? directConnection)
+        [CombinatorialData]
+        public void Topology_secondary_discovery_with_directConnection_false_should_work_as_expected([CombinatorialValues(false, true, null)] bool? directConnection)
         {
             RequireServer
                 .Check()
@@ -92,8 +92,8 @@ namespace MongoDB.Driver.Tests.Specifications.server_discovery_and_monitoring.pr
 
         // https://github.com/mongodb/specifications/blob/a8d34be0df234365600a9269af5a463f581562fd/source/server-discovery-and-monitoring/server-discovery-and-monitoring-tests.md?plain=1#L176
         [Theory]
-        [ParameterAttributeData]
-        public async Task Connection_Pool_Backpressure([Values(true, false)]bool async)
+        [CombinatorialData]
+        public async Task Connection_Pool_Backpressure([CombinatorialValues(true, false)]bool async)
         {
             RequireServer.Check().VersionGreaterThanOrEqualTo("7.0.23");
 

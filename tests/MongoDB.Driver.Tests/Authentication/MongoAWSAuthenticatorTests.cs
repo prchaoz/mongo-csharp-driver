@@ -61,9 +61,9 @@ namespace MongoDB.Driver.Tests.Authentication
         #endregion
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_have_expected_result(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var dateTime = DateTime.UtcNow;
             var clientNonce = RandomByteGenerator.Instance.Generate(ClientNonceLength);
@@ -139,10 +139,10 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_send_serverApi_with_command_wire_protocol(
-            [Values(false, true)] bool useServerApi,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool useServerApi,
+            [CombinatorialValues(false, true)] bool async)
         {
             var dateTime = DateTime.UtcNow;
             var clientNonce = RandomByteGenerator.Instance.Generate(ClientNonceLength);
@@ -217,9 +217,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_with_loadBalancedConnection_should_use_command_wire_protocol(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var dateTime = DateTime.UtcNow;
             var clientNonce = RandomByteGenerator.Instance.Generate(ClientNonceLength);
@@ -293,9 +293,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_throw_an_AuthenticationException_when_authentication_fails(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateAwsSaslAuthenticator(null, RandomByteGenerator.Instance, SystemClock.Instance, null);
 
@@ -312,10 +312,10 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_throw_when_server_provides_invalid_host(
-            [Values("", "abc..def")] string host,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("", "abc..def")] string host,
+            [CombinatorialValues(false, true)] bool async)
         {
             var clientNonce = RandomByteGenerator.Instance.Generate(ClientNonceLength);
             var serverNonce = Combine(clientNonce, RandomByteGenerator.Instance.Generate(ClientNonceLength));
@@ -350,9 +350,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_throw_when_server_provides_invalid_nonce(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var clientNonce = RandomByteGenerator.Instance.Generate(ClientNonceLength);
             var invalidServerNonce = RandomByteGenerator.Instance.Generate(ClientNonceLength * 2);
@@ -385,9 +385,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_throw_when_server_provides_unexpected_field(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var clientNonce = RandomByteGenerator.Instance.Generate(ClientNonceLength);
             var serverNonce = Combine(clientNonce, RandomByteGenerator.Instance.Generate(ClientNonceLength));
@@ -424,9 +424,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_with_session_token_should_have_expected_result(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var dateTime = DateTime.UtcNow;
             var clientNonce = RandomByteGenerator.Instance.Generate(ClientNonceLength);

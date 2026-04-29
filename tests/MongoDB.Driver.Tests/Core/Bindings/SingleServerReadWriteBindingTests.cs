@@ -107,9 +107,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_return_expected_result(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSession = new Mock<ICoreSessionHandle>();
             var subject = CreateSubject(session: mockSession.Object);
@@ -127,9 +127,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetReadChannelSource_should_throw_when_disposed(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateDisposedSubject();
             var exception = async ?
@@ -141,9 +141,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetWriteChannelSource_should_return_expected_result(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSession = new Mock<ICoreSessionHandle>();
             var subject = CreateSubject(session: mockSession.Object);
@@ -161,9 +161,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task GetWriteChannelSource_should_throw_when_disposed(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateDisposedSubject();
             var exception = async ?

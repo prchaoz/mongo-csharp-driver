@@ -42,9 +42,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AddClientDocumentToCommand_with_custom_document_should_return_expected_result(
-            [Values("{ client : { driver : 'dotnet', version : '4.2.0' }, os : { type : 'Windows' } }")]
+            [CombinatorialValues("{ client : { driver : 'dotnet', version : '4.2.0' }, os : { type : 'Windows' } }")]
             string clientDocumentString)
         {
             var clientDocument = BsonDocument.Parse(clientDocumentString);
@@ -84,9 +84,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AddCompressorsToCommand_with_compressors_should_return_expected_result(
-            [Values(
+            [CombinatorialValues(
                 new CompressorType[] { },
                 new [] { CompressorType.Zlib },
                 new [] { CompressorType.Snappy},

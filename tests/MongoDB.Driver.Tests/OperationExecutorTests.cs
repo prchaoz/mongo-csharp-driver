@@ -39,8 +39,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task ExecuteReadOperation_throws_on_null_operation([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task ExecuteReadOperation_throws_on_null_operation([CombinatorialValues(true, false)] bool async)
         {
             var subject = CreateSubject(out _);
             var operationContext = new OperationContext(Timeout.InfiniteTimeSpan, CancellationToken.None);
@@ -55,8 +55,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task ExecuteReadOperation_throws_on_null_readPreference([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task ExecuteReadOperation_throws_on_null_readPreference([CombinatorialValues(true, false)] bool async)
         {
             var subject = CreateSubject(out _);
             var operationContext = new OperationContext(Timeout.InfiniteTimeSpan, CancellationToken.None);
@@ -72,8 +72,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task ExecuteReadOperation_throws_on_null_session([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task ExecuteReadOperation_throws_on_null_session([CombinatorialValues(true, false)] bool async)
         {
             var subject = CreateSubject(out _);
             var operationContext = new OperationContext(Timeout.InfiniteTimeSpan, CancellationToken.None);
@@ -88,8 +88,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task ExecuteWriteOperation_throws_on_null_operation([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task ExecuteWriteOperation_throws_on_null_operation([CombinatorialValues(true, false)] bool async)
         {
             var subject = CreateSubject(out _);
             var operationContext = new OperationContext(Timeout.InfiniteTimeSpan, CancellationToken.None);
@@ -104,8 +104,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task ExecuteWriteOperation_throws_on_null_session([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task ExecuteWriteOperation_throws_on_null_session([CombinatorialValues(true, false)] bool async)
         {
             var subject = CreateSubject(out _);
             var operationContext = new OperationContext(Timeout.InfiniteTimeSpan, CancellationToken.None);

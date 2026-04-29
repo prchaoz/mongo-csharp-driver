@@ -94,9 +94,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsImplicit_should_call_coreSession(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject();
             var mockCoreSession = Mock.Get(subject.WrappedCoreSession);
@@ -108,9 +108,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsInTransaction_should_call_coreSession(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject();
             var mockCoreSession = Mock.Get(subject.WrappedCoreSession);
@@ -194,9 +194,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AdvanceClusterTime_should_call_coreSession(
-           [Values(false, true)] bool value)
+           [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject();
             var newClusterTime = new BsonDocument();
@@ -207,9 +207,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AdvanceOperationTime_should_call_coreSession(
-           [Values(false, true)] bool value)
+           [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject();
             var newOperationTime = new BsonTimestamp(0);
@@ -245,9 +245,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Dispose_should_have_expected_result(
-            [Values(1, 2)] int timesCalled)
+            [CombinatorialValues(1, 2)] int timesCalled)
         {
             var subject = CreateSubject();
 
@@ -461,8 +461,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void WithTransaction_callback_with_a_UnknownTransactionCommitResult_should_not_be_retried([Values(true, false)] bool hasTimedOut)
+        [CombinatorialData]
+        public void WithTransaction_callback_with_a_UnknownTransactionCommitResult_should_not_be_retried([CombinatorialValues(true, false)] bool hasTimedOut)
         {
             var mockClock = CreateClockMock(DateTime.UtcNow, TimeSpan.FromSeconds(CalculateTime(hasTimedOut)));
             var subject = CreateSubject(clock: mockClock.Object);
@@ -643,8 +643,8 @@ namespace MongoDB.Driver.Tests
         // This is an equivalent to the prose test described at https://github.com/mongodb/specifications/blob/192976b194afdb1f458cbba2530c73de6b2c700f/source/transactions-convenient-api/tests/README.md?plain=1#L44
         // It's much harder to substitute at the mongoClient level for now, so we will have the tests for ClientSessionHandle instead
         [Theory]
-        [ParameterAttributeData]
-        public async Task WithTransaction_retry_backoff_is_enforced([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task WithTransaction_retry_backoff_is_enforced([CombinatorialValues(true, false)] bool async)
         {
             var randomNumberGeneratorMock = new Mock<IRandom>();
             var coreSessionMock = CreateCoreSessionMock();

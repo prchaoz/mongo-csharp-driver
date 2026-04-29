@@ -25,9 +25,9 @@ namespace MongoDB.Driver.Tests
     public class FindExpressionProjectionDefinitionTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Projection_to_class_should_work(
-            [Values(false, true)] bool renderForFind)
+            [CombinatorialValues(false, true)] bool renderForFind)
         {
             var expectedRenderedProjection = renderForFind switch
             {
@@ -42,9 +42,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Projection_to_anonymous_type_should_work(
-            [Values(false, true)] bool renderForFind)
+            [CombinatorialValues(false, true)] bool renderForFind)
         {
             var expectedRenderedProjection = renderForFind switch
             {

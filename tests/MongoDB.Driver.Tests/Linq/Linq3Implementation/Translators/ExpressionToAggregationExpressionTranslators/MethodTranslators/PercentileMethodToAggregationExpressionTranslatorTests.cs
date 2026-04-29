@@ -34,9 +34,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_decimals_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -54,9 +54,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_decimals_multiple_percentiles_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -74,9 +74,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_decimals_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -94,9 +94,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_doubles_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -114,9 +114,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_doubles_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -134,9 +134,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_floats_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -154,9 +154,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_floats_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -174,9 +174,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_ints_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -194,9 +194,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_ints_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -214,9 +214,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_longs_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -234,9 +234,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_longs_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -254,9 +254,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_nullable_decimals_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -274,9 +274,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_nullable_decimals_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -294,9 +294,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_nullable_doubles_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -314,9 +314,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_nullable_doubles_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -334,9 +334,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_nullable_floats_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -354,9 +354,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_nullable_floats_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -374,9 +374,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_nullable_ints_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -394,9 +394,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_nullable_ints_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -414,9 +414,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_nullable_longs_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -434,9 +434,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_nullable_longs_selector_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
 
@@ -454,9 +454,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Percentile_with_list_input_should_work(
-            [Values(false, true)] bool withNestedAsQueryable)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryable)
         {
             var collection = Fixture.Collection;
             var percentiles = new List<double> { 0.25, 0.5, 0.75 };

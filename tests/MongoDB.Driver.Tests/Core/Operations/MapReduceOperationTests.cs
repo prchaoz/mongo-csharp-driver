@@ -83,9 +83,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadConcern_get_and_set_should_work(
-            [Values(ReadConcernLevel.Linearizable, ReadConcernLevel.Local)]
+            [CombinatorialValues(ReadConcernLevel.Linearizable, ReadConcernLevel.Local)]
             ReadConcernLevel level)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -138,9 +138,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -158,11 +158,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_Collation_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool caseSensitive,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -201,9 +201,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_Filter_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -225,9 +225,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_FinalizeFunction_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -251,7 +251,7 @@ namespace MongoDB.Driver.Core.Operations
         // TODO: figure out why test fails when JavaScriptMode = true (server bug?)
 
         //[Theory]
-        //[ParameterAttributeData]
+        //[CombinatorialData]
         //public void Execute_should_return_expected_results_when_JavaScriptMode_is_set(
         //    [Values(null, false, true)]
         //    bool? javaScriptMode,
@@ -275,11 +275,11 @@ namespace MongoDB.Driver.Core.Operations
         //}
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_Limit_is_set(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             long limit,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -302,11 +302,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_MaxTime_is_set(
-            [Values(null, 1000)]
+            [CombinatorialValues(null, 1000)]
             int? seconds,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -329,11 +329,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_ReadConcern_is_set(
-            [Values(null, ReadConcernLevel.Local)] // only use values that are valid on StandAlone servers
+            [CombinatorialValues(null, ReadConcernLevel.Local)] // only use values that are valid on StandAlone servers
             ReadConcernLevel? readConcernLevel,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -356,9 +356,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_ResultSerializer_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -376,9 +376,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_Scope_is_set(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -402,11 +402,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_when_Sort_is_set(
-            [Values(1, -1)]
+            [CombinatorialValues(1, -1)]
             int direction,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -443,9 +443,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_binding_is_null(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -459,9 +459,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_maxTime_is_exceeded(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -478,9 +478,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             EnsureTestData();
@@ -492,9 +492,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_ReadConcern_is_set(
-            [Values(null, ReadConcernLevel.Linearizable, ReadConcernLevel.Local)]
+            [CombinatorialValues(null, ReadConcernLevel.Linearizable, ReadConcernLevel.Local)]
             ReadConcernLevel? level)
         {
             var readConcern = level.HasValue ? new ReadConcern(level.Value) : ReadConcern.Default;
@@ -521,9 +521,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_using_causal_consistency(
-            [Values(null, ReadConcernLevel.Linearizable, ReadConcernLevel.Local)]
+            [CombinatorialValues(null, ReadConcernLevel.Linearizable, ReadConcernLevel.Local)]
             ReadConcernLevel? level)
         {
             var readConcern = level.HasValue ? new ReadConcern(level.Value) : ReadConcern.Default;

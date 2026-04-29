@@ -32,9 +32,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_get_should_return_expected_result(
-            [Values(null, 1, 2)] int? maxTimeSeconds)
+            [CombinatorialValues(null, 1, 2)] int? maxTimeSeconds)
         {
             var value = maxTimeSeconds.HasValue ? (TimeSpan?)TimeSpan.FromSeconds(maxTimeSeconds.Value) : null;
             var subject = new EstimatedDocumentCountOptions { MaxTime = value };
@@ -45,9 +45,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_have_expected_result(
-            [Values(null, 1, 2)] int? maxTimeSeconds)
+            [CombinatorialValues(null, 1, 2)] int? maxTimeSeconds)
         {
             var value = maxTimeSeconds.HasValue ? (TimeSpan?)TimeSpan.FromSeconds(maxTimeSeconds.Value) : null;
             var subject = new EstimatedDocumentCountOptions();

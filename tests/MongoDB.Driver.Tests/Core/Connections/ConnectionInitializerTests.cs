@@ -42,9 +42,9 @@ namespace MongoDB.Driver.Core.Connections
         private static readonly ConnectionDescription __emptyConnectionDescription = new ConnectionDescription(new ConnectionId(__serverId), new HelloResult(new BsonDocument()));
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ConnectionAuthentication_should_throw_if_operationContext_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var connectionInitializerContext = new ConnectionInitializerContext(__emptyConnectionDescription, null);
             var subject = CreateSubject();
@@ -57,9 +57,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ConnectionAuthentication_should_throw_if_connection_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var connectionInitializerContext = new ConnectionInitializerContext(__emptyConnectionDescription, null);
             var subject = CreateSubject();
@@ -72,9 +72,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ConnectionAuthentication_should_throw_if_connectionInitializerContext_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var exception = async ?
@@ -101,11 +101,11 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateInitialHelloCommand_should_return_expected_hello_with_speculativeAuthenticate(
-            [Values("default", "SCRAM-SHA-256", "SCRAM-SHA-1")] string authenticatorType,
-            [Values(true, false)] bool withServerApi,
-            [Values(true, false)] bool loadBalanced)
+            [CombinatorialValues("default", "SCRAM-SHA-256", "SCRAM-SHA-1")] string authenticatorType,
+            [CombinatorialValues(true, false)] bool withServerApi,
+            [CombinatorialValues(true, false)] bool loadBalanced)
         {
             var identity = new MongoExternalIdentity(source: "Pathfinder", username: "Barclay");
             var evidence = new PasswordEvidence("Barclay-Alpha-1-7-Gamma");
@@ -126,9 +126,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Handshake_should_throw_if_operationContext_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var exception = async ?
@@ -138,9 +138,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Handshake_should_throw_if_connection_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var exception = async ?
@@ -150,10 +150,10 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task InitializeConnection_should_acquire_connectionId_from_hello_response(
-            [Values(1, int.MaxValue, (long)int.MaxValue + 1, long.MaxValue, 1d, (double)int.MaxValue+1, (double)int.MaxValue*4)] object serverConnectionId,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(1, int.MaxValue, (long)int.MaxValue + 1, long.MaxValue, 1d, (double)int.MaxValue+1, (double)int.MaxValue*4)] object serverConnectionId,
+            [CombinatorialValues(false, true)] bool async)
         {
             var formattedServerConnectionId = $"{serverConnectionId}" + (serverConnectionId is double ? ".0" : "");
             var helloResponse = MessageHelper.BuildCommandResponse(RawBsonDocumentHelper.FromJson($"{{ ok : 1, connectionId : {formattedServerConnectionId} }}"));
@@ -170,10 +170,10 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task InitializeConnection_should_acquire_connectionId_from_legacy_hello_response(
-            [Values(1, int.MaxValue, (long)int.MaxValue + 1, long.MaxValue, 1d, (double)int.MaxValue+1, (double)int.MaxValue*4)] object serverConnectionId,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(1, int.MaxValue, (long)int.MaxValue + 1, long.MaxValue, 1d, (double)int.MaxValue+1, (double)int.MaxValue*4)] object serverConnectionId,
+            [CombinatorialValues(false, true)] bool async)
         {
             var formattedServerConnectionId = $"{serverConnectionId}" + (serverConnectionId is double ? ".0" : "");
             var legacyHelloReply = MessageHelper.BuildReply(RawBsonDocumentHelper.FromJson($"{{ ok : 1, connectionId : {formattedServerConnectionId} }}"));
@@ -190,10 +190,10 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task InitializeConnection_should_call_Authenticator_CustomizeInitialHelloCommand(
-            [Values("default", "SCRAM-SHA-256", "SCRAM-SHA-1")] string authenticatorType,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("default", "SCRAM-SHA-256", "SCRAM-SHA-1")] string authenticatorType,
+            [CombinatorialValues(false, true)] bool async)
         {
             var legacyHelloReply = MessageHelper.BuildReply(
                 RawBsonDocumentHelper.FromJson("{ ok : 1, connectionId : 1 }"));
@@ -223,8 +223,8 @@ namespace MongoDB.Driver.Core.Connections
 
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task InitializeConnection_with_serverApi_should_send_hello([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task InitializeConnection_with_serverApi_should_send_hello([CombinatorialValues(false, true)] bool async)
         {
             var serverApi = new ServerApi(ServerApiVersion.V1, true, true);
 
@@ -252,8 +252,8 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task InitializeConnection_without_serverApi_should_send_legacy_hello([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task InitializeConnection_without_serverApi_should_send_legacy_hello([CombinatorialValues(false, true)] bool async)
         {
             var connection = new MockConnection(__serverId);
             var helloReply = RawBsonDocumentHelper.FromJson($"{{ ok : 1, connectionId : 1, maxWireVersion : {WireVersion.Server42} }}");
@@ -278,8 +278,8 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task InitializeConnection_without_serverApi_but_with_loadBalancing_should_send_hello([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task InitializeConnection_without_serverApi_but_with_loadBalancing_should_send_hello([CombinatorialValues(false, true)] bool async)
         {
             var connection = new MockConnection(__serverId, new ConnectionSettings(loadBalanced:true), null);
             var helloReply = RawBsonDocumentHelper.FromJson($"{{ ok : 1, connectionId : 1, maxWireVersion : {WireVersion.Server42}, serviceId : '{ObjectId.GenerateNewId()}' }}");
@@ -305,10 +305,10 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task InitializeConnection_should_build_the_ConnectionDescription_correctly(
-            [Values("noop", "zlib", "snappy", "zstd")] string compressorType,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("noop", "zlib", "snappy", "zstd")] string compressorType,
+            [CombinatorialValues(false, true)] bool async)
         {
             var legacyHelloReply = MessageHelper.BuildReply<RawBsonDocument>(
                 RawBsonDocumentHelper.FromJson($"{{ ok : 1, compression : ['{compressorType}'], maxWireVersion : {WireVersion.Server36} }}"));
@@ -341,9 +341,9 @@ namespace MongoDB.Driver.Core.Connections
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task InitializeConnection_should_switch_command_wire_protocol_after_handshake_if_OP_MSG_is_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var legacyHelloReply = MessageHelper.BuildReply(
                 RawBsonDocumentHelper.FromJson(

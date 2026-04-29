@@ -151,9 +151,9 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ServerDescription_type_should_be_replaced_with_Unknown_when_setName_is_different(
-            [Values(null, "wrong")] string newSetName)
+            [CombinatorialValues(null, "wrong")] string newSetName)
         {
             _settings = _settings.With(replicaSetName: "rs");
 

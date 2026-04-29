@@ -82,9 +82,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_maxChunkSize_is_not_a_power_of_2(
-            [Values(3, 5, 6, 7, 9, 15, 17)]
+            [CombinatorialValues(3, 5, 6, 7, 9, 15, 17)]
             int maxChunkSize)
         {
             Action action = () => new InputBufferChunkSource(BsonChunkPool.Default, maxChunkSize: maxChunkSize);
@@ -117,9 +117,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_minChunkSize_is_not_a_power_of_2(
-            [Values(3, 5, 6, 7, 9, 15, 17)]
+            [CombinatorialValues(3, 5, 6, 7, 9, 15, 17)]
             int minChunkSize)
         {
             Action action = () => new InputBufferChunkSource(BsonChunkPool.Default, minChunkSize: minChunkSize);
@@ -180,9 +180,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetChunk_should_return_unpooled_chunk_when_requestedSize_is_less_than_or_equal_to_maxUnpooledChunkSize(
-            [Values(1, 2, 4 * 1024 - 1, 4 * 1024)]
+            [CombinatorialValues(1, 2, 4 * 1024 - 1, 4 * 1024)]
             int requestedSize)
         {
             var mockBaseSource = new Mock<IBsonChunkSource>();
@@ -224,9 +224,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetChunk_should_throw_when_requestedSize_is_less_than_or_equal_to_zero(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int requestedSize)
         {
             var mockBaseSource = new Mock<IBsonChunkSource>();

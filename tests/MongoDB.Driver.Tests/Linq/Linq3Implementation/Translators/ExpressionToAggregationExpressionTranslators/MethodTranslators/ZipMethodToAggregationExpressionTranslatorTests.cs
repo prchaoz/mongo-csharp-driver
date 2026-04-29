@@ -30,9 +30,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Enumerable_Zip_should_work(
-            [Values(false, true)] bool withNestedAsQueryableSource2)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryableSource2)
         {
             var collection = Fixture.Collection;
 
@@ -52,9 +52,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Translators.ExpressionTo
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Queryable_Zip_should_work(
-            [Values(false, true)] bool withNestedAsQueryableSource2)
+            [CombinatorialValues(false, true)] bool withNestedAsQueryableSource2)
         {
             var collection = Fixture.Collection;
 

@@ -66,9 +66,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ExpressionProjectionDefinition_with_identity_projection_Render_should_work(
-            [Values(true, false)] bool renderForFind)
+            [CombinatorialValues(true, false)] bool renderForFind)
         {
             var collection = Fixture.Collection;
             var projection = new ExpressionProjectionDefinition<C, C>(x => x);
@@ -82,9 +82,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindExpressionProjectionDefinition_with_identity_projection_Render_should_work(
-            [Values(true, false)] bool renderForFind)
+            [CombinatorialValues(true, false)] bool renderForFind)
         {
             var collection = Fixture.Collection;
             var projection = new FindExpressionProjectionDefinition<C, C>(x => x);

@@ -34,10 +34,10 @@ namespace MongoDB.Driver.Tests
     {
         // public methods
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Any_should_add_projection_and_limit_and_return_expected_result(
-            [Values(0, 1, 2)] int count,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0, 1, 2)] int count,
+            [CombinatorialValues(false, true)] bool async)
         {
             var expectedResult = count > 0;
 
@@ -73,9 +73,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Any_should_throw_when_find_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             IFindFluent<Person, Person> subject = null;
 
@@ -93,9 +93,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void First_should_add_limit_and_call_ToCursor(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSubject1 = new Mock<IFindFluent<Person, Person>>();
             var mockSubject2 = new Mock<IFindFluent<Person, Person>>();
@@ -132,9 +132,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void First_should_throw_when_find_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             IFindFluent<Person, Person> subject = null;
 
@@ -152,9 +152,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FirstOrDefault_should_add_limit_and_call_ToCursor(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSubject1 = new Mock<IFindFluent<Person, Person>>();
             var mockSubject2 = new Mock<IFindFluent<Person, Person>>();
@@ -191,9 +191,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FirstOrDefault_should_throw_when_find_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             IFindFluent<Person, Person> subject = null;
 
@@ -250,9 +250,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Single_should_add_limit_and_call_ToCursor(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSubject1 = new Mock<IFindFluent<Person, Person>>();
             var mockSubject2 = new Mock<IFindFluent<Person, Person>>();
@@ -289,9 +289,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Single_should_throw_when_find_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             IFindFluent<Person, Person> subject = null;
 
@@ -309,9 +309,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SingleOrDefault_should_add_limit_and_call_ToCursor(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSubject1 = new Mock<IFindFluent<Person, Person>>();
             var mockSubject2 = new Mock<IFindFluent<Person, Person>>();
@@ -349,9 +349,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SingleOrDefault_should_throw_when_find_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             IFindFluent<Person, Person> subject = null;
 

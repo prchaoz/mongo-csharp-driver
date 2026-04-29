@@ -27,9 +27,9 @@ namespace MongoDB.Bson.Tests.ObjectModel
     public class BsonStringTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_string_should_return_new_instance(
-            [Values("x")]
+            [CombinatorialValues("x")]
             string value)
         {
             var result1 = (BsonString)value;
@@ -39,9 +39,9 @@ namespace MongoDB.Bson.Tests.ObjectModel
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void implicit_conversion_from_string_should_return_precreated_instance(
-            [Values("")]
+            [CombinatorialValues("")]
             string value)
         {
             var result1 = (BsonString)value;
@@ -51,9 +51,9 @@ namespace MongoDB.Bson.Tests.ObjectModel
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void precreated_instances_should_have_the_expected_value(
-            [Values("")]
+            [CombinatorialValues("")]
             string value)
         {
             var result = (BsonString)value;

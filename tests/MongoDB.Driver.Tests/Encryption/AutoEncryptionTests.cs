@@ -48,8 +48,8 @@ namespace MongoDB.Driver.Tests.Encryption
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void CryptClient_should_be_initialized([Values(false, true)] bool withAutoEncryption)
+        [CombinatorialData]
+        public void CryptClient_should_be_initialized([CombinatorialValues(false, true)] bool withAutoEncryption)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 
@@ -69,8 +69,8 @@ namespace MongoDB.Driver.Tests.Encryption
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Mongocryptd_should_be_initialized_when_auto_encryption([Values(false, true)] bool withAutoEncryption, [Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Mongocryptd_should_be_initialized_when_auto_encryption([CombinatorialValues(false, true)] bool withAutoEncryption, [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
 

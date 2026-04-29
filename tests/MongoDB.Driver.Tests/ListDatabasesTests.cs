@@ -32,9 +32,9 @@ namespace MongoDB.Driver.Tests
         private string _userName = $"authorizedDatabases{Guid.NewGuid()}";
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_the_expected_result_when_AuthorizedDatabases_is_used(
-            [Values(null, false, true)] bool? authorizedDatabases)
+            [CombinatorialValues(null, false, true)] bool? authorizedDatabases)
         {
             RequireServer.Check().Supports(Feature.ListDatabasesAuthorizedDatabases).Authentication(true);
 

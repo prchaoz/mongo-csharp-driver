@@ -83,9 +83,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CanTimeout_get_should_return_expected_result(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool disposed)
         {
             var subject = CreateSubject();
@@ -120,9 +120,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_subject(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool ownsBuffer)
         {
             var length = 123;
@@ -167,9 +167,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Dispose_should_dispose_buffer_if_it_owns_it(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool ownsBuffer)
         {
             var mockBuffer = new Mock<IByteBuffer>();
@@ -250,9 +250,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Position_set_should_throw_when_value_is_invalid(
-            [Values(-1L, (long)int.MaxValue + 1)]
+            [CombinatorialValues(-1L, (long)int.MaxValue + 1)]
             long value)
         {
             var subject = CreateSubject();
@@ -547,11 +547,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadDecimal18_should_return_expected_result(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values("-1.0", "0.0", "1.0", "NaN", "-Infinity", "Infinity")]
+            [CombinatorialValues("-1.0", "0.0", "1.0", "NaN", "-Infinity", "Infinity")]
             string valueString)
         {
             var value = Decimal128.Parse(valueString);
@@ -567,11 +567,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadDecimal128_should_throw_when_at_end_of_stream(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values(0, 1, 7)]
+            [CombinatorialValues(0, 1, 7)]
             int length)
         {
             var subject = CreateSubject(length, numberOfChunks);
@@ -592,11 +592,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadDouble_should_return_expected_result(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values(-1.0, 0.0, 1.0, double.Epsilon, double.MaxValue, double.MinValue, double.NaN, double.NegativeInfinity, double.PositiveInfinity)]
+            [CombinatorialValues(-1.0, 0.0, 1.0, double.Epsilon, double.MaxValue, double.MinValue, double.NaN, double.NegativeInfinity, double.PositiveInfinity)]
             double value)
         {
             var bytes = new byte[8];
@@ -610,11 +610,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadDouble_should_throw_when_at_end_of_stream(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values(0, 1, 7)]
+            [CombinatorialValues(0, 1, 7)]
             int length)
         {
             var subject = CreateSubject(length, numberOfChunks);
@@ -646,11 +646,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadInt32_should_return_expected_result(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values(-1, 0, 1, int.MaxValue, int.MinValue)]
+            [CombinatorialValues(-1, 0, 1, int.MaxValue, int.MinValue)]
             int value)
         {
             var bytes = new byte[4];
@@ -664,11 +664,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadInt32_should_throw_when_at_end_of_stream(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values(0, 1, 3)]
+            [CombinatorialValues(0, 1, 3)]
             int length)
         {
             var subject = CreateSubject(length, numberOfChunks);
@@ -700,11 +700,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadInt64_should_return_expected_result(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values(-1, 0, 1, long.MaxValue, long.MinValue)]
+            [CombinatorialValues(-1, 0, 1, long.MaxValue, long.MinValue)]
             long value)
         {
             var bytes = new byte[8];
@@ -718,11 +718,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadInt64_should_throw_when_at_end_of_stream(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values(0, 1, 7)]
+            [CombinatorialValues(0, 1, 7)]
             int length)
         {
             var subject = CreateSubject(length, numberOfChunks);
@@ -757,9 +757,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadObjectId_should_return_expected_result(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks)
         {
             var bytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
@@ -773,11 +773,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadObjectId_should_throw_when_at_end_of_stream(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values(0, 1, 11)]
+            [CombinatorialValues(0, 1, 11)]
             int length)
         {
             var subject = CreateSubject(length, numberOfChunks);
@@ -1001,9 +1001,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SetLength_should_set_length(
-            [Values(0, 1, 2, 3)]
+            [CombinatorialValues(0, 1, 2, 3)]
             long length)
         {
             var subject = CreateSubject();
@@ -1016,9 +1016,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SetLength_should_set_position_when_position_is_greater_than_new_length(
-            [Values(0, 1, 2, 3)]
+            [CombinatorialValues(0, 1, 2, 3)]
             long length)
         {
             var subject = CreateSubject();
@@ -1030,9 +1030,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SetLength_should_throw_when_length_is_out_of_range(
-            [Values(-1, (long)int.MaxValue + 1)]
+            [CombinatorialValues(-1, (long)int.MaxValue + 1)]
             long length)
         {
             var subject = CreateSubject();
@@ -1205,9 +1205,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Write_should_throw_when_offset_is_out_of_range(
-            [Values(-1, 2)]
+            [CombinatorialValues(-1, 2)]
             int offset)
         {
             var subject = CreateSubject();
@@ -1309,11 +1309,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteCString_should_throw_when_value_contains_nulls(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values("\0", "a\0", "a\0b")]
+            [CombinatorialValues("\0", "a\0", "a\0b")]
             string value)
         {
             var maxLength = Utf8Encodings.Strict.GetMaxByteCount(value.Length) + 1;
@@ -1373,11 +1373,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteDecimal128_should_have_expected_effect(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values("-1.0", "0.0", "1.0", "NaN", "-Infinity", "Infinity")]
+            [CombinatorialValues("-1.0", "0.0", "1.0", "NaN", "-Infinity", "Infinity")]
             string valueString)
         {
             var value = Decimal128.Parse(valueString);
@@ -1405,9 +1405,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteDouble_should_have_expected_effect(
-            [Values(-1.0, 0.0, 1.0, double.Epsilon, double.MaxValue, double.MinValue, double.NaN, double.NegativeInfinity, double.PositiveInfinity)]
+            [CombinatorialValues(-1.0, 0.0, 1.0, double.Epsilon, double.MaxValue, double.MinValue, double.NaN, double.NegativeInfinity, double.PositiveInfinity)]
             double value)
         {
             var subject = CreateSubject();
@@ -1433,11 +1433,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteInt32_should_have_expected_effect(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks,
-            [Values(-1, 0, 1, int.MaxValue, int.MinValue)]
+            [CombinatorialValues(-1, 0, 1, int.MaxValue, int.MinValue)]
             int value)
         {
             var subject = CreateSubject(0, CalculateChunkSizes(4, numberOfChunks));
@@ -1463,9 +1463,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteInt64_should_have_expected_effect(
-            [Values(-1, 0, 1, long.MaxValue, long.MinValue)]
+            [CombinatorialValues(-1, 0, 1, long.MaxValue, long.MinValue)]
             long value)
         {
             var subject = CreateSubject();
@@ -1491,9 +1491,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteWriteObjectIdshould_have_expected_effect(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks)
         {
             var subject = CreateSubject(0, CalculateChunkSizes(12, numberOfChunks));
@@ -1519,11 +1519,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteString_should_have_expected_effect(
-            [Values(0, 1, 16, 1024)]
+            [CombinatorialValues(0, 1, 16, 1024)]
             int length,
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int numberOfChunks)
         {
             var value = new string('a', length);

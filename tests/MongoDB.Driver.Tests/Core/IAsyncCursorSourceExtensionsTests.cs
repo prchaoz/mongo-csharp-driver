@@ -34,10 +34,10 @@ namespace MongoDB.Driver
     {
         // public methods
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Any_should_return_expected_result(
-            [Values(0, 1, 2)] int count,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0, 1, 2)] int count,
+            [CombinatorialValues(false, true)] bool async)
         {
             var source = CreateCursorSource(count);
             var expectedResult = count > 0;
@@ -56,10 +56,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void First_should_return_expected_result(
-          [Values(1, 2)] int count,
-          [Values(false, true)] bool async)
+          [CombinatorialValues(1, 2)] int count,
+          [CombinatorialValues(false, true)] bool async)
         {
             var source = CreateCursorSource(count);
             var expectedResult = new BsonDocument("_id", 0);
@@ -78,9 +78,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void First_should_throw_when_cursor_has_no_documents(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var source = CreateCursorSource(0);
 
@@ -98,10 +98,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FirstOrDefault_should_return_expected_result(
-            [Values(0, 1, 2)] int count,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0, 1, 2)] int count,
+            [CombinatorialValues(false, true)] bool async)
         {
             var source = CreateCursorSource(count);
             var expectedResult = count == 0 ? null : new BsonDocument("_id", 0);
@@ -120,9 +120,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Single_should_return_expected_result(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var source = CreateCursorSource(1);
             var expectedResult = new BsonDocument("_id", 0);
@@ -141,10 +141,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Single_should_throw_when_cursor_has_wrong_number_of_documents(
-            [Values(0, 2)] int count,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0, 2)] int count,
+            [CombinatorialValues(false, true)] bool async)
         {
             var source = CreateCursorSource(count);
 
@@ -162,10 +162,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SingleOrDefault_should_return_expected_result(
-            [Values(0, 1)] int count,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0, 1)] int count,
+            [CombinatorialValues(false, true)] bool async)
         {
             var source = CreateCursorSource(count);
             var expectedResult = count == 0 ? null : new BsonDocument("_id", 0);
@@ -184,9 +184,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void SingleOrDefault_should_throw_when_cursor_has_wrong_number_of_documents(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var source = CreateCursorSource(2);
 
@@ -204,9 +204,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task ToAsyncEnumerable_result_should_be_enumerable_multiple_times(
-            [Values(1, 2)] int times)
+            [CombinatorialValues(1, 2)] int times)
         {
             var source = CreateCursorSource(2);
             var expectedDocuments = new[]
@@ -229,9 +229,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToEnumerable_result_should_be_enumerable_multiple_times(
-            [Values(1, 2)] int times)
+            [CombinatorialValues(1, 2)] int times)
         {
             var source = CreateCursorSource(2);
             var expectedDocuments = new[]
@@ -265,9 +265,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToList_should_be_callable_multiple_times(
-            [Values(1, 2)] int times)
+            [CombinatorialValues(1, 2)] int times)
         {
             var source = CreateCursorSource(2);
             var expectedResult = new[]

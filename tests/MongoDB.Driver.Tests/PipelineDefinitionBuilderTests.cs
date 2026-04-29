@@ -675,8 +675,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void VectorSearch_should_add_expected_stage_with_parent_filters([Values(false, true)] bool expressions)
+        [CombinatorialData]
+        public void VectorSearch_should_add_expected_stage_with_parent_filters([CombinatorialValues(false, true)] bool expressions)
         {
             var pipeline = new EmptyPipelineDefinition<MovieWithPlot>();
             var options = new VectorSearchOptions<MovieWithPlot>()
@@ -718,8 +718,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void VectorSearch_should_throw_when_filter_is_at_wrong_level([Values(false, true)] bool expressions)
+        [CombinatorialData]
+        public void VectorSearch_should_throw_when_filter_is_at_wrong_level([CombinatorialValues(false, true)] bool expressions)
         {
             var pipeline = new EmptyPipelineDefinition<MovieWithPlot>();
             var options = new VectorSearchOptions<MovieWithPlot>()
@@ -740,8 +740,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void VectorSearch_should_throw_when_nested_filter_is_used_without_nesting([Values(false, true)] bool expressions)
+        [CombinatorialData]
+        public void VectorSearch_should_throw_when_nested_filter_is_used_without_nesting([CombinatorialValues(false, true)] bool expressions)
         {
             var pipeline = new EmptyPipelineDefinition<MovieWithPlot>();
             var options = new VectorSearchOptions<MovieWithPlot>()

@@ -26,9 +26,9 @@ namespace MongoDB.Bson.Tests.IO
     public class CStringUtf8EncodingTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetMaxByteCount_should_return_expected_result(
-            [Values(0, 1, 2)] int charCount)
+            [CombinatorialValues(0, 1, 2)] int charCount)
         {
             var expectedResult = charCount * 3;
 
@@ -72,9 +72,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetBytes_should_throw_when_value_contains_null(
-            [Values("\0", "a\0", "ab\0")] string value)
+            [CombinatorialValues("\0", "a\0", "ab\0")] string value)
         {
             var bytes = new byte[CStringUtf8Encoding.GetMaxByteCount(value.Length)];
 

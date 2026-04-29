@@ -164,9 +164,9 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Serialize_should_not_convert_Uuids_in_elements(
-            [Values(false, true)] bool useGenericInterface)
+            [CombinatorialValues(false, true)] bool useGenericInterface)
         {
             var guid = Guid.Parse("01020304-0506-0708-090a-0b0c0d0e0f10");
             var value = new BsonDocument { { "_id", new BsonBinaryData(guid, GuidRepresentation.Standard) }, { "x", 1 } };

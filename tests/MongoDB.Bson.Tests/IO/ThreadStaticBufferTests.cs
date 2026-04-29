@@ -79,10 +79,10 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RentBuffer_should_not_allow_checkin_buffer_from_other_thread(
-            [Values(true, false)] bool rentBufferInOwnThread,
-            [Values(128, 16385)] int size)
+            [CombinatorialValues(true, false)] bool rentBufferInOwnThread,
+            [CombinatorialValues(128, 16385)] int size)
         {
             ThreadStaticBuffer.RentedBuffer rentedBufferInOwnThread = default;
             ThreadStaticBuffer.RentedBuffer rentedBufferInOtherThread = default;

@@ -34,9 +34,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetEnumerator_should_call_ToCursor_each_time(
-            [Values(1, 2)] int times)
+            [CombinatorialValues(1, 2)] int times)
         {
             var mockSource = new Mock<IAsyncCursorSource<BsonDocument>>();
             var cursor = new Mock<IAsyncCursor<BsonDocument>>().Object;

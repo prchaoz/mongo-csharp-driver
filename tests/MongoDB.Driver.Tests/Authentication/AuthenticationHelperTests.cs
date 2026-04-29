@@ -49,9 +49,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_invoke_authenticators_when_they_exist(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var description = new ConnectionDescription(
@@ -81,9 +81,9 @@ namespace MongoDB.Driver.Tests.Authentication
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Authenticate_should_not_invoke_authenticator_when_connected_to_an_arbiter(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var description = new ConnectionDescription(

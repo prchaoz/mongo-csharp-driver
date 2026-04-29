@@ -57,9 +57,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Position_get_and_set_should_work(
-            [Values(0, 1, 2)] long value)
+            [CombinatorialValues(0, 1, 2)] long value)
         {
             var subject = CreateSubject();
 
@@ -80,9 +80,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RetryReads_get_and_set_should_work(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject();
 
@@ -93,14 +93,14 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         [Trait("Category", "Integration")]
         public void Read_should_return_expected_result(
-            [Values(0.0, 0.5, 1.0, 1.5, 2.0, 2.5)] double fileLengthMultiple,
-            [Values(0.0, 0.5)] double positionMultiple,
-            [Values(0, 2)] int offset,
-            [Values(0.0, 0.5, 1.0)] double countMultiple,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(0.0, 0.5, 1.0, 1.5, 2.0, 2.5)] double fileLengthMultiple,
+            [CombinatorialValues(0.0, 0.5)] double positionMultiple,
+            [CombinatorialValues(0, 2)] int offset,
+            [CombinatorialValues(0.0, 0.5, 1.0)] double countMultiple,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var chunkSize = 4;
@@ -133,9 +133,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Read_should_throw_when_buffer_is_null(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 

@@ -213,9 +213,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_hedge_should_initialize_instance(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? isEnabled)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -244,11 +244,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_maxStaleness_fields(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? lhsSeconds,
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? rhsSeconds)
         {
             var lhsMaxStaleness = lhsSeconds.HasValue ? TimeSpan.FromSeconds(lhsSeconds.Value) : (TimeSpan?)null;
@@ -280,11 +280,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_mode_fields(
-            [Values(ReadPreferenceMode.Primary, ReadPreferenceMode.Secondary)]
+            [CombinatorialValues(ReadPreferenceMode.Primary, ReadPreferenceMode.Secondary)]
             ReadPreferenceMode lhsMode,
-            [Values(ReadPreferenceMode.Primary, ReadPreferenceMode.Secondary)]
+            [CombinatorialValues(ReadPreferenceMode.Primary, ReadPreferenceMode.Secondary)]
             ReadPreferenceMode rhsMode)
         {
             var lhs = new ReadPreference(lhsMode);
@@ -294,11 +294,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_tagSets_fields(
-            [Values(null, "a", "b")]
+            [CombinatorialValues(null, "a", "b")]
             string lhsTagValue,
-            [Values(null, "a", "b")]
+            [CombinatorialValues(null, "a", "b")]
             string rhsTagValue)
         {
             var lhsTagSets = lhsTagValue == null ? null : new[] { new TagSet(new[] { new Tag("x", lhsTagValue) }) };
@@ -375,9 +375,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToString_should_return_expected_result(
-            [Values(ReadPreferenceMode.Primary, ReadPreferenceMode.Secondary)]
+            [CombinatorialValues(ReadPreferenceMode.Primary, ReadPreferenceMode.Secondary)]
             ReadPreferenceMode mode)
         {
             var subject = new ReadPreference(mode);
@@ -417,9 +417,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToString_should_return_expected_result_when_maxStaleness_is_set(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int seconds)
         {
             var maxStaleness = TimeSpan.FromSeconds(seconds);
@@ -447,11 +447,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_hedge_should_return_expected_result(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool originalIsEnabled,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool isEnabled)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -468,11 +468,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_maxStaleness_should_return_expected_result(
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int originalSeconds,
-            [Values(1, 2)]
+            [CombinatorialValues(1, 2)]
             int seconds)
         {
             var originalMaxStaleness = TimeSpan.FromSeconds(originalSeconds);
@@ -486,11 +486,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_mode_should_return_expected_result(
-            [Values(ReadPreferenceMode.Primary, ReadPreferenceMode.Secondary)]
+            [CombinatorialValues(ReadPreferenceMode.Primary, ReadPreferenceMode.Secondary)]
             ReadPreferenceMode originalMode,
-            [Values(ReadPreferenceMode.Primary, ReadPreferenceMode.Secondary)]
+            [CombinatorialValues(ReadPreferenceMode.Primary, ReadPreferenceMode.Secondary)]
             ReadPreferenceMode mode)
         {
             var subject = new ReadPreference(originalMode);
@@ -502,11 +502,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_tagSets_should_return_expected_result(
-            [Values("a", "b")]
+            [CombinatorialValues("a", "b")]
             string originalTagValue,
-            [Values("a", "b")]
+            [CombinatorialValues("a", "b")]
             string tagValue)
         {
             var originalTagSets = new[] { new TagSet(new[] { new Tag("x", originalTagValue) }) };

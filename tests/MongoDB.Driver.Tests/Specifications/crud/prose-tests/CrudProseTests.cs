@@ -157,8 +157,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
 
         // https://github.com/mongodb/specifications/blob/7517681e6a3186cb7f3114314a9fe1bc3a747b9f/source/crud/tests/README.md?plain=1#L68C8-L68C104
         [Theory]
-        [ParameterAttributeData]
-        public async Task MongoClient_bulkWrite_splits_batches_on_maxWriteBatchSize([Values(true, false)]bool async)
+        [CombinatorialData]
+        public async Task MongoClient_bulkWrite_splits_batches_on_maxWriteBatchSize([CombinatorialValues(true, false)]bool async)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
             var maxBatchCount = DriverTestConfiguration.GetConnectionDescription().MaxBatchCount;
@@ -181,8 +181,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
 
         // https://github.com/mongodb/specifications/blob/7517681e6a3186cb7f3114314a9fe1bc3a747b9f/source/crud/tests/README.md?plain=1#L96
         [Theory]
-        [ParameterAttributeData]
-        public async Task MongoClient_bulkWrite_splits_batches_on_maxMessageSizeBytes([Values(true, false)]bool async)
+        [CombinatorialData]
+        public async Task MongoClient_bulkWrite_splits_batches_on_maxMessageSizeBytes([CombinatorialValues(true, false)]bool async)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
             var connectionDescription = DriverTestConfiguration.GetConnectionDescription();
@@ -209,8 +209,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
 
         // https://github.com/mongodb/specifications/blob/7517681e6a3186cb7f3114314a9fe1bc3a747b9f/source/crud/tests/README.md?plain=1#L136
         [Theory]
-        [ParameterAttributeData]
-        public async Task MongoClient_bulkWrite_collects_WriteConcernError_across_batches([Values(true, false)]bool async)
+        [CombinatorialData]
+        public async Task MongoClient_bulkWrite_collects_WriteConcernError_across_batches([CombinatorialValues(true, false)]bool async)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
             var maxBatchCount = DriverTestConfiguration.GetConnectionDescription().MaxBatchCount;
@@ -255,10 +255,10 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
 
         // https://github.com/mongodb/specifications/blob/7517681e6a3186cb7f3114314a9fe1bc3a747b9f/source/crud/tests/README.md?plain=1#L181
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task MongoClient_bulkWrite_handles_individual_WriteError_across_batches(
-            [Values(true, false)] bool async,
-            [Values(true, false)] bool ordered)
+            [CombinatorialValues(true, false)] bool async,
+            [CombinatorialValues(true, false)] bool ordered)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
             var maxBatchCount = DriverTestConfiguration.GetConnectionDescription().MaxBatchCount;
@@ -289,10 +289,10 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
         // https://github.com/mongodb/specifications/blob/7517681e6a3186cb7f3114314a9fe1bc3a747b9f/source/crud/tests/README.md?plain=1#L236
         // https://github.com/mongodb/specifications/blob/7517681e6a3186cb7f3114314a9fe1bc3a747b9f/source/crud/tests/README.md?plain=1#L274
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task MongoClient_bulkWrite_handles_cursor_requiring_getMore(
-            [Values(true, false)] bool async,
-            [Values(true, false)] bool isInTransaction)
+            [CombinatorialValues(true, false)] bool async,
+            [CombinatorialValues(true, false)] bool isInTransaction)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
             if (isInTransaction)
@@ -353,8 +353,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
 
         // https://github.com/mongodb/specifications/blob/7517681e6a3186cb7f3114314a9fe1bc3a747b9f/source/crud/tests/README.md?plain=1#L318
         [Theory]
-        [ParameterAttributeData]
-        public async Task MongoClient_bulkWrite_handles_getMore_error([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task MongoClient_bulkWrite_handles_getMore_error([CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
             var maxDocumentSize = DriverTestConfiguration.GetConnectionDescription().MaxDocumentSize;
@@ -414,7 +414,7 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
         // Have to investigate deeper the way to include that fields in calculations.
         //
         // [Theory]
-        // [ParameterAttributeData]
+        // [CombinatorialData]
         // internal async Task MongoClient_bulkWrite_batch_splits_on_namespace_exceeds_maximum_message_size(
         //     [Values(true, false)] bool async,
         //     [Values(true, false)] bool isBatchSplit)
@@ -473,8 +473,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
 
         // https://github.com/mongodb/specifications/blob/7517681e6a3186cb7f3114314a9fe1bc3a747b9f/source/crud/tests/README.md?plain=1#L602
         [Theory]
-        [ParameterAttributeData]
-        public async Task MongoClient_bulkWrite_throws_if_no_operations_can_be_added_big_document([Values(true, false)]bool async)
+        [CombinatorialData]
+        public async Task MongoClient_bulkWrite_throws_if_no_operations_can_be_added_big_document([CombinatorialValues(true, false)]bool async)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
             var maxMessageSize = DriverTestConfiguration.GetConnectionDescription().MaxMessageSize;
@@ -500,8 +500,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
 
         // https://github.com/mongodb/specifications/blob/7517681e6a3186cb7f3114314a9fe1bc3a747b9f/source/crud/tests/README.md?plain=1#L602
         [Theory]
-        [ParameterAttributeData]
-        public async Task MongoClient_bulkWrite_throws_if_no_operations_can_be_added_big_namespace([Values(true, false)]bool async)
+        [CombinatorialData]
+        public async Task MongoClient_bulkWrite_throws_if_no_operations_can_be_added_big_namespace([CombinatorialValues(true, false)]bool async)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
             var maxMessageSize = DriverTestConfiguration.GetConnectionDescription().MaxMessageSize;
@@ -527,8 +527,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
 
         // https://github.com/mongodb/specifications/blob/7517681e6a3186cb7f3114314a9fe1bc3a747b9f/source/crud/tests/README.md?plain=1#L647
         [Theory]
-        [ParameterAttributeData]
-        public async Task MongoClient_bulkWrite_throws_if_auto_encryption_configured([Values(true, false)]bool async)
+        [CombinatorialData]
+        public async Task MongoClient_bulkWrite_throws_if_auto_encryption_configured([CombinatorialValues(true, false)]bool async)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
 
@@ -566,8 +566,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
 
         // https://github.com/mongodb/specifications/blob/d1bdb68b7b4aec9681ea56d41c8b9a6c1a97d365/source/crud/tests/README.md?plain=1#L699
         [Theory]
-        [ParameterAttributeData]
-        public async Task MongoClient_bulkWrite_unacknowledged_write_concern_uses_w0_all_batches([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task MongoClient_bulkWrite_unacknowledged_write_concern_uses_w0_all_batches([CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
 
@@ -623,8 +623,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
         // https://specifications.readthedocs.io/en/latest/crud/tests/#16-generated-document-identifiers-are-the-first-field-in-their-document
         // The next three consecutive tests defined below are part of the prose test linked above.
         [Theory]
-        [ParameterAttributeData]
-        public async Task Ensure_generated_ids_are_first_fields_in_document_using_insertOne([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Ensure_generated_ids_are_first_fields_in_document_using_insertOne([CombinatorialValues(true, false)] bool async)
         {
             var eventCapturer = new EventCapturer().Capture<CommandStartedEvent>();
             using var client = CreateMongoClient(eventCapturer);
@@ -647,8 +647,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Ensure_generated_ids_are_first_fields_in_document_using_collection_bulkWrite([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Ensure_generated_ids_are_first_fields_in_document_using_collection_bulkWrite([CombinatorialValues(true, false)] bool async)
         {
             var eventCapturer = new EventCapturer().Capture<CommandStartedEvent>();
             using var client = CreateMongoClient(eventCapturer);
@@ -671,8 +671,8 @@ namespace MongoDB.Driver.Tests.Specifications.crud.prose_tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Ensure_generated_ids_are_first_fields_in_document_using_client_bulkWrite([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Ensure_generated_ids_are_first_fields_in_document_using_client_bulkWrite([CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientBulkWrite);
 

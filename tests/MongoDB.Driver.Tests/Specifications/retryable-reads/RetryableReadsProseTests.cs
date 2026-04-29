@@ -37,8 +37,8 @@ namespace MongoDB.Driver.Tests.Specifications.retryable_reads
     public class RetryableReadsProseTests
     {
         [Theory]
-        [ParameterAttributeData]
-        public async Task PoolClearedError_read_retryablity_test([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task PoolClearedError_read_retryablity_test([CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check().Supports(Feature.FailPointsBlockConnection)
                 .VersionGreaterThanOrEqualTo("4.4.0"); // MongoDB 4.2 does not respect blockTimeMS in combination with errorCode.
@@ -119,8 +119,8 @@ namespace MongoDB.Driver.Tests.Specifications.retryable_reads
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Sharded_cluster_retryable_reads_are_retried_on_different_mongos_if_available([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Sharded_cluster_retryable_reads_are_retried_on_different_mongos_if_available([CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check()
                 .Supports(Feature.FailPointsFailCommandForSharded)
@@ -170,8 +170,8 @@ namespace MongoDB.Driver.Tests.Specifications.retryable_reads
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Sharded_cluster_retryable_reads_are_retried_on_same_mongos_if_no_other_is_available([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Sharded_cluster_retryable_reads_are_retried_on_same_mongos_if_no_other_is_available([CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check()
                 .Supports(Feature.FailPointsFailCommandForSharded)
@@ -222,9 +222,9 @@ namespace MongoDB.Driver.Tests.Specifications.retryable_reads
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         // https://github.com/mongodb/specifications/blob/19ed647f6d6ca2de231e21de25bd1279f6d0bd14/source/retryable-reads/tests/README.md?plain=1#L130
-        public async Task Retryable_reads_caused_by_overload_error_retried_on_different_replicaset_server([Values(true, false)] bool async)
+        public async Task Retryable_reads_caused_by_overload_error_retried_on_different_replicaset_server([CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check()
                 .VersionGreaterThanOrEqualTo("4.4")
@@ -271,9 +271,9 @@ namespace MongoDB.Driver.Tests.Specifications.retryable_reads
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         // https://github.com/mongodb/specifications/blob/19ed647f6d6ca2de231e21de25bd1279f6d0bd14/source/retryable-reads/tests/README.md?plain=1#L160C10-L160C97
-        public async Task Retryable_reads_caused_by_non_overload_error_retried_on_same_replicaset_server([Values(true, false)] bool async)
+        public async Task Retryable_reads_caused_by_non_overload_error_retried_on_same_replicaset_server([CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check()
                 .VersionGreaterThanOrEqualTo("4.4")

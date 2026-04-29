@@ -33,9 +33,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_have_expected_result(
-            [Values(null, -10000, 0, 1, 9999, 10000, 10001)] int? maxTimeTicks)
+            [CombinatorialValues(null, -10000, 0, 1, 9999, 10000, 10001)] int? maxTimeTicks)
         {
             var subject = new DropIndexOptions();
             var maxTime = maxTimeTicks == null ? (TimeSpan?)null : TimeSpan.FromTicks(maxTimeTicks.Value);
@@ -45,9 +45,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_throw_when_value_is_invalid(
-            [Values(-10001, -9999, -1)] long maxTimeTicks)
+            [CombinatorialValues(-10001, -9999, -1)] long maxTimeTicks)
         {
             var subject = new DropIndexOptions();
             var value = TimeSpan.FromTicks(maxTimeTicks);

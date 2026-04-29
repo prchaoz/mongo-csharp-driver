@@ -27,9 +27,9 @@ namespace MongoDB.Bson.Tests
     public class PowerOf2Tests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsPowerOf2_should_return_false_when_not_a_power_of_2(
-            [Values(3, 5, 6, 7, 9, 127, 129, 0x37ffffff)]
+            [CombinatorialValues(3, 5, 6, 7, 9, 127, 129, 0x37ffffff)]
             int n)
         {
             var result = PowerOf2.IsPowerOf2(n);
@@ -38,9 +38,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsPowerOf2_should_return_true_when_a_power_of_2(
-            [Values(0, 1, 2, 4, 8, 128, 0x40000000)]
+            [CombinatorialValues(0, 1, 2, 4, 8, 128, 0x40000000)]
             int n)
         {
             var result = PowerOf2.IsPowerOf2(n);
@@ -49,9 +49,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void IsPowerOf2_should_throw_when_n_is_invalid(
-            [Values(-1, 0x40000001)]
+            [CombinatorialValues(-1, 0x40000001)]
             int n)
         {
             Action action = () => PowerOf2.IsPowerOf2(n);
@@ -83,9 +83,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RoundUpToPowerOf2_should_throw_when_n_is_invalid(
-            [Values(-1, 0x40000001)]
+            [CombinatorialValues(-1, 0x40000001)]
             int n)
         {
             Action action = () => PowerOf2.RoundUpToPowerOf2(n);

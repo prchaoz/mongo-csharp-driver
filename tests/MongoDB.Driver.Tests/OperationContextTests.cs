@@ -215,8 +215,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_throw_if_context_is_timedout([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Wait_should_throw_if_context_is_timedout([CombinatorialValues(true, false)] bool async)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
             using var subject = CreateSubject(timeout: TimeSpan.FromMilliseconds(10), elapsed: TimeSpan.FromMilliseconds(20));
@@ -229,8 +229,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_throw_if_context_is_cancelled([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Wait_should_throw_if_context_is_cancelled([CombinatorialValues(true, false)] bool async)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
             var cancellationTokenSource = new CancellationTokenSource();
@@ -245,8 +245,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_rethrow_on_failed_task([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Wait_should_rethrow_on_failed_task([CombinatorialValues(true, false)] bool async)
         {
             var ex = new InvalidOperationException();
             var task = Task.FromException(ex);
@@ -260,8 +260,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_rethrow_on_failed_promise_task([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Wait_should_rethrow_on_failed_promise_task([CombinatorialValues(true, false)] bool async)
         {
             var ex = new InvalidOperationException("Ups!");
             var taskCompletionSource = new TaskCompletionSource<bool>();
@@ -286,8 +286,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_throw_on_timeout([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Wait_should_throw_on_timeout([CombinatorialValues(true, false)] bool async)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
             using var subject = CreateSubject(timeout: TimeSpan.FromMilliseconds(10), elapsed: TimeSpan.FromMilliseconds(20));
@@ -300,8 +300,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Wait_should_not_throw_on_resolved_task_with_timedout_context([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Wait_should_not_throw_on_resolved_task_with_timedout_context([CombinatorialValues(true, false)] bool async)
         {
             var task = Task.FromResult(42);
             using var subject = CreateSubject(timeout: TimeSpan.FromMilliseconds(10), elapsed: TimeSpan.FromMilliseconds(20));

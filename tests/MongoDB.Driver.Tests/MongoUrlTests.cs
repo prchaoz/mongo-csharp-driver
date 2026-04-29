@@ -299,8 +299,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void TestDirectConnection([Values(false, true, null)]bool? directConnection)
+        [CombinatorialData]
+        public void TestDirectConnection([CombinatorialValues(false, true, null)]bool? directConnection)
         {
             var directConnectionString = directConnection.HasValue ? $"?directConnection={directConnection.Value}" : string.Empty;
             var connectionString = $"mongodb://localhost/{directConnectionString}";
@@ -310,8 +310,8 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void TestLoadBalanced([Values(false, true)] bool loadBalanced)
+        [CombinatorialData]
+        public void TestLoadBalanced([CombinatorialValues(false, true)] bool loadBalanced)
         {
             var loadBalancedString = $"?loadBalanced={loadBalanced}";
             var connectionString = $"mongodb://localhost/{loadBalancedString}";

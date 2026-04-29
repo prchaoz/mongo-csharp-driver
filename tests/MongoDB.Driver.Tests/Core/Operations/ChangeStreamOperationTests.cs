@@ -210,9 +210,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BatchSize_get_and_set_should_work(
-            [Values(null, 1, 2)] int? value)
+            [CombinatorialValues(null, 1, 2)] int? value)
         {
             var subject = CreateSubject();
 
@@ -223,9 +223,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Collation_get_and_set_should_work(
-            [Values(null, "a", "b")] string locale)
+            [CombinatorialValues(null, "a", "b")] string locale)
         {
             var value = locale == null ? null : new Collation(locale);
             var subject = CreateSubject();
@@ -237,9 +237,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CollectionNamespace_get_should_work(
-            [Values("a", "b")] string collectionName)
+            [CombinatorialValues("a", "b")] string collectionName)
         {
             var value = new CollectionNamespace(new DatabaseNamespace("foo"), collectionName);
             var subject = CreateSubject(collectionNamespace: value);
@@ -250,9 +250,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FullDocument_get_and_set_should_work(
-            [Values(ChangeStreamFullDocumentOption.Default, ChangeStreamFullDocumentOption.UpdateLookup)] ChangeStreamFullDocumentOption value)
+            [CombinatorialValues(ChangeStreamFullDocumentOption.Default, ChangeStreamFullDocumentOption.UpdateLookup)] ChangeStreamFullDocumentOption value)
         {
             var subject = CreateSubject();
 
@@ -263,9 +263,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FullDocumentBeforeChange_get_and_set_should_work(
-            [Values(ChangeStreamFullDocumentBeforeChangeOption.Default, ChangeStreamFullDocumentBeforeChangeOption.WhenAvailable)] ChangeStreamFullDocumentBeforeChangeOption value)
+            [CombinatorialValues(ChangeStreamFullDocumentBeforeChangeOption.Default, ChangeStreamFullDocumentBeforeChangeOption.WhenAvailable)] ChangeStreamFullDocumentBeforeChangeOption value)
         {
             var subject = CreateSubject();
 
@@ -276,9 +276,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxAwaitTime_get_and_set_should_work(
-            [Values(null, 1, 2)] int? maxAwaitTimeMS)
+            [CombinatorialValues(null, 1, 2)] int? maxAwaitTimeMS)
         {
             var value = maxAwaitTimeMS == null ? (TimeSpan?)null : TimeSpan.FromMilliseconds(maxAwaitTimeMS.Value);
             var subject = CreateSubject();
@@ -312,9 +312,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadConcern_get_and_set_should_work(
-            [Values(ReadConcernLevel.Local, ReadConcernLevel.Majority)] ReadConcernLevel? level)
+            [CombinatorialValues(ReadConcernLevel.Local, ReadConcernLevel.Majority)] ReadConcernLevel? level)
         {
             var subject = CreateSubject();
             var value = new ReadConcern(level);
@@ -349,9 +349,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ResumeAfter_get_and_set_should_work(
-            [Values(null, "{ a : 1 }", "{ a : 2 }")] string valueString)
+            [CombinatorialValues(null, "{ a : 1 }", "{ a : 2 }")] string valueString)
         {
             var subject = CreateSubject();
             var value = valueString == null ? null : BsonDocument.Parse(valueString);
@@ -363,9 +363,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void RetryRequested_get_and_set_should_work(
-            [Values(false, true)] bool value)
+            [CombinatorialValues(false, true)] bool value)
         {
             var subject = CreateSubject();
 
@@ -403,9 +403,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_for_drop_collection(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.ReplicaSet);
             var pipeline = new[] { BsonDocument.Parse("{ $match : { operationType : \"invalidate\" } }") };
@@ -435,9 +435,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_for_deletes(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.ReplicaSet);
             var pipeline = new[] { BsonDocument.Parse("{ $match : { operationType : \"delete\" } }") };
@@ -467,9 +467,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_for_inserts(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.ReplicaSet, ClusterType.Sharded);
             var pipeline = new[] { BsonDocument.Parse("{ $match : { operationType : \"insert\" } }") };
@@ -500,11 +500,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_for_pre_post_images(
-            [Values(false, true)] bool async,
-            [Values(ChangeStreamFullDocumentOption.Default, ChangeStreamFullDocumentOption.Required, ChangeStreamFullDocumentOption.WhenAvailable)] ChangeStreamFullDocumentOption fullDocument,
-            [Values(ChangeStreamFullDocumentBeforeChangeOption.Required, ChangeStreamFullDocumentOption.WhenAvailable)] ChangeStreamFullDocumentBeforeChangeOption fullDocumentBeforeChange)
+            [CombinatorialValues(false, true)] bool async,
+            [CombinatorialValues(ChangeStreamFullDocumentOption.Default, ChangeStreamFullDocumentOption.Required, ChangeStreamFullDocumentOption.WhenAvailable)] ChangeStreamFullDocumentOption fullDocument,
+            [CombinatorialValues(ChangeStreamFullDocumentBeforeChangeOption.Required, ChangeStreamFullDocumentOption.WhenAvailable)] ChangeStreamFullDocumentBeforeChangeOption fullDocumentBeforeChange)
         {
             RequireServer.Check().
                 ClusterTypes(ClusterType.ReplicaSet).
@@ -548,10 +548,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_for_large_batch(
-            [Values(1, 2, 3)] int numberOfChunks,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(1, 2, 3)] int numberOfChunks,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.ReplicaSet, ClusterType.Sharded);
             EnsureDatabaseExists();
@@ -592,10 +592,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_results_for_updates(
-            [Values(ChangeStreamFullDocumentOption.Default, ChangeStreamFullDocumentOption.UpdateLookup)] ChangeStreamFullDocumentOption fullDocument,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(ChangeStreamFullDocumentOption.Default, ChangeStreamFullDocumentOption.UpdateLookup)] ChangeStreamFullDocumentOption fullDocument,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.ReplicaSet);
             var pipeline = new[] { BsonDocument.Parse("{ $match : { operationType : \"update\" } }") };
@@ -629,9 +629,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_binding_does_not_implement_IReadBindingHandle(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var binding = new Mock<IReadBinding>().Object;

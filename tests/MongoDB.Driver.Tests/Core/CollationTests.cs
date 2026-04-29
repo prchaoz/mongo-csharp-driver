@@ -63,9 +63,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FromBsonDocument_should_return_expected_result_when_alternate_element_is_present(
-            [Values("non-ignorable", "shifted")]
+            [CombinatorialValues("non-ignorable", "shifted")]
             string alternateString)
         {
             var document = new BsonDocument
@@ -88,9 +88,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FromBsonDocument_should_return_expected_result_when_backwards_element_is_present(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool backwards)
         {
             var document = new BsonDocument
@@ -113,9 +113,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FromBsonDocument_should_return_expected_result_when_caseFirst_element_is_present(
-            [Values("lower", "off", "upper")]
+            [CombinatorialValues("lower", "off", "upper")]
             string caseFirstString)
         {
             var document = new BsonDocument
@@ -138,9 +138,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FromBsonDocument_should_return_expected_result_when_caseLevel_element_is_present(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool caseLevel)
         {
             var document = new BsonDocument
@@ -163,9 +163,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FromBsonDocument_should_return_expected_result_when_maxVariable_element_is_present(
-            [Values("punct", "space")]
+            [CombinatorialValues("punct", "space")]
             string maxVariableString)
         {
             var document = new BsonDocument
@@ -188,9 +188,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FromBsonDocument_should_return_expected_result_when_normalization_element_is_present(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool normalization)
         {
             var document = new BsonDocument
@@ -213,9 +213,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FromBsonDocument_should_return_expected_result_when_numericOrdering_element_is_present(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool numericOrdering)
         {
             var document = new BsonDocument
@@ -238,9 +238,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FromBsonDocument_should_return_expected_result_when_strength_element_is_present(
-            [Values(1, 2, 3, 4, 5)]
+            [CombinatorialValues(1, 2, 3, 4, 5)]
             int strengthInteger)
         {
             var document = new BsonDocument
@@ -371,9 +371,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale)
         {
             var subject = new Collation(locale);
@@ -391,11 +391,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_alternate_should_initialize_instance(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
+            [CombinatorialValues(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
             CollationAlternate? alternate)
         {
             var subject = new Collation(locale, alternate: alternate);
@@ -413,11 +413,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_backwards_should_initialize_instance(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? backwards)
         {
             var subject = new Collation(locale, backwards: backwards);
@@ -435,11 +435,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_caseFirst_should_initialize_instance(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, CollationCaseFirst.Lower, CollationCaseFirst.Off, CollationCaseFirst.Upper)]
+            [CombinatorialValues(null, CollationCaseFirst.Lower, CollationCaseFirst.Off, CollationCaseFirst.Upper)]
             CollationCaseFirst? caseFirst)
         {
             var subject = new Collation(locale, caseFirst: caseFirst);
@@ -457,11 +457,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_caseLevel_should_initialize_instance(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? caseLevel)
         {
             var subject = new Collation(locale, caseLevel: caseLevel);
@@ -479,11 +479,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_maxVariable_should_initialize_instance(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
+            [CombinatorialValues(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
             CollationMaxVariable? maxVariable)
         {
             var subject = new Collation(locale, maxVariable: maxVariable);
@@ -501,11 +501,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_normalization_should_initialize_instance(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? normalization)
         {
             var subject = new Collation(locale, normalization: normalization);
@@ -523,11 +523,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_numericOrdering_should_initialize_instance(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? numericOrdering)
         {
             var subject = new Collation(locale, numericOrdering: numericOrdering);
@@ -545,11 +545,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_strength_should_initialize_instance(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, CollationStrength.Primary, CollationStrength.Tertiary, CollationStrength.Identical)]
+            [CombinatorialValues(null, CollationStrength.Primary, CollationStrength.Tertiary, CollationStrength.Identical)]
             CollationStrength? strength)
         {
             var subject = new Collation(locale, strength: strength);
@@ -567,11 +567,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_alternate_fields(
-            [Values(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
+            [CombinatorialValues(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
             CollationAlternate? lhsAlternate,
-            [Values(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
+            [CombinatorialValues(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
             CollationAlternate? rhsAlternate)
         {
             var lhs = new Collation("en_US", alternate: lhsAlternate);
@@ -589,11 +589,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_backwards_fields(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? lhsBackwards,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? rhsBackwards)
         {
             var lhs = new Collation("en_US", backwards: lhsBackwards);
@@ -603,11 +603,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_caseFirst_fields(
-            [Values(null, CollationCaseFirst.Lower, CollationCaseFirst.Upper)]
+            [CombinatorialValues(null, CollationCaseFirst.Lower, CollationCaseFirst.Upper)]
             CollationCaseFirst? lhsCaseFirst,
-            [Values(null, CollationCaseFirst.Lower, CollationCaseFirst.Upper)]
+            [CombinatorialValues(null, CollationCaseFirst.Lower, CollationCaseFirst.Upper)]
             CollationCaseFirst? rhsCaseFirst)
         {
             var lhs = new Collation("en_US", caseFirst: lhsCaseFirst);
@@ -617,11 +617,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_caseLevel_fields(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? lhsCaseLevel,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? rhsCaseLevel)
         {
             var lhs = new Collation("en_US", caseLevel: lhsCaseLevel);
@@ -631,11 +631,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_locale_fields(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string lhsLocale,
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string rhsLocale)
         {
             var lhs = new Collation(lhsLocale);
@@ -645,11 +645,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_maxVariable_fields(
-            [Values(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
+            [CombinatorialValues(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
             CollationMaxVariable? lhsMaxVariable,
-            [Values(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
+            [CombinatorialValues(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
             CollationMaxVariable? rhsMaxVariable)
         {
             var lhs = new Collation("en_US", maxVariable: lhsMaxVariable);
@@ -659,11 +659,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_normalization_fields(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? lhsNormalization,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? rhsNormalization)
         {
             var lhs = new Collation("en_US", normalization: lhsNormalization);
@@ -673,11 +673,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_numericOrdering_fields(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? lhsNumericOrdering,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? rhsNumericOrdering)
         {
             var lhs = new Collation("en_US", numericOrdering: lhsNumericOrdering);
@@ -687,11 +687,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_compare_strenght_fields(
-            [Values(null, CollationStrength.Primary, CollationStrength.Identical)]
+            [CombinatorialValues(null, CollationStrength.Primary, CollationStrength.Identical)]
             CollationStrength? lhsStrength,
-            [Values(null, CollationStrength.Primary, CollationStrength.Identical)]
+            [CombinatorialValues(null, CollationStrength.Primary, CollationStrength.Identical)]
             CollationStrength? rhsStrength)
         {
             var lhs = new Collation("en_US", strength: lhsStrength);
@@ -701,9 +701,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonDocument_should_return_expected_result(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale)
         {
             var subject = new Collation(locale);
@@ -717,11 +717,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonDocument_should_return_expected_result_when_alternate_is_set(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
+            [CombinatorialValues(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
             CollationAlternate? alternate)
         {
             var subject = new Collation(locale, alternate: alternate);
@@ -739,11 +739,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonDocument_should_return_expected_result_when_backwards_is_set(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? backwards)
         {
             var subject = new Collation(locale, backwards: backwards);
@@ -761,11 +761,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonDocument_should_return_expected_result_when_caseFirst_is_set(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, CollationCaseFirst.Lower, CollationCaseFirst.Upper)]
+            [CombinatorialValues(null, CollationCaseFirst.Lower, CollationCaseFirst.Upper)]
             CollationCaseFirst? caseFirst)
         {
             var subject = new Collation(locale, caseFirst: caseFirst);
@@ -783,11 +783,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonDocument_should_return_expected_result_when_caseLevel_is_set(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? caseLevel)
         {
             var subject = new Collation(locale, caseLevel: caseLevel);
@@ -805,11 +805,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonDocument_should_return_expected_result_when_maxVariable_is_set(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
+            [CombinatorialValues(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
             CollationMaxVariable? maxVariable)
         {
             var subject = new Collation(locale, maxVariable: maxVariable);
@@ -827,11 +827,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonDocument_should_return_expected_result_when_normalization_is_set(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? normalization)
         {
             var subject = new Collation(locale, normalization: normalization);
@@ -849,11 +849,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonDocument_should_return_expected_result_when_numericOrdering_is_set(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? numericOrdering)
         {
             var subject = new Collation(locale, numericOrdering: numericOrdering);
@@ -871,11 +871,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonDocument_should_return_expected_result_when_strength_is_set(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale,
-            [Values(null, CollationStrength.Primary, CollationStrength.Identical)]
+            [CombinatorialValues(null, CollationStrength.Primary, CollationStrength.Identical)]
             CollationStrength? strength)
         {
             var subject = new Collation(locale, strength: strength);
@@ -893,9 +893,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_expected_result(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale)
         {
             var subject = new Collation(locale);
@@ -906,11 +906,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_expected_result_when_alternate_is_set(
-            [Values(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
+            [CombinatorialValues(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
             CollationAlternate? originalAlternate,
-            [Values(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
+            [CombinatorialValues(null, CollationAlternate.NonIgnorable, CollationAlternate.Shifted)]
             CollationAlternate? alternate)
         {
             var subject = new Collation("en_US", alternate: originalAlternate);
@@ -922,11 +922,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_expected_result_when_backwards_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? originalBackwards,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? backwards)
         {
             var subject = new Collation("en_US", backwards: originalBackwards);
@@ -938,11 +938,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_expected_result_when_caseFirst_is_set(
-            [Values(null, CollationCaseFirst.Lower, CollationCaseFirst.Upper)]
+            [CombinatorialValues(null, CollationCaseFirst.Lower, CollationCaseFirst.Upper)]
             CollationCaseFirst? originalCaseFirst,
-            [Values(null, CollationCaseFirst.Lower, CollationCaseFirst.Upper)]
+            [CombinatorialValues(null, CollationCaseFirst.Lower, CollationCaseFirst.Upper)]
             CollationCaseFirst? caseFirst)
         {
             var subject = new Collation("en_US", caseFirst: originalCaseFirst);
@@ -954,11 +954,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_expected_result_when_caseLevel_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? originalCaseLevel,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? caseLevel)
         {
             var subject = new Collation("en_US", caseLevel: originalCaseLevel);
@@ -970,11 +970,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_expected_result_when_locale_is_set(
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string originalLocale,
-            [Values("en_US", "fr_CA")]
+            [CombinatorialValues("en_US", "fr_CA")]
             string locale)
         {
             var subject = new Collation(originalLocale);
@@ -986,11 +986,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_expected_result_when_maxVariable_is_set(
-            [Values(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
+            [CombinatorialValues(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
             CollationMaxVariable? originalMaxVariable,
-            [Values(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
+            [CombinatorialValues(null, CollationMaxVariable.Punctuation, CollationMaxVariable.Space)]
             CollationMaxVariable? maxVariable)
         {
             var subject = new Collation("en_US", maxVariable: originalMaxVariable);
@@ -1002,11 +1002,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_expected_result_when_normalization_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? originalNormalization,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? normalization)
         {
             var subject = new Collation("en_US", normalization: originalNormalization);
@@ -1018,11 +1018,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_expected_result_when_numericOrdering_is_set(
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? originalNumericOrdering,
-            [Values(null, false, true)]
+            [CombinatorialValues(null, false, true)]
             bool? numericOrdering)
         {
             var subject = new Collation("en_US", numericOrdering: originalNumericOrdering);
@@ -1034,11 +1034,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_expected_result_when_strength_is_set(
-            [Values(null, CollationStrength.Primary, CollationStrength.Identical)]
+            [CombinatorialValues(null, CollationStrength.Primary, CollationStrength.Identical)]
             CollationStrength? originalStrength,
-            [Values(null, CollationStrength.Primary, CollationStrength.Identical)]
+            [CombinatorialValues(null, CollationStrength.Primary, CollationStrength.Identical)]
             CollationStrength? strength)
         {
             var subject = new Collation("en_US", strength: originalStrength);

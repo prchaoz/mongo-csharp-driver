@@ -30,9 +30,9 @@ namespace MongoDB.Driver.Tests
     public class IMongoCollectionExtensionsTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Aggregate_should_return_expected_result(
-            [Values(false, true)] bool usingSession)
+            [CombinatorialValues(false, true)] bool usingSession)
         {
             var collection = CreateMockCollection().Object;
             var session = usingSession ? new Mock<IClientSessionHandle>().Object : null;
@@ -56,9 +56,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AsQueryable_should_return_expected_result(
-            [Values(false, true)] bool withSession)
+            [CombinatorialValues(false, true)] bool withSession)
         {
             var collection = CreateMockCollection().Object;
             var session = withSession ? Mock.Of<IClientSessionHandle>() : null;
@@ -82,10 +82,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Count_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -132,10 +132,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CountDocuments_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -174,11 +174,11 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DeleteMany_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingOptions,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingOptions,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -233,11 +233,11 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DeleteOne_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingOptions,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingOptions,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -292,12 +292,12 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Distinct_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingFieldExpression,
-            [Values(false, true)] bool usingFilterExpression,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingFieldExpression,
+            [CombinatorialValues(false, true)] bool usingFilterExpression,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -441,12 +441,12 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void DistinctMany_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingFieldExpression,
-            [Values(false, true)] bool usingFilterExpression,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingFieldExpression,
+            [CombinatorialValues(false, true)] bool usingFilterExpression,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -590,10 +590,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Find_should_return_expected_result(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingFilterExpression)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingFilterExpression)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -667,11 +667,11 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindSync_should_call_collection_FindSync_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingFilterExpression,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingFilterExpression,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -743,12 +743,12 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndDelete_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingFilterExpression,
-            [Values(false, true)] bool usingProjection,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingFilterExpression,
+            [CombinatorialValues(false, true)] bool usingProjection,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -867,12 +867,12 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndReplace_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingFilterExpression,
-            [Values(false, true)] bool usingProjection,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingFilterExpression,
+            [CombinatorialValues(false, true)] bool usingProjection,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -992,12 +992,12 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndUpdate_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool usingProjection,
-            [Values(false, true)] bool usingFilterExpression,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool usingProjection,
+            [CombinatorialValues(false, true)] bool usingFilterExpression,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -1117,10 +1117,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReplaceOne_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -1238,10 +1238,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UpdateMany_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -1281,10 +1281,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UpdateOne_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;
@@ -1324,10 +1324,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Watch_should_call_collection_with_expected_arguments(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCollection = CreateMockCollection();
             var collection = mockCollection.Object;

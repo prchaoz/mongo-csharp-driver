@@ -45,8 +45,8 @@ public class FileOidcCallbackTests
     }
 
     [Theory]
-    [ParameterAttributeData]
-    public async Task GetOidcAccessToken_calls_fileSystemProvider([Values(true, false)]bool async)
+    [CombinatorialData]
+    public async Task GetOidcAccessToken_calls_fileSystemProvider([CombinatorialValues(true, false)]bool async)
     {
         var filePath = "some-file-path";
         var fileContent = "some-content";

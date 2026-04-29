@@ -40,9 +40,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_fsync_should_initialize_instance(
-            [Values(false, true, null)]
+            [CombinatorialValues(false, true, null)]
             bool? fsync)
         {
             var result = new WriteConcern(fsync: fsync);
@@ -54,9 +54,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_journal_should_initialize_instance(
-            [Values(false, true, null)]
+            [CombinatorialValues(false, true, null)]
             bool? journal)
         {
             var result = new WriteConcern(journal: journal);
@@ -68,11 +68,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_mode_and_fsync_should_initialize_instance(
-            [Values("abc", "def")]
+            [CombinatorialValues("abc", "def")]
             string mode,
-            [Values(false, true, null)]
+            [CombinatorialValues(false, true, null)]
             bool? fsync)
         {
             var result = new WriteConcern(mode, fsync: fsync);
@@ -84,11 +84,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_mode_and_journal_should_initialize_instance(
-            [Values("abc", "def")]
+            [CombinatorialValues("abc", "def")]
             string mode,
-            [Values(false, true, null)]
+            [CombinatorialValues(false, true, null)]
             bool? journal)
         {
             var result = new WriteConcern(mode, journal: journal);
@@ -100,11 +100,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_mode_and_wTimeout_should_initialize_instance(
-            [Values("abc", "def")]
+            [CombinatorialValues("abc", "def")]
             string mode,
-            [Values(1, null)]
+            [CombinatorialValues(1, null)]
             int? wTimeoutSeconds)
         {
             var wTimeout = ToWTimeout(wTimeoutSeconds);
@@ -156,9 +156,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_w_should_initialize_instance(
-            [Values(0, 1)]
+            [CombinatorialValues(0, 1)]
             int w)
         {
             var result = new WriteConcern(w);
@@ -178,11 +178,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_w_and_fsync_should_initialize_instance(
-            [Values(0, 1)]
+            [CombinatorialValues(0, 1)]
             int w,
-            [Values(false, true, null)]
+            [CombinatorialValues(false, true, null)]
             bool? fsync)
         {
             var result = new WriteConcern(w, fsync: fsync);
@@ -213,11 +213,11 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_w_and_wTimeout_should_initialize_instance(
-            [Values(0, 1)]
+            [CombinatorialValues(0, 1)]
             int w,
-            [Values(1, null)]
+            [CombinatorialValues(1, null)]
             int? wTimeoutSeconds)
         {
             var wTimeout = ToWTimeout(wTimeoutSeconds);
@@ -231,9 +231,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_wTimeout_should_initialize_instance(
-            [Values(1, null)]
+            [CombinatorialValues(1, null)]
             int? wTimeoutSeconds)
         {
             var wTimeout = ToWTimeout(wTimeoutSeconds);
@@ -255,9 +255,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_wValue_should_initialize_instance(
-            [Values(1, "abc", null)]
+            [CombinatorialValues(1, "abc", null)]
             object w)
         {
             var wValue = ToWValue(w);
@@ -271,9 +271,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Equals_should_return_false_when_any_fields_are_not_equal(
-            [Values("fsync", "journal", "w", "wTimeout")]
+            [CombinatorialValues("fsync", "journal", "w", "wTimeout")]
             string notEqualFieldName)
         {
             var subject1 = new WriteConcern(1, TimeSpan.FromSeconds(1), false, false);
@@ -463,9 +463,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_new_instance_when_any_value_is_not_equal(
-            [Values("w", "wTimeout", "fsync", "journal")]
+            [CombinatorialValues("w", "wTimeout", "fsync", "journal")]
             string notEqualFieldName)
         {
             var w = (WriteConcern.WValue)1;
@@ -512,9 +512,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_should_return_same_instance_when_value_is_equal(
-            [Values("w", "mode", "wValue", "wTimeout", "fsync", "journal")]
+            [CombinatorialValues("w", "mode", "wValue", "wTimeout", "fsync", "journal")]
             string fieldName)
         {
             var wValue = fieldName == "mode" ? (WriteConcern.WValue)new WriteConcern.WMode("mode") : new WriteConcern.WCount(1);

@@ -24,9 +24,9 @@ namespace MongoDB.Bson.Tests
     public class BsonBinaryDataTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_bytes_is_null(
-            [Range(1, 2)] int overload)
+            [CombinatorialRange(1, 2)] int overload)
         {
             var bytes = (byte[])null;
 
@@ -42,10 +42,10 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_bytes_length_is_not_16_and_sub_type_is_uuid(
-            [Values(BsonBinarySubType.UuidLegacy, BsonBinarySubType.UuidStandard)] BsonBinarySubType subType,
-            [Values(0, 15, 17)] int length)
+            [CombinatorialValues(BsonBinarySubType.UuidLegacy, BsonBinarySubType.UuidStandard)] BsonBinarySubType subType,
+            [CombinatorialValues(0, 15, 17)] int length)
         {
             var bytes = new byte[length];
 

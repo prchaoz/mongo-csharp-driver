@@ -66,9 +66,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AccessBackingBytes_should_throw_when_position_is_out_of_range(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject();
@@ -135,9 +135,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Clear_should_throw_when_position_is_out_of_range(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject();
@@ -206,9 +206,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_offset_is_out_of_range(
-            [Values(-1, 2)]
+            [CombinatorialValues(-1, 2)]
             int offset)
         {
             var buffer = new ByteArrayBuffer(new byte[1], isReadOnly: true);
@@ -270,9 +270,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetByte_should_throw_when_position_is_out_of_range(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject();
@@ -320,9 +320,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetBytes_should_throw_when_position_is_out_of_range(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject();
@@ -370,9 +370,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetSlice_should_throw_when_position_is_out_of_range(
-            [Values(-1, 3)]
+            [CombinatorialValues(-1, 3)]
             int position)
         {
             var subject = CreateSubject();

@@ -31,9 +31,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_just_readConcern_should_initialize_instance(
-            [Values(false, true)] bool nullReadConcern)
+            [CombinatorialValues(false, true)] bool nullReadConcern)
         {
             var readConcern = nullReadConcern ? null : new ReadConcern();
 
@@ -43,9 +43,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_just_writeConcern_should_initialize_instance(
-            [Values(false, true)] bool nullWriteConcern)
+            [CombinatorialValues(false, true)] bool nullWriteConcern)
         {
             var writeConcern = nullWriteConcern ? null : new WriteConcern();
 
@@ -55,10 +55,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_all_arguments_should_initialize_instance(
-            [Values(false, true)] bool nullReadConcern,
-            [Values(false, true)] bool nullWriteConcern)
+            [CombinatorialValues(false, true)] bool nullReadConcern,
+            [CombinatorialValues(false, true)] bool nullWriteConcern)
         {
             var readConcern = nullReadConcern ? null : new ReadConcern();
             var writeConcern = nullWriteConcern ? null : new WriteConcern();
@@ -70,9 +70,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadConcern_should_return_expected_result(
-            [Values(false, true)] bool nullReadConcern)
+            [CombinatorialValues(false, true)] bool nullReadConcern)
         {
             var readConcern = nullReadConcern ? null : new ReadConcern();
             var subject = new TransactionOptions(readConcern: readConcern);
@@ -83,9 +83,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteConcern_should_return_expected_result(
-            [Values(false, true)] bool nullWriteConcern)
+            [CombinatorialValues(false, true)] bool nullWriteConcern)
         {
             var writeConcern = nullWriteConcern ? null : new WriteConcern();
             var subject = new TransactionOptions(writeConcern: writeConcern);
@@ -96,9 +96,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_with_readConcern_should_return_expected_result(
-            [Values(false, true)] bool nullReadConcern)
+            [CombinatorialValues(false, true)] bool nullReadConcern)
         {
             var subject = new TransactionOptions(new ReadConcern(), new ReadPreference(ReadPreferenceMode.Primary), new WriteConcern());
             var readConcern = nullReadConcern ? null : new ReadConcern();
@@ -109,9 +109,9 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_with_writeConcern_should_return_expected_result(
-            [Values(false, true)] bool nullWriteConcern)
+            [CombinatorialValues(false, true)] bool nullWriteConcern)
         {
             var subject = new TransactionOptions(new ReadConcern(), new ReadPreference(ReadPreferenceMode.Primary), new WriteConcern());
             var writeConcern = nullWriteConcern ? null : new WriteConcern();
@@ -122,10 +122,10 @@ namespace MongoDB.Driver
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void With_with_all_arguments_should_return_expected_result(
-            [Values(false, true)] bool nullReadConcern,
-            [Values(false, true)] bool nullWriteConcern)
+            [CombinatorialValues(false, true)] bool nullReadConcern,
+            [CombinatorialValues(false, true)] bool nullWriteConcern)
         {
             var subject = new TransactionOptions(new ReadConcern(), new ReadPreference(ReadPreferenceMode.Primary), new WriteConcern());
             var readConcern = nullReadConcern ? null : new ReadConcern();

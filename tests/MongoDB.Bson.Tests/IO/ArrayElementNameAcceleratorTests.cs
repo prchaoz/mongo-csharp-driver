@@ -38,11 +38,11 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetElementNameBytes_should_return_expected_result_for_boundary_conditions(
-            [Values(0, 9, 10, 99, 100, 999, 1000, 9999, 10000, 99999, 100000, 999999, 1000000, 9999999, 100000000, int.MaxValue)]
+            [CombinatorialValues(0, 9, 10, 99, 100, 999, 1000, 9999, 10000, 99999, 100000, 999999, 1000000, 9999999, 100000000, int.MaxValue)]
             int index,
-            [Values(0)]
+            [CombinatorialValues(0)]
             int numberOfCachedElementNames)
         {
             var subject = new ArrayElementNameAccelerator(numberOfCachedElementNames);

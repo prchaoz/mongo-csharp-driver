@@ -32,9 +32,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Multiple_result_query_logged_stages_can_be_retrieved_using_IQueryable_GetLoggedStages_method(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collection = Fixture.Collection;
             var queryable = collection.AsQueryable().Where(x => x.X == 1);
@@ -46,9 +46,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Single_result_query_logged_stages_can_be_retrieved_using_IQueryable_GetLoggedStages_method(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collection = Fixture.Collection;
             var queryable = collection.AsQueryable().Where(x => x.X == 1);
@@ -64,9 +64,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Multiple_result_query_logged_stages_can_be_retrieved_using_IMongoQueryProvider_LoggedStages_property(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collection = Fixture.Collection;
             var queryable = collection.AsQueryable().Where(x => x.X == 1);
@@ -78,9 +78,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Single_result_query_logged_stages_can_be_retrieved_using_IMongoQueryProvider_LoggedStages_property(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collection = Fixture.Collection;
             var queryable = collection.AsQueryable().Where(x => x.X == 1);

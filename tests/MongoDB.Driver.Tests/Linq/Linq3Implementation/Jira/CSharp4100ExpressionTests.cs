@@ -84,9 +84,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Contains_with_string_field_and_char_field_not_represented_as_string_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -110,9 +110,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Contains_with_string_constant_and_char_field_not_represented_as_string_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -201,11 +201,11 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
 
 #if !NETFRAMEWORK
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Contains_with_string_field_and_char_value_not_represented_as_string_and_comparisonType_should_throw(
-            [Values(StringComparison.CurrentCulture, StringComparison.CurrentCultureIgnoreCase)]
+            [CombinatorialValues(StringComparison.CurrentCulture, StringComparison.CurrentCultureIgnoreCase)]
             StringComparison comparisonType,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
@@ -235,11 +235,11 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
 
 #if !NETFRAMEWORK
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Contains_with_string_constant_and_char_value_not_represented_as_string_and_comparisonType_should_throw(
-            [Values(StringComparison.CurrentCulture, StringComparison.CurrentCultureIgnoreCase)]
+            [CombinatorialValues(StringComparison.CurrentCulture, StringComparison.CurrentCultureIgnoreCase)]
             StringComparison comparisonType,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
@@ -269,15 +269,15 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
 
 #if !NETFRAMEWORK
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Contains_with_string_field_and_char_value_and_invalid_comparisonType_should_throw(
-            [Values(
+            [CombinatorialValues(
                 StringComparison.InvariantCulture,
                 StringComparison.InvariantCultureIgnoreCase,
                 StringComparison.Ordinal,
                 StringComparison.OrdinalIgnoreCase)]
             StringComparison comparisonType,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
@@ -437,15 +437,15 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
 
 #if !NETFRAMEWORK
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Contains_with_string_field_and_string_value_and_invalid_comparisonType_should_throw(
-            [Values(
+            [CombinatorialValues(
                 StringComparison.InvariantCulture,
                 StringComparison.InvariantCultureIgnoreCase,
                 StringComparison.Ordinal,
                 StringComparison.OrdinalIgnoreCase)]
             StringComparison comparisonType,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
@@ -549,9 +549,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
 
 #if !NETFRAMEWORK
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void EndsWith_with_string_field_and_char_field_not_represented_as_string_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -580,9 +580,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
 
 #if !NETFRAMEWORK
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void EndsWith_with_string_constant_and_char_field_not_represented_as_string_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -714,10 +714,10 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void EndsWith_with_string_field_and_string_value_and_ignoreCase_and_invalid_culture_should_throw(
-            [Values(false, true)] bool ignoreCase,
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool ignoreCase,
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -815,15 +815,15 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void EndsWith_with_string_field_and_string_value_and_invalid_comparisonType_should_throw(
-            [Values(
+            [CombinatorialValues(
                 StringComparison.InvariantCulture,
                 StringComparison.InvariantCultureIgnoreCase,
                 StringComparison.Ordinal,
                 StringComparison.OrdinalIgnoreCase)]
             StringComparison comparisonType,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
@@ -851,15 +851,15 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void EndsWith_with_string_constant_and_string_value_and_invalid_comparisonType_should_throw(
-            [Values(
+            [CombinatorialValues(
                 StringComparison.InvariantCulture,
                 StringComparison.InvariantCultureIgnoreCase,
                 StringComparison.Ordinal,
                 StringComparison.OrdinalIgnoreCase)]
             StringComparison comparisonType,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
@@ -944,9 +944,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
 
 #if !NETFRAMEWORK
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void StartsWith_with_string_field_and_char_field_not_represented_as_string_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -975,9 +975,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
 
 #if !NETFRAMEWORK
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void StartsWith_with_string_constant_and_char_field_not_represented_as_string_should_throw(
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -1109,10 +1109,10 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void StartsWith_with_string_field_and_string_value_and_ignoreCase_and_invalid_culture_should_throw(
-            [Values(false, true)] bool ignoreCase,
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool ignoreCase,
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -1210,15 +1210,15 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void StartsWith_with_string_field_and_string_value_and_invalid_comparisonType_should_throw(
-            [Values(
+            [CombinatorialValues(
                 StringComparison.InvariantCulture,
                 StringComparison.InvariantCultureIgnoreCase,
                 StringComparison.Ordinal,
                 StringComparison.OrdinalIgnoreCase)]
             StringComparison comparisonType,
-            [Values(false, true)] bool enableClientSideProjections)
+            [CombinatorialValues(false, true)] bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);
             var collection = Fixture.Collection;
@@ -1245,15 +1245,15 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void StartsWith_with_string_constant_and_string_value_and_invalid_comparisonType_should_throw(
-            [Values(
+            [CombinatorialValues(
                 StringComparison.InvariantCulture,
                 StringComparison.InvariantCultureIgnoreCase,
                 StringComparison.Ordinal,
                 StringComparison.OrdinalIgnoreCase)]
             StringComparison comparisonType,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool enableClientSideProjections)
         {
             RequireServer.Check().Supports(Feature.FindProjectionExpressions);

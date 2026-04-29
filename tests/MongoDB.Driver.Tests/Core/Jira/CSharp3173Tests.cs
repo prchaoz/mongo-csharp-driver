@@ -56,8 +56,8 @@ namespace MongoDB.Driver.Core.Tests.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Ensure_command_network_error_before_handshake_is_correctly_handled([Values(false, true)] bool async, [Values(false, true)] bool streamable)
+        [CombinatorialData]
+        public void Ensure_command_network_error_before_handshake_is_correctly_handled([CombinatorialValues(false, true)] bool async, [CombinatorialValues(false, true)] bool streamable)
         {
             var eventCapturer = new EventCapturer().Capture<ServerDescriptionChangedEvent>();
 

@@ -119,9 +119,9 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_throw_if_not_initialized(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var selector = new Mock<IServerSelector>().Object;
@@ -135,9 +135,9 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_throw_if_disposed(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var selector = new Mock<IServerSelector>().Object;
@@ -152,9 +152,9 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_throw_if_serverSelector_is_null(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = CreateSubject();
@@ -168,9 +168,9 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_return_a_server_if_one_matches(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = CreateSubject();
@@ -194,9 +194,9 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_return_second_server_if_first_cannot_be_found(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = CreateSubject();
@@ -226,9 +226,9 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_throw_if_no_servers_match(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = CreateSubject(serverSelectionTimeout: TimeSpan.FromMilliseconds(10));
@@ -253,9 +253,9 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_throw_if_the_matched_server_cannot_be_found_and_no_others_matched(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = CreateSubject(serverSelectionTimeout: TimeSpan.FromMilliseconds(10));
@@ -308,9 +308,9 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_keep_trying_to_match_by_waiting_on_cluster_description_changes(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             var subject = CreateSubject();
@@ -389,9 +389,9 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_apply_both_pre_and_post_server_selectors(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             _mockServerFactory.Setup(f => f.CreateServer(It.IsAny<ClusterType>(), It.IsAny<ClusterId>(), It.IsAny<IClusterClock>(), It.IsAny<EndPoint>()))
@@ -432,10 +432,10 @@ namespace MongoDB.Driver.Core.Clusters
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task SelectServer_should_call_custom_selector(
-            [Values(true, false)] bool withEligibleServers,
-            [Values(true, false)] bool async)
+            [CombinatorialValues(true, false)] bool withEligibleServers,
+            [CombinatorialValues(true, false)] bool async)
         {
             int numberOfCustomServerSelectorCalls = 0;
             var customServerSelector = new DelegateServerSelector((c, s) =>

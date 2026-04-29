@@ -63,8 +63,8 @@ namespace MongoDB.Driver.Tests
         /// session and normal server selection is performed for the next operation.
         /// </summary>
         [Theory]
-        [ParameterAttributeData]
-        public void SelectServer_loadbalancing_prose_test([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void SelectServer_loadbalancing_prose_test([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check()
                 .Supports(Feature.ShardedTransactions, Feature.FailPointsBlockConnection)

@@ -64,8 +64,8 @@ namespace MongoDB.Driver.Core.Tests.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void MaintenanceHelper_should_not_leak_threads_after_stopping([RandomSeed(new[] { 0 })] int seed)
+        [CombinatorialData]
+        public void MaintenanceHelper_should_not_leak_threads_after_stopping([CombinatorialRandomData, CombinatorialValues(0)] int seed)
         {
             const int attempts = 100;
             var usedThreads = new HashSet<Thread>();
@@ -136,10 +136,10 @@ namespace MongoDB.Driver.Core.Tests.Core.ConnectionPools
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Stop_should_trigger_immediate_maintenance_call(
-            [Values(false, true)] bool checkOutConnection,
-            [Values(false, true)] bool closeInUseConnection)
+            [CombinatorialValues(false, true)] bool checkOutConnection,
+            [CombinatorialValues(false, true)] bool closeInUseConnection)
         {
             var eventCapturer = new EventCapturer()
                 .Capture<ConnectionPoolAddedConnectionEvent>()

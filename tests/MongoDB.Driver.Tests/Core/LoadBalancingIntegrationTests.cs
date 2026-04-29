@@ -43,10 +43,10 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BulkWrite_should_pin_connection_as_expected(
-            [Values(1, 3)] int attempts,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(1, 3)] int attempts,
+            [CombinatorialValues(false, true)] bool async)
         {
             SkipIfNotLoadBalancingMode();
 
@@ -91,9 +91,9 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BulkWrite_and_cursor_should_share_pinned_connection_under_the_same_transaction_2(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             SkipIfNotLoadBalancingMode();
 
@@ -163,10 +163,10 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BulkWrite_and_cursor_should_share_pinned_connection_under_the_same_transaction(
-            [Values(1, 3)] int attempts,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(1, 3)] int attempts,
+            [CombinatorialValues(false, true)] bool async)
         {
             SkipIfNotLoadBalancingMode();
 
@@ -229,12 +229,12 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Cursor_should_pin_connection_as_expected(
-            [Values(1, 3)] int attempts,
-            [Values(false, true)] bool implicitSession,
-            [Values(false, true)] bool forceCursorClose,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(1, 3)] int attempts,
+            [CombinatorialValues(false, true)] bool implicitSession,
+            [CombinatorialValues(false, true)] bool forceCursorClose,
+            [CombinatorialValues(false, true)] bool async)
         {
             SkipIfNotLoadBalancingMode();
 
@@ -300,11 +300,11 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Cursor_should_pin_connection_in_transaction_with_new_sessions_as_expected(
-            [Values(1, 3)] int attempts,
-            [Values(false, true)] bool forceCursorClose,
-            [Values(false)] bool async)
+            [CombinatorialValues(1, 3)] int attempts,
+            [CombinatorialValues(false, true)] bool forceCursorClose,
+            [CombinatorialValues(false)] bool async)
         {
             SkipIfNotLoadBalancingMode();
 
@@ -374,11 +374,11 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Cursor_should_pin_connection_in_transaction_with_the_same_session_as_expected(
-            [Values(1, 4)] int attempts,
-            [Values(false, true)] bool forceCursorClose,
-            [Values(false)] bool async)
+            [CombinatorialValues(1, 4)] int attempts,
+            [CombinatorialValues(false, true)] bool forceCursorClose,
+            [CombinatorialValues(false)] bool async)
         {
             SkipIfNotLoadBalancingMode();
 
@@ -451,11 +451,11 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Cursor_should_unpin_connection_for_operations_under_the_same_transaction_after_abortTransaction_and_cursor_dispose(
-            [Values(1, 3)] int attempts,
-            [Values(false, true)] bool forceCursorClose,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(1, 3)] int attempts,
+            [CombinatorialValues(false, true)] bool forceCursorClose,
+            [CombinatorialValues(false, true)] bool async)
         {
             SkipIfNotLoadBalancingMode();
 

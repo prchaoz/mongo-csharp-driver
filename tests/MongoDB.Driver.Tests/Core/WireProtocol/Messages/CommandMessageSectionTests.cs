@@ -135,10 +135,10 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
     public class Type1CommandMessageSectionTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values(null, 1, 2)] int? maxBatchCount,
-            [Values(null, 3, 4)] int? maxDocumentSize)
+            [CombinatorialValues(null, 1, 2)] int? maxBatchCount,
+            [CombinatorialValues(null, 3, 4)] int? maxDocumentSize)
         {
             var identifier = "xyz";
             var documents = new BatchableSource<BsonDocument>(new List<BsonDocument>(), canBeSplit: false);
@@ -201,9 +201,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxBatchCount_should_return_expected_result(
-            [Values(null, 1, 2)] int? maxBatchCount)
+            [CombinatorialValues(null, 1, 2)] int? maxBatchCount)
         {
             var subject = CreateSubject(maxBatchCount: maxBatchCount);
 
@@ -213,9 +213,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxDocumentSizeshould_return_expected_result(
-            [Values(null, 1, 2)] int? maxDocumentSize)
+            [CombinatorialValues(null, 1, 2)] int? maxDocumentSize)
         {
             var subject = CreateSubject(maxDocumentSize: maxDocumentSize);
 
@@ -254,10 +254,10 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
     public class Type1CommandMessageSectionTDocumentTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values(null, 1, 2)] int? maxBatchCount,
-            [Values(null, 3, 4)] int? maxDocumentSize)
+            [CombinatorialValues(null, 1, 2)] int? maxBatchCount,
+            [CombinatorialValues(null, 3, 4)] int? maxDocumentSize)
         {
             var identifier = "xyz";
             var documents = new BatchableSource<BsonDocument>(new List<BsonDocument>(), canBeSplit: false);

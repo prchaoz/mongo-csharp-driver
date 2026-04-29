@@ -29,9 +29,9 @@ namespace MongoDB.Bson.Tests.IO
     public class ByteBufferFactoryTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Create_should_return_expected_result(
-            [Values(1, 63, 64, 65, 128)]
+            [CombinatorialValues(1, 63, 64, 65, 128)]
             int minimumCapacity)
         {
             var chunkSource = new BsonChunkPool(1, 64);
@@ -42,9 +42,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Create_should_return_SingleChunkBuffer_when_a_single_chunk_is_sufficient(
-            [Values(1, 63, 64)]
+            [CombinatorialValues(1, 63, 64)]
             int minimumCapacity)
         {
             var chunkSource = new BsonChunkPool(1, 64);
@@ -55,9 +55,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Create_should_return_MultiChunkBuffer_when_multiple_chunks_are_required(
-            [Values(65, 128)]
+            [CombinatorialValues(65, 128)]
             int minimumCapacity)
         {
             var chunkSource = new BsonChunkPool(1, 64);
@@ -76,9 +76,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Create_should_throw_when_minimumCapacity_is_invalid(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int minimumCapacity)
         {
             var mockChunkSource = new Mock<IBsonChunkSource>();

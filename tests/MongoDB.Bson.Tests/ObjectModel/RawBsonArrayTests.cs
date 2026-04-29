@@ -175,9 +175,9 @@ namespace MongoDB.Bson.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void TestMaterialize(
-            [Values(0, 1, 2)] int count)
+            [CombinatorialValues(0, 1, 2)] int count)
         {
             var array = new BsonArray(Enumerable.Range(0, count));
             var document = new BsonDocument("array", array);

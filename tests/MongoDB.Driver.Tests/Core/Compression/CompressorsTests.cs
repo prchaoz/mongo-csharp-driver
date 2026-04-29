@@ -152,8 +152,8 @@ namespace MongoDB.Driver.Core.Tests.Core.Compression
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Zlib_should_throw_exception_if_the_level_is_out_of_range([Values(-2, 10)] int compressionOption)
+        [CombinatorialData]
+        public void Zlib_should_throw_exception_if_the_level_is_out_of_range([CombinatorialValues(-2, 10)] int compressionOption)
         {
             var exception = Record.Exception(() => GetCompressor(CompressorType.Zlib, compressionOption));
 
@@ -192,8 +192,8 @@ namespace MongoDB.Driver.Core.Tests.Core.Compression
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Zstandard_compressor_should_decompress_the_previously_compressed_message([Range(1, 22)] int compressionLevel)
+        [CombinatorialData]
+        public void Zstandard_compressor_should_decompress_the_previously_compressed_message([CombinatorialRange(1, 22)] int compressionLevel)
         {
             var messageBytes = __bigMessage;
             var compressor = GetCompressor(CompressorType.ZStandard, compressionLevel);

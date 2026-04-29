@@ -57,9 +57,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_call_channel_Command_with_unwrapped_command_when_wrapping_is_not_necessary(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             var serverDescription = CreateServerDescription(ServerType.Standalone);
@@ -107,9 +107,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_call_channel_Command_with_wrapped_command_when_additionalOptions_need_wrapping(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             subject.AdditionalOptions = new BsonDocument("additional", 1);
@@ -159,9 +159,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_call_channel_Command_with_wrapped_command_when_comment_needs_wrapping(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject<BsonDocument>();
             subject.Comment = "comment";

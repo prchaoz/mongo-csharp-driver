@@ -74,9 +74,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCountOperation_should_return_expected_result_when_Comment_is_set(
-            [Values(null, "test")] string comment)
+            [CombinatorialValues(null, "test")] string comment)
         {
             var value = (BsonValue)comment;
             var subject = new EstimatedDocumentCountOperation(_collectionNamespace, _messageEncoderSettings)
@@ -91,9 +91,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_get_and_set_should_work(
-            [Values(-10000, 0, 1, 10000, 99999)] long maxTimeTicks)
+            [CombinatorialValues(-10000, 0, 1, 10000, 99999)] long maxTimeTicks)
         {
             var subject = new EstimatedDocumentCountOperation(_collectionNamespace, _messageEncoderSettings);
             var value = TimeSpan.FromTicks(maxTimeTicks);
@@ -105,9 +105,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MaxTime_set_should_throw_when_value_is_invalid(
-            [Values(-10001, -9999, -1)] long maxTimeTicks)
+            [CombinatorialValues(-10001, -9999, -1)] long maxTimeTicks)
         {
             var subject = new EstimatedDocumentCountOperation(_collectionNamespace, _messageEncoderSettings);
             var value = TimeSpan.FromTicks(maxTimeTicks);
@@ -119,9 +119,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReadConcern_get_and_set_should_work(
-            [Values(null, ReadConcernLevel.Linearizable, ReadConcernLevel.Local)] ReadConcernLevel? level)
+            [CombinatorialValues(null, ReadConcernLevel.Linearizable, ReadConcernLevel.Local)] ReadConcernLevel? level)
         {
             var subject = new EstimatedDocumentCountOperation(_collectionNamespace, _messageEncoderSettings);
             var value = level == null ? ReadConcern.Default : new ReadConcern(level.Value);
@@ -133,8 +133,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void RetryRequested_get_and_set_should_work([Values(false, true)] bool value)
+        [CombinatorialData]
+        public void RetryRequested_get_and_set_should_work([CombinatorialValues(false, true)] bool value)
         {
             var subject = new EstimatedDocumentCountOperation(_collectionNamespace, _messageEncoderSettings);
 
@@ -178,9 +178,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_ReadConcern_is_set(
-            [Values(null, ReadConcernLevel.Linearizable, ReadConcernLevel.Local)] ReadConcernLevel? level)
+            [CombinatorialValues(null, ReadConcernLevel.Linearizable, ReadConcernLevel.Local)] ReadConcernLevel? level)
         {
             var readConcern = level == null ? ReadConcern.Default : new ReadConcern(level);
             var subject = new EstimatedDocumentCountOperation(_collectionNamespace, _messageEncoderSettings)
@@ -197,9 +197,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_the_expected_result_when_using_causal_consistency(
-            [Values(null, ReadConcernLevel.Linearizable, ReadConcernLevel.Local)] ReadConcernLevel? level)
+            [CombinatorialValues(null, ReadConcernLevel.Linearizable, ReadConcernLevel.Local)] ReadConcernLevel? level)
         {
             var readConcern = level == null ? ReadConcern.Default : new ReadConcern(level);
             var subject = new EstimatedDocumentCountOperation(_collectionNamespace, _messageEncoderSettings)
@@ -219,8 +219,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Execute_should_return_expected_result([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Execute_should_return_expected_result([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -233,8 +233,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Execute_should_throw_when_maxTime_is_exceeded([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Execute_should_throw_when_maxTime_is_exceeded([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().ClusterTypes(ClusterType.Standalone, ClusterType.ReplicaSet);
 
@@ -249,10 +249,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_MaxTime_is_set(
-            [Values(null, 1000L)] long? milliseconds,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(null, 1000L)] long? milliseconds,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -268,10 +268,10 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_return_expected_result_when_ReadConcern_is_set(
-            [Values(null, ReadConcernLevel.Local)] ReadConcernLevel? level,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(null, ReadConcernLevel.Local)] ReadConcernLevel? level,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -288,8 +288,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Execute_should_send_session_id_when_supported([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Execute_should_send_session_id_when_supported([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 
@@ -300,8 +300,8 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Execute_should_set_operation_name([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Execute_should_set_operation_name([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var subject = new EstimatedDocumentCountOperation(_collectionNamespace, _messageEncoderSettings);

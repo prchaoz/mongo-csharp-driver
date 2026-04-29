@@ -160,9 +160,9 @@ namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Documents_with_documents_of_type_NoPipelineInput_should_throw(
-            [Values(0, 1, 2)] int count)
+            [CombinatorialValues(0, 1, 2)] int count)
         {
             var documents = new NoPipelineInput[count];
 

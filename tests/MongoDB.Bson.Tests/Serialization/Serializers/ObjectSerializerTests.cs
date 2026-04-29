@@ -347,9 +347,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_discriminator_convention_and_guid_representation_should_initialize_instance(
-            [Values(GuidRepresentation.CSharpLegacy, GuidRepresentation.Standard, GuidRepresentation.Unspecified)] GuidRepresentation guidRepresentation)
+            [CombinatorialValues(GuidRepresentation.CSharpLegacy, GuidRepresentation.Standard, GuidRepresentation.Unspecified)] GuidRepresentation guidRepresentation)
         {
             var discriminatorConvention = Mock.Of<IDiscriminatorConvention>();
 
@@ -429,9 +429,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_discriminator_convention_and_guid_representation_and_allowed_types_should_initialize_instance(
-            [Values(GuidRepresentation.CSharpLegacy, GuidRepresentation.Standard, GuidRepresentation.Unspecified)] GuidRepresentation guidRepresentation)
+            [CombinatorialValues(GuidRepresentation.CSharpLegacy, GuidRepresentation.Standard, GuidRepresentation.Unspecified)] GuidRepresentation guidRepresentation)
         {
             var discriminatorConvention = Mock.Of<IDiscriminatorConvention>();
             Func<Type, bool> allowedTypes = t => true;
@@ -469,9 +469,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_with_discriminator_convention_and_guid_representation_and_seperate_deserialization_and_serialization_allowed_types_should_initialize_instance(
-            [Values(GuidRepresentation.CSharpLegacy, GuidRepresentation.Standard, GuidRepresentation.Unspecified)] GuidRepresentation guidRepresentation)
+            [CombinatorialValues(GuidRepresentation.CSharpLegacy, GuidRepresentation.Standard, GuidRepresentation.Unspecified)] GuidRepresentation guidRepresentation)
         {
             var discriminatorConvention = Mock.Of<IDiscriminatorConvention>();
             Func<Type, bool> allowedTypes1 = t => true;
@@ -607,9 +607,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Deserialize_binary_data_should_return_expected_result_when_guid_representation_is_specified(
-            [Values(GuidRepresentation.CSharpLegacy, GuidRepresentation.JavaLegacy, GuidRepresentation.PythonLegacy, GuidRepresentation.Standard)]
+            [CombinatorialValues(GuidRepresentation.CSharpLegacy, GuidRepresentation.JavaLegacy, GuidRepresentation.PythonLegacy, GuidRepresentation.Standard)]
             GuidRepresentation guidRepresentation)
         {
             var discriminatorConvention = BsonSerializer.LookupDiscriminatorConvention(typeof(object));
@@ -653,9 +653,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Deserialize_binary_data_should_throw_when_guid_representation_is_specified_and_sub_type_is_not_expected_sub_type(
-            [Values(GuidRepresentation.CSharpLegacy, GuidRepresentation.JavaLegacy, GuidRepresentation.PythonLegacy, GuidRepresentation.Standard)]
+            [CombinatorialValues(GuidRepresentation.CSharpLegacy, GuidRepresentation.JavaLegacy, GuidRepresentation.PythonLegacy, GuidRepresentation.Standard)]
             GuidRepresentation guidRepresentation)
         {
             var discriminatorConvention = BsonSerializer.LookupDiscriminatorConvention(typeof(object));
@@ -678,9 +678,9 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Serialize_guid_should_have_expected_result_when_guid_representation_is_specified(
-            [Values(GuidRepresentation.CSharpLegacy, GuidRepresentation.JavaLegacy, GuidRepresentation.PythonLegacy, GuidRepresentation.Standard)]
+            [CombinatorialValues(GuidRepresentation.CSharpLegacy, GuidRepresentation.JavaLegacy, GuidRepresentation.PythonLegacy, GuidRepresentation.Standard)]
             GuidRepresentation guidRepresentation)
         {
             var discriminatorConvention = BsonSerializer.LookupDiscriminatorConvention(typeof(object));

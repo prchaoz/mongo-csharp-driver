@@ -33,8 +33,8 @@ public class CSharp5697Tests : IntegrationTest<CSharp5697Tests.ClassFixture>
     }
 
     [Theory]
-    [ParameterAttributeData]
-    public async Task ClientBulkWrite_supports_complex_id([Values(true, false)] bool async)
+    [CombinatorialData]
+    public async Task ClientBulkWrite_supports_complex_id([CombinatorialValues(true, false)] bool async)
     {
         var id = async ? "1" : "2";
         var options = new ClientBulkWriteOptions { VerboseResult = true };

@@ -122,10 +122,10 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void TestConversionOfDoubleInfinityOrNanToIntegralShouldThrow(
-            [Values(true, false)] bool allowOverflow,
-            [Values(true, false)] bool allowTruncation)
+            [CombinatorialValues(true, false)] bool allowOverflow,
+            [CombinatorialValues(true, false)] bool allowTruncation)
         {
             var converter = new RepresentationConverter(allowOverflow, allowTruncation);
 
@@ -155,10 +155,10 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void TestConversionOfDecimal128InfinityOrNanToIntegralShouldThrow(
-            [Values(true, false)] bool allowOverflow,
-            [Values(true, false)] bool allowTruncation)
+            [CombinatorialValues(true, false)] bool allowOverflow,
+            [CombinatorialValues(true, false)] bool allowTruncation)
         {
             var converter = new RepresentationConverter(allowOverflow, allowTruncation);
 
@@ -188,10 +188,10 @@ namespace MongoDB.Bson.Tests.Serialization
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void TestConversionOfSingleInfinityOrNanToIntegralShouldThrow(
-            [Values(true, false)] bool allowOverflow,
-            [Values(true, false)] bool allowTruncation)
+            [CombinatorialValues(true, false)] bool allowOverflow,
+            [CombinatorialValues(true, false)] bool allowTruncation)
         {
             var converter = new RepresentationConverter(allowOverflow, allowTruncation);
 

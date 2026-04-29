@@ -37,11 +37,11 @@ namespace MongoDB.Driver.Tests
         private static readonly string __longAString = new string('a', 512);
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         // Test that environment metadata is properly captured
         // https://github.com/mongodb/specifications/blob/master/source/mongodb-handshake/tests/README.md#test-1-test-that-environment-metadata-is-properly-captured
         public async Task Handhake_should_handle_faas_env_variables(
-            [Values(
+            [CombinatorialValues(
             // Valid AWS
             "{ 'env' : ['AWS_EXECUTION_ENV=AWS_Lambda_java8', 'AWS_REGION=us-east-2', 'AWS_LAMBDA_FUNCTION_MEMORY_SIZE=1024'], expected : { 'name' : 'aws.lambda', 'memory_mb' : 1024, 'region' : 'us-east-2' } }",
             // Invalid - AWS_EXECUTION_ENV should start with AWS_Lambda_
@@ -61,7 +61,7 @@ namespace MongoDB.Driver.Tests
             // Valid container and FaaS provider
             "{ 'env' : ['AWS_EXECUTION_ENV=AWS_Lambda_java8', 'AWS_REGION=us-east-2', 'AWS_LAMBDA_FUNCTION_MEMORY_SIZE=1024', 'KUBERNETES_SERVICE_HOST=1'], expected : { 'name' : 'aws.lambda', 'memory_mb' : 1024, 'region' : 'us-east-2', 'container' : { 'orchestrator' : 'kubernetes' } } }")]
             string environmentVariableDescription,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Authentication(authentication: false); // speculative authentication makes events asserting hard
 

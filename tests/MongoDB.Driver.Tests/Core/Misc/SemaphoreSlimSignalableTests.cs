@@ -27,8 +27,8 @@ namespace MongoDB.Driver.Core.Misc
     public class SemaphoreSlimSignalableTests
     {
         [Theory]
-        [ParameterAttributeData]
-        public void Constructor_should_check_arguments([Values(-2, -1)] int count)
+        [CombinatorialData]
+        public void Constructor_should_check_arguments([CombinatorialValues(-2, -1)] int count)
         {
             var exception = Record.Exception(() => new SemaphoreSlimSignalable(count));
 
@@ -38,9 +38,9 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Reset_should_clear_signal(
-            [Values(true, false)] bool async)
+            [CombinatorialValues(true, false)] bool async)
         {
             const int threadsCount = 4;
             var semaphore = new SemaphoreSlimSignalable(0);
@@ -61,9 +61,9 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Reset_should_not_reset_non_signaled(
-            [Values(true, false)] bool async)
+            [CombinatorialValues(true, false)] bool async)
         {
             const int threadsCount = 4;
             var semaphore = new SemaphoreSlimSignalable(0);
@@ -79,12 +79,12 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Wait_should_enter(
-            [Values(true, false)] bool async,
-            [Values(true, false)] bool isSignaledWait,
-            [Values(0, 1, 2)] int initialCount,
-            [Values(2, 4)] int threadsCount)
+            [CombinatorialValues(true, false)] bool async,
+            [CombinatorialValues(true, false)] bool isSignaledWait,
+            [CombinatorialValues(0, 1, 2)] int initialCount,
+            [CombinatorialValues(2, 4)] int threadsCount)
         {
             var semaphore = new SemaphoreSlimSignalable(initialCount);
 
@@ -101,11 +101,11 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Wait_should_timeout(
-            [Values(true, false)] bool async,
-            [Values(true, false)] bool isSignaledWait,
-            [Values(5, 10)] int timeoutMS)
+            [CombinatorialValues(true, false)] bool async,
+            [CombinatorialValues(true, false)] bool isSignaledWait,
+            [CombinatorialValues(5, 10)] int timeoutMS)
         {
             const int threadsCount = 4;
             var semaphore = new SemaphoreSlimSignalable(0);
@@ -115,10 +115,10 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Wait_should_signal(
-            [Values(true, false)] bool async,
-            [Values(true, false)] bool signalBeforeWait)
+            [CombinatorialValues(true, false)] bool async,
+            [CombinatorialValues(true, false)] bool signalBeforeWait)
         {
             const int threadsCount = 4;
             var semaphore = new SemaphoreSlimSignalable(0);
@@ -139,10 +139,10 @@ namespace MongoDB.Driver.Core.Misc
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Wait_should_cancel(
-            [Values(true, false)] bool async,
-            [Values(true, false)] bool isSignaledWait)
+            [CombinatorialValues(true, false)] bool async,
+            [CombinatorialValues(true, false)] bool isSignaledWait)
         {
             const int threadsCount = 4;
             var semaphore = new SemaphoreSlimSignalable(0);

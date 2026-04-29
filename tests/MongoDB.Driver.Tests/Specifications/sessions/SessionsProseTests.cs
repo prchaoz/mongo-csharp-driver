@@ -60,8 +60,8 @@ namespace MongoDB.Driver.Tests.Specifications.sessions
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Ensure_explicit_session_raises_error_if_connection_does_not_support_sessions([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Ensure_explicit_session_raises_error_if_connection_does_not_support_sessions([CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
             CoreTestConfiguration.SkipMongocryptdTests_SERVER_106469();
@@ -83,8 +83,8 @@ namespace MongoDB.Driver.Tests.Specifications.sessions
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Ensure_implicit_session_is_ignored_if_connection_does_not_support_sessions([Values(true, false)] bool async)
+        [CombinatorialData]
+        public async Task Ensure_implicit_session_is_ignored_if_connection_does_not_support_sessions([CombinatorialValues(true, false)] bool async)
         {
             RequireServer.Check().Supports(Feature.ClientSideEncryption);
             CoreTestConfiguration.SkipMongocryptdTests_SERVER_106469();
@@ -123,8 +123,8 @@ namespace MongoDB.Driver.Tests.Specifications.sessions
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Ensure_server_session_are_allocated_only_on_connection_checkout([Values(true, false)]bool async)
+        [CombinatorialData]
+        public async Task Ensure_server_session_are_allocated_only_on_connection_checkout([CombinatorialValues(true, false)]bool async)
         {
             var eventCapturer = new EventCapturer()
                .Capture<CommandStartedEvent>();
@@ -389,7 +389,7 @@ namespace MongoDB.Driver.Tests.Specifications.sessions
             var mongoClient = DriverTestConfiguration.Client;
 
             using var session = mongoClient.StartSession(sessionOptions);
-            
+
             var exception = Record.Exception(() => session.GetSnapshotTime());
             exception.Should().BeOfType<InvalidOperationException>();
             exception.Message.Should().Contain("non-snapshot session");

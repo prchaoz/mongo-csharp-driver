@@ -89,9 +89,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_maxChunkSize_is_less_than_or_equal_to_zero(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int maxChunkSize)
         {
             var mockBaseSource = new Mock<IBsonChunkSource>();
@@ -112,9 +112,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_maxChunkSize_is_not_a_power_of_2(
-            [Values(3, 5, 7, 9, 15, 17)]
+            [CombinatorialValues(3, 5, 7, 9, 15, 17)]
             int maxChunkSize)
         {
             var mockBaseSource = new Mock<IBsonChunkSource>();
@@ -125,9 +125,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_minChunkSize_is_less_than_or_equal_to_zero(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int minChunkSize)
         {
             var mockBaseSource = new Mock<IBsonChunkSource>();
@@ -138,9 +138,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_minChunkSize_is_not_a_power_of_2(
-            [Values(3, 5, 7, 9, 15, 17)]
+            [CombinatorialValues(3, 5, 7, 9, 15, 17)]
             int minChunkSize)
         {
             var mockBaseSource = new Mock<IBsonChunkSource>();
@@ -231,9 +231,9 @@ namespace MongoDB.Bson.Tests.IO
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void GetChunk_should_throw_when_requestedSize_is_less_than_or_equal_to_zero(
-            [Values(-1, 0)]
+            [CombinatorialValues(-1, 0)]
             int requestedSize)
         {
             var mockBaseSource = new Mock<IBsonChunkSource>();

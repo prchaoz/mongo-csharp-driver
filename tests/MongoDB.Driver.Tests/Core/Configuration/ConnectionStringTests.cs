@@ -109,8 +109,8 @@ namespace MongoDB.Driver.Core.Configuration
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Resolve_against_mongodb_aws_session_token_should_return_the_expected_aws_session_token([Values(false, true)] bool escapeToken)
+        [CombinatorialData]
+        public void Resolve_against_mongodb_aws_session_token_should_return_the_expected_aws_session_token([CombinatorialValues(false, true)] bool escapeToken)
         {
             const string authMechanism = "MONGODB-AWS";
             const string username = "AKIAIOSFODNN7EXAMPLE";
@@ -746,8 +746,8 @@ namespace MongoDB.Driver.Core.Configuration
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void When_a_loadBalanced_is_specified([Values(false, true)] bool loadBalanced)
+        [CombinatorialData]
+        public void When_a_loadBalanced_is_specified([CombinatorialValues(false, true)] bool loadBalanced)
         {
             var subject = new ConnectionString($"mongodb://localhost/?loadBalanced={loadBalanced}");
 
@@ -1292,8 +1292,8 @@ namespace MongoDB.Driver.Core.Configuration
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Valid_srvMaxHosts_with_mongodbsrv_scheme_should_be_valid([Values(0, 42)]int srvMaxHosts)
+        [CombinatorialData]
+        public void Valid_srvMaxHosts_with_mongodbsrv_scheme_should_be_valid([CombinatorialValues(0, 42)]int srvMaxHosts)
         {
             var subject = new ConnectionString($"mongodb+srv://cluster0.10gen.cc/?srvMaxHosts={srvMaxHosts}");
 

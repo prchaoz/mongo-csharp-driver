@@ -108,9 +108,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Dispose_should_dispose_cursor(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCursor = new Mock<IAsyncCursor<BsonDocument>>();
             var subject = new AsyncCursorEnumerator<BsonDocument>(mockCursor.Object, CancellationToken.None);
@@ -128,9 +128,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task MoveNext_should_return_expected_result(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject(2);
 
@@ -149,9 +149,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task MoveNext_should_return_expected_result_when_there_are_two_batches(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockCursor = new Mock<IAsyncCursor<BsonDocument>>();
             var firstBatch = new[]
@@ -199,9 +199,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task MoveNext_should_throw_when_subject_has_been_disposed(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject(0);
 

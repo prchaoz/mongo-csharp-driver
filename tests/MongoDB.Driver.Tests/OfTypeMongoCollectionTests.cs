@@ -14,6 +14,7 @@
 */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -61,9 +62,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Aggregate_should_add_match_to_beginning_of_pipeline(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var options = new AggregateOptions();
@@ -93,9 +94,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Aggregate_should_combine_match_statements_at_the_beginning_of_a_pipeline(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var options = new AggregateOptions();
@@ -127,10 +128,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AggregateToCollection_should_add_match_to_beginning_of_pipeline(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var session = CreateSession(usingSession);
@@ -191,9 +192,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void AggregateToCollection_should_combine_match_statements_at_the_beginning_of_a_pipeline(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var options = new AggregateOptions();
@@ -225,9 +226,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BulkWrite_with_DeleteOne(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var model = new DeleteOneModel<B>(_providedFilter)
@@ -268,9 +269,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BulkWrite_with_DeleteMany(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var model = new DeleteManyModel<B>(_providedFilter)
@@ -306,9 +307,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BulkWrite_with_ReplaceOne(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var replacement = new B();
@@ -352,11 +353,11 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BulkWrite_with_UpdateMany<TRoot, TDerived>(
-            [ClassValues(typeof(UpdateTestCases))] (TRoot, TDerived, string Discriminator) testCase,
-            [Values(false, true)] bool isUpsert,
-            [Values(false, true)] bool async)
+            [CombinatorialClassData(typeof(UpdateTestCases))] (TRoot, TDerived, string Discriminator) testCase,
+            [CombinatorialValues(false, true)] bool isUpsert,
+            [CombinatorialValues(false, true)] bool async)
                 where TDerived : TRoot
         {
             var (mockDerivedCollection, subject) = CreateSubject<TRoot, TDerived>();
@@ -409,11 +410,11 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void BulkWrite_with_UpdateOne<TRoot, TDerived>(
-            [ClassValues(typeof(UpdateTestCases))] (TRoot, TDerived, string Discriminator) testCase,
-            [Values(false, true)] bool isUpsert,
-            [Values(false, true)] bool async)
+            [CombinatorialClassData(typeof(UpdateTestCases))] (TRoot, TDerived, string Discriminator) testCase,
+            [CombinatorialValues(false, true)] bool isUpsert,
+            [CombinatorialValues(false, true)] bool async)
                 where TDerived : TRoot
         {
             var (mockDerivedCollection, subject) = CreateSubject<TRoot, TDerived>();
@@ -465,9 +466,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Count_should_include_the_filter(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var options = new CountOptions();
@@ -501,10 +502,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CountDocuments_should_include_the_filter(
-            [Values(false, true)] bool usingSession,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool usingSession,
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var session = CreateSession(usingSession);
@@ -565,9 +566,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Distinct_should_include_the_filter(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var options = new DistinctOptions();
@@ -599,9 +600,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void EstimatedDocumentCount_should_throw(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             using var cancellationTokenSource = new CancellationTokenSource();
@@ -624,9 +625,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Find_should_include_the_filter(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var options = new FindOptions<B>();
@@ -656,9 +657,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndDelete_should_include_the_filter(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var options = new FindOneAndDeleteOptions<B>();
@@ -688,9 +689,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndReplace_should_include_the_filter(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var replacement = new B();
@@ -723,9 +724,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void FindOneAndUpdate_should_include_the_filter(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var update = new BsonDocument("$set", new BsonDocument("x", 5));
@@ -758,9 +759,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MapReduce_should_include_the_filter_when_one_was_not_provided(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -793,9 +794,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void MapReduce_should_include_the_filter(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -940,17 +941,19 @@ namespace MongoDB.Driver.Tests
             public int PropC;
         }
 
-        public class UpdateTestCases  : IValueGenerator
+        public class UpdateTestCases  : IEnumerable
         {
-            public object[] GenerateValues() => new object[]
-                {
-                    (new A(), new B(), "_t: \"B\""),
-                    (new A(), new C(), "_t: \"C\""),
-                    (new B(), new C(), "_t: \"C\""),
-                    (new AHierarchical(), new BHierarchical(), "_t: [\"AHierarchical\", \"BHierarchical\"]"),
-                    (new AHierarchical(), new CHierarchical(), "_t: [\"AHierarchical\", \"BHierarchical\", \"CHierarchical\"]"),
-                    (new BHierarchical(), new CHierarchical(), "_t: [\"AHierarchical\", \"BHierarchical\", \"CHierarchical\"]")
-                };
+            public IEnumerator GetEnumerator()
+            {
+                yield return (new A(), new B(), "_t: \"B\"");
+                yield return (new A(), new C(), "_t: \"C\"");
+                yield return (new B(), new C(), "_t: \"C\"");
+                yield return (new AHierarchical(), new BHierarchical(), "_t: [\"AHierarchical\", \"BHierarchical\"]");
+                yield return (new AHierarchical(), new CHierarchical(),
+                    "_t: [\"AHierarchical\", \"BHierarchical\", \"CHierarchical\"]");
+                yield return (new BHierarchical(), new CHierarchical(),
+                    "_t: [\"AHierarchical\", \"BHierarchical\", \"CHierarchical\"]");
+            }
         }
     }
 
@@ -990,9 +993,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Count_should_only_count_derived_types(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -1017,9 +1020,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Count_should_only_count_derived_types_with_a_filter(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
 
@@ -1041,9 +1044,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void InsertOne_should_include_discriminator_when_document_is_of_type_B(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var document = new B { PropA = 10, PropB = 7 };
@@ -1062,9 +1065,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void InsertOne_should_include_discriminator_when_document_is_of_type_C(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var document = new C { PropA = 11, PropB = 8, PropC = 4 };
@@ -1083,9 +1086,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReplaceOne_should_not_match_document_of_wrong_type(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var repacement = new B { PropA = 10, PropB = 7 };
@@ -1104,9 +1107,9 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ReplaceOne_should_match_document_of_right_type(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var subject = CreateSubject();
             var originalDocument = _docsCollection.FindSync("{ PropA : 4 }").Single();
@@ -1134,10 +1137,10 @@ namespace MongoDB.Driver.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void UpdateOne_should_match_document_of_right_type(
-            [Values(false, true)] bool upsert,
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool upsert,
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check().Supports(Feature.UpdateWithAggregationPipeline);
 

@@ -32,9 +32,9 @@ namespace MongoDB.Driver.Core.Operations
         private readonly string _viewName = $"{nameof(CreateViewOperationTests)}-view";
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values("a", "b")]
+            [CombinatorialValues("a", "b")]
             string viewName)
         {
             var subject = new CreateViewOperation(_databaseNamespace, viewName, _collectionNamespace.CollectionName, _pipeline, _messageEncoderSettings);
@@ -94,9 +94,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Collation_get_and_set_should_work(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var subject = new CreateViewOperation(_databaseNamespace, _viewName, _collectionNamespace.CollectionName, _pipeline, _messageEncoderSettings);
@@ -109,9 +109,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WriteConcern_get_and_set_should_work(
-            [Values(null, 1, 2)]
+            [CombinatorialValues(null, 1, 2)]
             int? w)
         {
             var subject = new CreateViewOperation(_databaseNamespace, _viewName, _collectionNamespace.CollectionName, _pipeline, _messageEncoderSettings);
@@ -124,11 +124,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_view(
-            [Values("a", "b")]
+            [CombinatorialValues("a", "b")]
             string viewName,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -148,11 +148,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_view_when_Collation_is_set(
-            [Values(null, "en_US")]
+            [CombinatorialValues(null, "en_US")]
             string locale,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -184,11 +184,11 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_create_view_when_WriteConcern_is_set(
-            [Values("a", "b")]
+            [CombinatorialValues("a", "b")]
             string viewName,
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check();
@@ -211,9 +211,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_throw_when_a_write_concern_error_occurs(
-            [Values(false, true)]
+            [CombinatorialValues(false, true)]
             bool async)
         {
             RequireServer.Check().ClusterType(ClusterType.ReplicaSet);
@@ -229,9 +229,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Execute_should_send_session_id_when_supported(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
             var viewName = "view";
@@ -242,9 +242,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result(
-            [Values("a", "b")]
+            [CombinatorialValues("a", "b")]
             string viewName)
         {
             var subject = new CreateViewOperation(_databaseNamespace, viewName, _collectionNamespace.CollectionName, _pipeline, _messageEncoderSettings);
@@ -263,9 +263,9 @@ namespace MongoDB.Driver.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_Collation_is_set(
-            [Values(null, "en_US", "fr_CA")]
+            [CombinatorialValues(null, "en_US", "fr_CA")]
             string locale)
         {
             var collation = locale == null ? null : new Collation(locale);
@@ -288,11 +288,11 @@ namespace MongoDB.Driver.Core.Operations
             result.Should().Be(expectedResult);
         }
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CreateCommand_should_return_expected_result_when_WriteConcern_is_set(
-            [Values(null, 1, 2)] int? w,
-            [Values(null, 100)] int? wtimeout,
-            [Values(true, false)] bool hasOperationTimeout)
+            [CombinatorialValues(null, 1, 2)] int? w,
+            [CombinatorialValues(null, 100)] int? wtimeout,
+            [CombinatorialValues(true, false)] bool hasOperationTimeout)
         {
             var writeConcern = w.HasValue ? new WriteConcern(w.Value) : null;
             if (wtimeout.HasValue)

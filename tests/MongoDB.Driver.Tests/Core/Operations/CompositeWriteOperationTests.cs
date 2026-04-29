@@ -57,8 +57,8 @@ namespace MongoDB.Driver.Core.Tests.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public async Task Enumerating_operations_should_be_stopped_when_error([Values(false, true)] bool async)
+        [CombinatorialData]
+        public async Task Enumerating_operations_should_be_stopped_when_error([CombinatorialValues(false, true)] bool async)
         {
             var testException = new Exception("test");
 
@@ -80,8 +80,8 @@ namespace MongoDB.Driver.Core.Tests.Core.Operations
         }
 
         [Theory]
-        [ParameterAttributeData]
-        public void Enumerating_operations_should_return_result_of_main_operation([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Enumerating_operations_should_return_result_of_main_operation([CombinatorialValues(false, true)] bool async)
         {
             var operation2Result = new BsonDocument("operation", 2);
 

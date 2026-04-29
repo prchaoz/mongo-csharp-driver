@@ -35,8 +35,8 @@ namespace MongoDB.Driver.Tests
     {
         //public methods
         [Theory]
-        [ParameterAttributeData]
-        public void Cursor_should_not_throw_exception_after_double_close([Values(false, true)] bool async)
+        [CombinatorialData]
+        public void Cursor_should_not_throw_exception_after_double_close([CombinatorialValues(false, true)] bool async)
         {
             RequireServer.Check();
 

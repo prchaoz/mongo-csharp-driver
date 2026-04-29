@@ -32,9 +32,9 @@ namespace MongoDB.Driver.Tests.GridFS
     {
         // public methods
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void CopyTo_should_throw(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var bucket = CreateBucket();
             var subject = bucket.OpenUploadStream("Filename");
@@ -56,9 +56,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Flush_should_not_throw(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var bucket = CreateBucket();
             var subject = bucket.OpenUploadStream("Filename");
@@ -77,9 +77,9 @@ namespace MongoDB.Driver.Tests.GridFS
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Upload_of_duplicate_file_should_not_invalidate_existing_data(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var content1 = Enumerable.Repeat((byte)1, 20).ToArray();
             var content2 = Enumerable.Repeat((byte)2, 100).ToArray();

@@ -27,10 +27,10 @@ namespace MongoDB.Driver.Core.Bindings
     public class CoreTransactionTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values(1, 2)] long transactionNumber,
-            [Values(false, true)] bool nullTransactionOptions)
+            [CombinatorialValues(1, 2)] long transactionNumber,
+            [CombinatorialValues(false, true)] bool nullTransactionOptions)
         {
             var transactionOptions = nullTransactionOptions ? null : new TransactionOptions();
 
@@ -82,9 +82,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void TransactionNumber_should_return_expected_result(
-            [Values(1, 2)] long value)
+            [CombinatorialValues(1, 2)] long value)
         {
             var subject = CreateSubject(transactionNumber: value);
 
@@ -94,9 +94,9 @@ namespace MongoDB.Driver.Core.Bindings
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void TransactionOptions_should_return_expected_result(
-            [Values(false, true)] bool nullTransactionOptions)
+            [CombinatorialValues(false, true)] bool nullTransactionOptions)
         {
             var value = nullTransactionOptions ? null : new TransactionOptions();
             var subject = CreateSubject(transactionOptions: value);

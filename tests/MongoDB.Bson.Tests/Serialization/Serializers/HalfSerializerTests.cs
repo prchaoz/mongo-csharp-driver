@@ -37,9 +37,9 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Constructor_with_representation_should_return_expected_result(
-            [Values(BsonType.Decimal128, BsonType.Double, BsonType.Int64, BsonType.Int32, BsonType.String)]
+            [CombinatorialValues(BsonType.Decimal128, BsonType.Double, BsonType.Int64, BsonType.Int32, BsonType.String)]
             BsonType representation)
         {
             var subject = new HalfSerializer(representation);
@@ -355,10 +355,10 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Serialize_of_positive_infinity_with_integer_representation_should_throw(
-            [Values(BsonType.Int64, BsonType.Int32)] BsonType representation,
-            [Values(true, false)] bool allowOverflow, [Values(true, false)] bool allowTruncation)
+            [CombinatorialValues(BsonType.Int64, BsonType.Int32)] BsonType representation,
+            [CombinatorialValues(true, false)] bool allowOverflow, [CombinatorialValues(true, false)] bool allowTruncation)
         {
             var subject = new HalfSerializer(representation, new RepresentationConverter(allowOverflow, allowTruncation));
             var halfValue = Half.PositiveInfinity;
@@ -367,10 +367,10 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Serialize_of_negative_infinity_with_integer_representation_should_throw(
-            [Values(BsonType.Int64, BsonType.Int32)] BsonType representation,
-            [Values(true, false)] bool allowOverflow, [Values(true, false)] bool allowTruncation)
+            [CombinatorialValues(BsonType.Int64, BsonType.Int32)] BsonType representation,
+            [CombinatorialValues(true, false)] bool allowOverflow, [CombinatorialValues(true, false)] bool allowTruncation)
         {
             var subject = new HalfSerializer(representation, new RepresentationConverter(allowOverflow, allowTruncation));
             var halfValue = Half.NegativeInfinity;
@@ -379,10 +379,10 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Serialize_of_nan_with_integer_representation_should_throw(
-            [Values(BsonType.Int64, BsonType.Int32)] BsonType representation,
-            [Values(true, false)] bool allowOverflow, [Values(true, false)] bool allowTruncation)
+            [CombinatorialValues(BsonType.Int64, BsonType.Int32)] BsonType representation,
+            [CombinatorialValues(true, false)] bool allowOverflow, [CombinatorialValues(true, false)] bool allowTruncation)
         {
             var subject = new HalfSerializer(representation, new RepresentationConverter(allowOverflow, allowTruncation));
             var halfValue = Half.NaN;
@@ -391,10 +391,10 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void WithRepresentation_should_return_expected_result(
-            [Values(BsonType.Decimal128, BsonType.Double, BsonType.Int64, BsonType.Int32, BsonType.String)] BsonType oldRepresentation,
-            [Values(BsonType.Decimal128, BsonType.Double, BsonType.Int64, BsonType.Int32, BsonType.String)] BsonType newRepresentation)
+            [CombinatorialValues(BsonType.Decimal128, BsonType.Double, BsonType.Int64, BsonType.Int32, BsonType.String)] BsonType oldRepresentation,
+            [CombinatorialValues(BsonType.Decimal128, BsonType.Double, BsonType.Int64, BsonType.Int32, BsonType.String)] BsonType newRepresentation)
         {
             var subject = new HalfSerializer(oldRepresentation);
 

@@ -74,16 +74,16 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public Task Case1_driver_should_successfully_create_and_list_search_indexes(
-            [Values(false, true)] bool async) =>
+            [CombinatorialValues(false, true)] bool async) =>
             CreateIndexAndValidate(async ? "test-search-index-async" : "test-search-index", _indexDefinition, async);
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Case2_driver_should_successfully_create_multiple_indexes_in_batch(
-            [Values(false, true)] bool async,
-            [Values(false, true)] bool includeFields)
+            [CombinatorialValues(false, true)] bool async,
+            [CombinatorialValues(false, true)] bool includeFields)
         {
             var indexDefinitionBson = includeFields ? _indexDefinitionWithFields : _indexDefinition;
 
@@ -108,9 +108,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Case3_driver_can_successfully_drop_search_indexes(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexName = "test-search-index" + (async ? "-async" : "");
 
@@ -147,9 +147,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Case4_driver_can_update_a_search_index(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexName = "test-search-index-" + (async ? "-async" : "");
             var indexNewDefinition = BsonDocument.Parse("{ mappings: { dynamic: true, fields: { } }}");
@@ -169,9 +169,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Case5_dropSearchIndex_suppresses_namespace_not_found_errors(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var collection = _database.GetCollection<BsonDocument>("non_existent_collection");
 
@@ -186,10 +186,10 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Case6_driver_can_create_and_list_search_indexes_with_non_default_read_write_concern(
-            [Values(false, true)] bool async,
-            [Values(false, true)] bool includeFields)
+            [CombinatorialValues(false, true)] bool async,
+            [CombinatorialValues(false, true)] bool includeFields)
         {
             var indexName = CreateIndexName("test-search-index-case6", async, includeFields);
             var indexDefinitionBson = includeFields ? _indexDefinitionWithFields : _indexDefinition;
@@ -209,9 +209,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Case7_driver_can_handle_search_index_types_when_creating_indexes(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             string indexName1, indexName2, indexName3;
             if (async)
@@ -248,9 +248,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Case8_driver_requires_explicit_type_to_create_vector_search_index(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexName = "test-search-index-case8-error" + (async ? "-async" : "");
 
@@ -264,9 +264,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_search_index_containing_vector_index(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexName = "search-vector" + (async ? "-async" : "");
 
@@ -314,9 +314,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_Atlas_vector_index_for_all_options_using_typed_API(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexName = "vector-all" + (async ? "-async" : "");
 
@@ -350,9 +350,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_Atlas_vector_index_for_required_only_options(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexName = "vector-required" + (async ? "-async" : "");
 
@@ -382,9 +382,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_Atlas_vector_index_for_all_options_with_filters(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexName = "vector-all-filters" + (async ? "-async" : "");
 
@@ -442,9 +442,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_Atlas_vector_index_for_required_only_options_with_filters(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexName = "vector-required-filters" + (async ? "-async" : "");
 
@@ -497,9 +497,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_Atlas_vector_index_for_nested_field(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexName = "vector-nested" + (async ? "-async" : "");
 
@@ -550,9 +550,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_Atlas_vector_index_for_nested_field_with_strings(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexName = "vector-nested-strings" + (async ? "-async" : "");
 
@@ -598,9 +598,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_autoEmbed_vector_index_for_required_only_options(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             // Note that these tests pass with Atlas local, but fail on the CI.
             SkipTests();
@@ -637,9 +637,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_autoEmbed_vector_index_for_all_options(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             // Note that these tests don't yet pass on real Atlas or Atlas local.
             SkipTests();
@@ -686,9 +686,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_autoEmbed_vector_index_with_filters_as_text(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             // Note that these tests pass with Atlas local, but fail on the CI.
             SkipTests();
@@ -744,9 +744,9 @@ namespace MongoDB.Driver.Tests.Search
         }
 
         [Theory(Timeout = Timeout)]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public async Task Can_create_autoEmbed_vector_index_with_filters_as_expressions(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             // Note that these tests pass with Atlas local, but fail on the CI.
             SkipTests();

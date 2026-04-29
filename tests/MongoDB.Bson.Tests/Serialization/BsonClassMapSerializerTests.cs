@@ -48,9 +48,9 @@ namespace MongoDB.Bson.Tests.Serialization
 
         // public methods
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Deserialize_should_not_throw_when_all_required_elements_present(
-            [Values(0, 1, 8, 23, 63, 111, 127, 128, 129, 555, 1024, 2500)]int membersCount)
+            [CombinatorialValues(0, 1, 8, 23, 63, 111, 127, 128, 129, 555, 1024, 2500)]int membersCount)
         {
             var subject = BuildTypeAndGetSerializer("Prop", membersCount);
             var properties = Enumerable

@@ -26,13 +26,13 @@ namespace MongoDB.Driver.Tests
     public class MongoIndexManagerTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void List_should_return_expected_result(
-            [Values("{ singleIndex : 1 }", "{ compoundIndex1 : 1, compoundIndex2 : 1 }")] string key,
-            [Values(null, 3)] int? batchSize,
-            [Values(false, true)] bool unique,
-            [Values(null, false, true)] bool? hidden,
-            [Values(false, true)] bool async)
+            [CombinatorialValues("{ singleIndex : 1 }", "{ compoundIndex1 : 1, compoundIndex2 : 1 }")] string key,
+            [CombinatorialValues(null, 3)] int? batchSize,
+            [CombinatorialValues(false, true)] bool unique,
+            [CombinatorialValues(null, false, true)] bool? hidden,
+            [CombinatorialValues(false, true)] bool async)
         {
             var indexKeyDocument = BsonDocument.Parse(key);
             var collectionName = DriverTestConfiguration.CollectionNamespace.CollectionName;

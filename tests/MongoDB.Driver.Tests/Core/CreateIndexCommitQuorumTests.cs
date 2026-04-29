@@ -42,9 +42,9 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Create_with_mode_should_return_expected_result(
-            [Values("abc", "def")] string mode)
+            [CombinatorialValues("abc", "def")] string mode)
         {
             var subject = CreateIndexCommitQuorum.Create(mode);
 
@@ -53,9 +53,9 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void Create_with_w_should_return_expected_result(
-            [Values(1, 2, 3)] int w)
+            [CombinatorialValues(1, 2, 3)] int w)
         {
             var subject = CreateIndexCommitQuorum.Create(w);
 
@@ -67,9 +67,9 @@ namespace MongoDB.Driver.Core.Tests
     public class CreateIndexCommitQuorumWithModeTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values("abc", "def")] string mode)
+            [CombinatorialValues("abc", "def")] string mode)
         {
             var subject = new CreateIndexCommitQuorumWithMode(mode);
 
@@ -95,9 +95,9 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonValue_should_return_expected_result(
-            [Values("abc", "def")] string mode)
+            [CombinatorialValues("abc", "def")] string mode)
         {
             var subject = new CreateIndexCommitQuorumWithMode(mode);
 
@@ -111,9 +111,9 @@ namespace MongoDB.Driver.Core.Tests
     public class CreateIndexCommitQuorumWithWTests
     {
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_initialize_instance(
-            [Values(0, 1, 2, int.MaxValue)] int w)
+            [CombinatorialValues(0, 1, 2, int.MaxValue)] int w)
         {
             var subject = new CreateIndexCommitQuorumWithW(w);
 
@@ -121,9 +121,9 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void constructor_should_throw_when_mode_is_null(
-            [Values(int.MinValue, -1)] int w)
+            [CombinatorialValues(int.MinValue, -1)] int w)
         {
             var exception = Record.Exception(() => new CreateIndexCommitQuorumWithW(w));
 
@@ -132,9 +132,9 @@ namespace MongoDB.Driver.Core.Tests
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void ToBsonValue_should_return_expected_result(
-            [Values(1, 2, 3)] int w)
+            [CombinatorialValues(1, 2, 3)] int w)
         {
             var subject = new CreateIndexCommitQuorumWithW(w);
 

@@ -107,9 +107,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void PostWriteAction_get_should_return_expected_result(
-            [Values(false, true)] bool isNull)
+            [CombinatorialValues(false, true)] bool isNull)
         {
             var value = isNull ? null : (Action<IMessageEncoderPostProcessor>)(encoder => { });
 #pragma warning disable 618
@@ -125,9 +125,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         public void PostWriteAction_set_should_have_expected_result(
-            [Values(false, true)] bool isNull)
+            [CombinatorialValues(false, true)] bool isNull)
         {
 #pragma warning disable 618
             var subject = new QueryMessage(_requestId, _collectionNamespace, _query, _fields, _queryValidator, _skip, _batchSize, false, false, false, false, false, false);
@@ -140,9 +140,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         internal void ResponseHandling_get_should_return_expected_result(
-            [Values(CommandResponseHandling.Return, CommandResponseHandling.Ignore)] CommandResponseHandling value)
+            [CombinatorialValues(CommandResponseHandling.Return, CommandResponseHandling.Ignore)] CommandResponseHandling value)
         {
 #pragma warning disable 618
             var subject = new QueryMessage(_requestId, _collectionNamespace, _query, _fields, _queryValidator, _skip, _batchSize, false, false, false, false, false, false)
@@ -157,9 +157,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         internal void ResponseHandling_set_should_have_expected_result(
-            [Values(CommandResponseHandling.Return, CommandResponseHandling.Ignore)] CommandResponseHandling value)
+            [CombinatorialValues(CommandResponseHandling.Return, CommandResponseHandling.Ignore)] CommandResponseHandling value)
         {
 #pragma warning disable 618
             var subject = new QueryMessage(_requestId, _collectionNamespace, _query, _fields, _queryValidator, _skip, _batchSize, false, false, false, false, false, false);
@@ -171,9 +171,9 @@ namespace MongoDB.Driver.Core.WireProtocol.Messages
         }
 
         [Theory]
-        [ParameterAttributeData]
+        [CombinatorialData]
         internal void ResponseHandling_set_should_throw_when_value_is_invalid(
-            [Values(-1, CommandResponseHandling.NoResponseExpected)] CommandResponseHandling value)
+            [CombinatorialValues(-1, CommandResponseHandling.NoResponseExpected)] CommandResponseHandling value)
         {
 #pragma warning disable 618
             var subject = new QueryMessage(_requestId, _collectionNamespace, _query, _fields, _queryValidator, _skip, _batchSize, false, false, false, false, false, false);
