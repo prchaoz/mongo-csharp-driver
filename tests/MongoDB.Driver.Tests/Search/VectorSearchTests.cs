@@ -22,8 +22,6 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using Xunit;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace MongoDB.Driver.Tests.Search
 {
@@ -1219,6 +1217,6 @@ namespace MongoDB.Driver.Tests.Search
             return indexDefinition != null;
         }
 
-        private void SkipTests() => throw new SkipException("Test skipped because of CSHARP-5840; Atlas does not currently support these features.");
+        private void SkipTests() => Assert.Skip("Test skipped because of CSHARP-5840; Atlas does not currently support these features.");
     }
 }

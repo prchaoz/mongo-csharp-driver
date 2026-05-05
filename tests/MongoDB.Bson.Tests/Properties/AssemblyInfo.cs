@@ -14,9 +14,9 @@
 */
 
 using System.Runtime.InteropServices;
-using MongoDB.TestHelpers.XunitExtensions;
+using MongoDB.TestHelpers.XunitExtensions.TimeoutEnforcing;
 using Xunit;
 
 [assembly: ComVisible(false)]
 
-[assembly: TestFramework(XunitExtensionsConstants.TimeoutEnforcingXunitFramework, XunitExtensionsConstants.TimeoutEnforcingFrameworkAssembly)]
+[assembly: TestFramework(typeof(TimeoutEnforcingXunitTestFramework))]

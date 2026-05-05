@@ -1,4 +1,4 @@
-﻿/* Copyright 2010-present MongoDB Inc.
+/* Copyright 2010-present MongoDB Inc.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,33 +13,51 @@
 * limitations under the License.
 */
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Reflection;
 using System.Threading;
-using Xunit.Abstractions;
+using System.Threading.Tasks;
 using Xunit.Sdk;
+using Xunit.v3;
 
 namespace MongoDB.TestHelpers.XunitExtensions.TimeoutEnforcing
 {
     [DebuggerStepThrough]
-    internal sealed class TimeoutEnforcingXunitTestCaseRunner : XunitTestCaseRunner
+    internal sealed class TimeoutEnforcingXunitTestCaseRunner :
+        XunitTestCaseRunnerBase<XunitTestCaseRunnerContext, IXunitTestCase, IXunitTest>
     {
-        public TimeoutEnforcingXunitTestCaseRunner(
+        public static TimeoutEnforcingXunitTestCaseRunner Instance { get; } = new();
+
+        private TimeoutEnforcingXunitTestCaseRunner() { }
+
+        public async ValueTask<RunSummary> Run(
             IXunitTestCase testCase,
-            string displayName,
-            string skipReason,
-            object[] constructorArguments,
-            object[] testMethodArguments,
+            IReadOnlyCollection<IXunitTest> tests,
             IMessageBus messageBus,
             ExceptionAggregator aggregator,
-            CancellationTokenSource cancellationTokenSource)
-           : base(testCase, displayName, skipReason, constructorArguments, testMethodArguments, messageBus, aggregator, cancellationTokenSource)
+            CancellationTokenSource cancellationTokenSource,
+            string displayName,
+            string skipReason,
+            ExplicitOption explicitOption,
+            object[] constructorArguments)
         {
+            await using var ctxt = new XunitTestCaseRunnerContext(
+                testCase, tests, messageBus, aggregator, cancellationTokenSource,
+                displayName, skipReason, explicitOption, constructorArguments);
+            await ctxt.InitializeAsync();
+            return await Run(ctxt);
         }
 
-        protected override XunitTestRunner CreateTestRunner(ITest test, IMessageBus messageBus, Type testClass, object[] constructorArguments, MethodInfo testMethod, object[] testMethodArguments, string skipReason, IReadOnlyList<BeforeAfterTestAttribute> beforeAfterAttributes, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource) =>
-            new TimeoutEnforcingTestRunner(test, messageBus, testClass, constructorArguments, testMethod, testMethodArguments, skipReason, beforeAfterAttributes, aggregator, cancellationTokenSource);
+        protected override ValueTask<RunSummary> RunTest(
+            XunitTestCaseRunnerContext ctxt,
+            IXunitTest test) =>
+            TimeoutEnforcingTestRunner.Instance.Run(
+                test,
+                ctxt.MessageBus,
+                ctxt.ConstructorArguments,
+                ctxt.ExplicitOption,
+                ctxt.Aggregator.Clone(),
+                ctxt.CancellationTokenSource,
+                ctxt.BeforeAfterTestAttributes);
     }
 }

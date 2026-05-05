@@ -26,8 +26,6 @@ using MongoDB.Driver.Core.Misc;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace MongoDB.Driver.Tests.Specifications.connection_string
 {
@@ -337,7 +335,7 @@ namespace MongoDB.Driver.Tests.Specifications.connection_string
             }
             else if (expectedHost["type"] == "unix")
             {
-                throw new SkipException("Test skipped because unix host types are not supported.");
+                Assert.Skip("Test skipped because unix host types are not supported.");
             }
 
             throw new AssertionException($"Unknown host type {expectedHost["type"]}.");

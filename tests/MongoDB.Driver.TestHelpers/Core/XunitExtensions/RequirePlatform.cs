@@ -75,7 +75,7 @@ namespace MongoDB.Driver.TestHelpers
             var currentTargetFramework = GetCurrentTargetFramework();
             if (operatingSystem == currentOperatingSystem && ((targetFrameworks?.Length ?? 0) == 0 || targetFrameworks.Contains(currentTargetFramework)))
             {
-                throw new SkipException($"Test skipped because it's not supported on {currentOperatingSystem} with {currentTargetFramework}.");
+                throw SkipException.ForSkip($"Test skipped because it's not supported on {currentOperatingSystem} with {currentTargetFramework}.");
             }
 
             return this;

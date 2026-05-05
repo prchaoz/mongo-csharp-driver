@@ -1560,7 +1560,7 @@ namespace MongoDB.Driver.Examples
                 PartialFilterExpression = Builders<BsonDocument>.Filter.Gt(document => document["rating"], 5)
             };
             var indexModel = new CreateIndexModel<BsonDocument>(keys, indexOptions);
-            var result = collection.Indexes.CreateOne(indexModel);
+            var result = collection.Indexes.CreateOne(indexModel, cancellationToken: TestContext.Current.CancellationToken);
             // End Index Example 2
 
             Render(indexModel.Options.PartialFilterExpression).Should().Be("{ \"rating\" : { \"$gt\" : 5 } }");

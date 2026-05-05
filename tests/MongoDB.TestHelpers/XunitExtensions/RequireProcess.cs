@@ -34,7 +34,7 @@ namespace MongoDB.TestHelpers.XunitExtensions
             {
                 return this;
             }
-            throw new SkipException($"Test skipped because process is a {actualBits}-bit process and not a {bits}-bit process.");
+            throw SkipException.ForSkip($"Test skipped because process is a {actualBits}-bit process and not a {bits}-bit process.");
         }
     }
 }

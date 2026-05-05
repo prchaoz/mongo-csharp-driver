@@ -21,7 +21,6 @@ using MongoDB.Driver.Core.Misc;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Encryption;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Examples
 {

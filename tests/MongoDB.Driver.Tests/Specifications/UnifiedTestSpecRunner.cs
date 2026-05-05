@@ -27,8 +27,6 @@ using MongoDB.Driver.TestHelpers;
 using MongoDB.Driver.Tests.UnifiedTestOperations;
 using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace MongoDB.Driver.Tests.Specifications
 {
@@ -69,7 +67,7 @@ namespace MongoDB.Driver.Tests.Specifications
             {
                 if (testCase.Name.Contains(operationName))
                 {
-                    throw new SkipException($"Test skipped because {operationName} is not supported.");
+                    Assert.Skip($"Test skipped because {operationName} is not supported.");
                 }
             }
         }
@@ -174,7 +172,7 @@ namespace MongoDB.Driver.Tests.Specifications
                 var serverVersion = CoreTestConfiguration.ServerVersion;
                 if (serverVersion < SemanticVersion.Parse("7.0.0"))
                 {
-                    throw new SkipException($"Test skipped for MongoDB < 7.0 due to non-idempotent createCollection. See CSHARP-5856.");
+                    Assert.Skip($"Test skipped for MongoDB < 7.0 due to non-idempotent createCollection. See CSHARP-5856.");
                 }
             }
 
@@ -199,7 +197,7 @@ namespace MongoDB.Driver.Tests.Specifications
             if (testCase.Name.Contains("bulkWrite.json") && testCase.Name.Contains("is never committed"))
             {
                 // Unskip the tests once CSHARP-5444 is fixed.
-                throw new SkipException("This test is skipped because csharp driver has bug with handling connection closing while mixedBulkWrite operation.");
+                Assert.Skip("This test is skipped because csharp driver has bug with handling connection closing while mixedBulkWrite operation.");
             }
 
             Run(testCase);

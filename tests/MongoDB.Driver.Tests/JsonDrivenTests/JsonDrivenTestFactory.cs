@@ -115,7 +115,7 @@ namespace MongoDB.Driver.Tests.JsonDrivenTests
                     switch (name)
                     {
                         case "listDatabaseNames": return new JsonDrivenListDatabaseNamesTest(_client, _objectMap);
-                        case "listDatabaseObjects": throw new SkipException(".NET/C# driver does not implement a ListDatabaseObjects helper.");
+                        case "listDatabaseObjects": throw SkipException.ForSkip(".NET/C# driver does not implement a ListDatabaseObjects helper.");
                         case "listDatabases": return new JsonDrivenListDatabasesTest(_client, _objectMap);
                         case "watch": return new JsonDrivenClientWatchTest(_client, _objectMap);
                         default: throw new FormatException($"Invalid method name: \"{name}\".");
@@ -140,7 +140,7 @@ namespace MongoDB.Driver.Tests.JsonDrivenTests
                         case "createCollection": return new JsonDrivenCreateCollectionTest(database, _objectMap);
                         case "dropCollection": return new JsonDrivenDropCollectionTest(database, _objectMap);
                         case "listCollectionNames": return new JsonDrivenListCollectionNamesTest(database, _objectMap);
-                        case "listCollectionObjects": throw new SkipException(".NET/C# driver does not implement a ListCollectionObjects helper.");
+                        case "listCollectionObjects": throw SkipException.ForSkip(".NET/C# driver does not implement a ListCollectionObjects helper.");
                         case "listCollections": return new JsonDrivenListCollectionsTest(database, _objectMap);
                         case "runCommand": return new JsonDrivenRunCommandTest(database, _objectMap);
                         case "watch": return new JsonDrivenDatabaseWatchTest(database, _objectMap);
@@ -171,7 +171,7 @@ namespace MongoDB.Driver.Tests.JsonDrivenTests
                         case "insertMany": return new JsonDrivenInsertManyTest(collection, _objectMap);
                         case "insertOne": return new JsonDrivenInsertOneTest(collection, _objectMap);
                         case "listIndexes": return new JsonDrivenListIndexesTest(collection, _objectMap);
-                        case "listIndexNames": throw new SkipException(".NET/C# driver does not implement a ListIndexNames helper.");
+                        case "listIndexNames": throw SkipException.ForSkip(".NET/C# driver does not implement a ListIndexNames helper.");
                         case "mapReduce": return new JsonDrivenMapReduceTest(collection, _objectMap);
                         case "replaceOne": return new JsonDrivenReplaceOneTest(collection, _objectMap);
                         case "updateMany": return new JsonDrivenUpdateManyTest(collection, _objectMap);
@@ -205,7 +205,7 @@ namespace MongoDB.Driver.Tests.JsonDrivenTests
                     switch (name)
                     {
                         case "listDatabaseObjects":
-                            throw new SkipException(".NET/C# driver does not implement a ListDatabaseObjects helper.");
+                            throw SkipException.ForSkip(".NET/C# driver does not implement a ListDatabaseObjects helper.");
                         default: break;
                     }
                     break;
@@ -214,7 +214,7 @@ namespace MongoDB.Driver.Tests.JsonDrivenTests
                     switch (name)
                     {
                         case "listCollectionObjects":
-                            throw new SkipException(".NET/C# driver does not implement a ListCollectionObjects helper.");
+                            throw SkipException.ForSkip(".NET/C# driver does not implement a ListCollectionObjects helper.");
                         default:
                             break;
                     }
@@ -223,7 +223,7 @@ namespace MongoDB.Driver.Tests.JsonDrivenTests
                     switch (name)
                     {
                         case "listIndexNames":
-                            throw new SkipException(".NET/C# driver does not implement a ListIndexNames helper.");
+                            throw SkipException.ForSkip(".NET/C# driver does not implement a ListIndexNames helper.");
                         default:
                             break;
                     }

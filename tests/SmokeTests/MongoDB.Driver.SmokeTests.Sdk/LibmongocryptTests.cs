@@ -24,7 +24,6 @@ using MongoDB.Driver.Core.Configuration;
 using MongoDB.Driver.Core.Misc;
 using MongoDB.Driver.Encryption;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.SmokeTests.Sdk
 {

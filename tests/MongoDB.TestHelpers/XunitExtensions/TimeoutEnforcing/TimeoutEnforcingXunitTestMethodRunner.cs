@@ -1,4 +1,4 @@
-﻿/* Copyright 2010-present MongoDB Inc.
+/* Copyright 2010-present MongoDB Inc.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,40 +15,97 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Xunit.Abstractions;
 using Xunit.Sdk;
+using Xunit.v3;
 
 namespace MongoDB.TestHelpers.XunitExtensions.TimeoutEnforcing
 {
     [DebuggerStepThrough]
-    internal sealed class TimeoutEnforcingXunitTestMethodRunner : XunitTestMethodRunner
+    internal sealed class TimeoutEnforcingXunitTestMethodRunner :
+        XunitTestMethodRunnerBase<XunitTestMethodRunnerContext, IXunitTestMethod, IXunitTestCase>
     {
-        private readonly object[] _constructorArguments;
-        private readonly IMessageSink _diagnosticMessageSink;
+        public static TimeoutEnforcingXunitTestMethodRunner Instance { get; } = new();
 
-        public TimeoutEnforcingXunitTestMethodRunner(ITestMethod testMethod, IReflectionTypeInfo @class, IReflectionMethodInfo method, IEnumerable<IXunitTestCase> testCases, IMessageSink diagnosticMessageSink, IMessageBus messageBus, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource, object[] constructorArguments) : base(testMethod, @class, method, testCases, diagnosticMessageSink, messageBus, aggregator, cancellationTokenSource, constructorArguments)
+        private TimeoutEnforcingXunitTestMethodRunner() { }
+
+        public async ValueTask<RunSummary> Run(
+            IXunitTestMethod testMethod,
+            IReadOnlyCollection<IXunitTestCase> testCases,
+            ExplicitOption explicitOption,
+            IMessageBus messageBus,
+            ExceptionAggregator aggregator,
+            CancellationTokenSource cancellationTokenSource,
+            object[] constructorArguments)
         {
-            _constructorArguments = constructorArguments;
-            _diagnosticMessageSink = diagnosticMessageSink;
+            await using var ctxt = new XunitTestMethodRunnerContext(
+                testMethod, testCases, explicitOption, messageBus, aggregator,
+                cancellationTokenSource, constructorArguments);
+            await ctxt.InitializeAsync();
+            return await Run(ctxt);
         }
 
-        protected override async Task<RunSummary> RunTestCaseAsync(IXunitTestCase originalTestCase)
+        protected override async ValueTask<RunSummary> RunTestCase(
+            XunitTestMethodRunnerContext ctxt,
+            IXunitTestCase testCase)
         {
-            var messageBusInterceptor = new SkippableTestMessageBus(MessageBus);
+            if (testCase is ISelfExecutingXunitTestCase selfExecutingTestCase)
+            {
+                return await selfExecutingTestCase.Run(
+                    ctxt.ExplicitOption,
+                    ctxt.MessageBus,
+                    ctxt.ConstructorArguments,
+                    ctxt.Aggregator.Clone(),
+                    ctxt.CancellationTokenSource);
+            }
 
-            var isTheory = originalTestCase is XunitTheoryTestCase;
-            XunitTestCaseRunner testRunner = isTheory ?
-                new TimeoutEnforcingXunitTheoryTestCaseRunner(originalTestCase, originalTestCase.DisplayName, originalTestCase.SkipReason, _constructorArguments, _diagnosticMessageSink, messageBusInterceptor, new ExceptionAggregator(Aggregator), CancellationTokenSource) :
-                new TimeoutEnforcingXunitTestCaseRunner(originalTestCase, originalTestCase.DisplayName, originalTestCase.SkipReason, _constructorArguments, originalTestCase.TestMethodArguments, messageBusInterceptor, new ExceptionAggregator(Aggregator), CancellationTokenSource);
+            var aggregator = ctxt.Aggregator.Clone();
+            var tests = await aggregator.RunAsync(testCase.CreateTests, []);
 
-            var result = await testRunner.RunAsync();
+            if (aggregator.ToException() is System.Exception ex)
+            {
+                if (ex.Message?.StartsWith(DynamicSkipToken.Value, System.StringComparison.Ordinal) == true)
+                {
+                    return XunitRunnerHelper.SkipTestCases(
+                        ctxt.MessageBus,
+                        ctxt.CancellationTokenSource,
+                        [testCase],
+                        ex.Message.Substring(DynamicSkipToken.Value.Length),
+                        sendTestCaseMessages: false);
+                }
+                if (testCase.SkipExceptions?.Contains(ex.GetType()) == true)
+                {
+                    return XunitRunnerHelper.SkipTestCases(
+                        ctxt.MessageBus,
+                        ctxt.CancellationTokenSource,
+                        [testCase],
+                        !string.IsNullOrEmpty(ex.Message)
+                            ? ex.Message
+                            : string.Format(CultureInfo.CurrentCulture, "Exception of type '{0}' was thrown", ex.GetType().FullName),
+                        sendTestCaseMessages: false);
+                }
 
-            result.Failed -= messageBusInterceptor.SkippedCount;
-            result.Skipped += messageBusInterceptor.SkippedCount;
+                return XunitRunnerHelper.FailTestCases(
+                    ctxt.MessageBus,
+                    ctxt.CancellationTokenSource,
+                    [testCase],
+                    ex,
+                    sendTestCaseMessages: false);
+            }
 
-            return result;
+            return await TimeoutEnforcingXunitTestCaseRunner.Instance.Run(
+                testCase,
+                tests,
+                ctxt.MessageBus,
+                aggregator,
+                ctxt.CancellationTokenSource,
+                testCase.TestCaseDisplayName,
+                testCase.SkipReason,
+                ctxt.ExplicitOption,
+                ctxt.ConstructorArguments);
         }
     }
 }

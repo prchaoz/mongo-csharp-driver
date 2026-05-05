@@ -17,7 +17,7 @@ using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using System.IO;
-using Xunit.Abstractions;
+using Xunit.Sdk;
 
 namespace MongoDB.Bson.TestHelpers.JsonDrivenTests
 {

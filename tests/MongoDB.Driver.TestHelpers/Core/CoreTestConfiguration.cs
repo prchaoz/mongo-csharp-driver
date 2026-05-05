@@ -30,7 +30,7 @@ using MongoDB.Driver.Core.Operations;
 using MongoDB.Driver.Core.Servers;
 using MongoDB.Driver.Core.WireProtocol.Messages.Encoders;
 using MongoDB.Driver.TestHelpers;
-using Xunit.Sdk;
+using Xunit;
 
 namespace MongoDB.Driver
 {
@@ -349,7 +349,7 @@ namespace MongoDB.Driver
             if (ShouldSkipMongocryptdTests_SERVER_106469() &&
                 (!checkForSharedLib || GetCryptSharedLibPath() == null))
             {
-                throw new SkipException("Test skipped because of SERVER-106469.");
+                Assert.Skip("Test skipped because of SERVER-106469.");
             }
         }
 

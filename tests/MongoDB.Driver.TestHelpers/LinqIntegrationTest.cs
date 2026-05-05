@@ -22,7 +22,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Linq.Linq3Implementation;
 using MongoDB.Driver.Linq.Linq3Implementation.Translators.ExpressionToExecutableQueryTranslators;
-using Xunit.Abstractions;
+using Xunit;
 
 namespace MongoDB.Driver.Tests
 {

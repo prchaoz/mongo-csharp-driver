@@ -35,7 +35,6 @@ using MongoDB.Driver.Core.TestHelpers.Logging;
 using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Tests.Specifications.auth
 {

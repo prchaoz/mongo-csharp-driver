@@ -19,7 +19,6 @@ using FluentAssertions;
 using MongoDB.Bson;
 using MongoDB.Driver.TestHelpers;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
 {

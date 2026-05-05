@@ -16,33 +16,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xunit.Abstractions;
-using Xunit.Sdk;
+using Xunit.v3;
 
 namespace MongoDB.TestHelpers.XunitExtensions
 {
-    [TraitDiscoverer("MongoDB.TestHelpers.XunitExtensions.CategoryTraitDiscoverer", "MongoDB.TestHelpers")]
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class CategoryAttribute : Attribute, ITraitAttribute
     {
+        private const string Key = "Category";
+
         public CategoryAttribute(params string[] categories)
         {
             Categories = categories;
         }
 
         public string[] Categories { get; }
-    }
 
-    public sealed class CategoryTraitDiscoverer : ITraitDiscoverer
-    {
-        private const string Key = "Category";
-
-        public IEnumerable<KeyValuePair<string, string>> GetTraits(IAttributeInfo traitAttribute)
-        {
-            var attributeInfo = traitAttribute as ReflectionAttributeInfo;
-            var testCaseAttribute = attributeInfo?.Attribute as CategoryAttribute;
-
-            return testCaseAttribute.Categories.Select(category => new KeyValuePair<string, string>(Key, category));
-        }
+        public IReadOnlyCollection<KeyValuePair<string, string>> GetTraits() =>
+            Categories.Select(category => new KeyValuePair<string, string>(Key, category)).ToArray();
     }
 }

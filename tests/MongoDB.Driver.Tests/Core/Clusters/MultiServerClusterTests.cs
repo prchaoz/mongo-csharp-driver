@@ -31,7 +31,6 @@ using MongoDB.Driver.Core.TestHelpers.Logging;
 using MongoDB.Driver.Core.Tests.Core.Clusters;
 using Moq;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Core.Clusters
 {

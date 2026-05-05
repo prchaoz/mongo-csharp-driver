@@ -19,9 +19,6 @@ namespace MongoDB.TestHelpers.XunitExtensions
 {
     public static class XunitExtensionsConstants
     {
-        public const string TimeoutEnforcingXunitFramework = "MongoDB.TestHelpers.XunitExtensions.TimeoutEnforcing.TimeoutEnforcingXunitTestFramework";
-        public const string TimeoutEnforcingFrameworkAssembly = "MongoDB.TestHelpers";
-
         public static readonly TimeSpan DefaultTestTimeout = TimeSpan.FromMinutes(3);
     }
 }

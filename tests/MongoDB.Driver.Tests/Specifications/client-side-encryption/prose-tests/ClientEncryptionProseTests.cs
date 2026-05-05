@@ -46,7 +46,6 @@ using MongoDB.Driver.Encryption;
 using MongoDB.Driver.TestHelpers;
 using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Sdk;
 using Reflector = MongoDB.Bson.TestHelpers.Reflector;
 using OperatingSystemHelper  = MongoDB.Driver.Core.Misc.OperatingSystemHelper;
@@ -2030,7 +2029,7 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
                                 // azure env
                                 if (!expectedEnvironment)
                                 {
-                                    throw new SkipException("Test skipped, because current env should not be Azure.");
+                                    Assert.Skip("Test skipped, because current env should not be Azure.");
                                 }
                             }
                             else
@@ -2055,7 +2054,7 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
                                 // gcp env
                                 if (!expectedEnvironment)
                                 {
-                                    throw new SkipException("Test skipped, because current env should not be GCP.");
+                                    Assert.Skip("Test skipped, because current env should not be GCP.");
                                 }
                             }
                             else
@@ -2394,7 +2393,7 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
                         {
                             if (rangeType == "DoubleNoPrecision" || rangeType == "DecimalNoPrecision")
                             {
-                                throw new SkipException("Skip it based on spec requirement.");
+                                Assert.Skip("Skip it based on spec requirement.");
                             }
 
                             var exception = Record.Exception(() => ExplicitEncrypt(clientEncryption, encryptOptions, value201, async));
@@ -2405,7 +2404,7 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
                         {
                             if (rangeType == "DoubleNoPrecision" || rangeType == "DecimalNoPrecision")
                             {
-                                throw new SkipException("Skip it based on spec requirement.");
+                                Assert.Skip("Skip it based on spec requirement.");
                             }
 
                             var exception = Record.Exception(() =>
@@ -2422,7 +2421,7 @@ namespace MongoDB.Driver.Tests.Specifications.client_side_encryption.prose_tests
                         {
                             if (rangeType == "DoubleNoPrecision" || rangeType == "DoublePrecision" || rangeType == "DecimalPrecision" || rangeType == "DecimalNoPrecision")
                             {
-                                throw new SkipException("Skip it based on spec requirement.");
+                                Assert.Skip("Skip it based on spec requirement.");
                             }
 
                             var exception = Record.Exception(() =>

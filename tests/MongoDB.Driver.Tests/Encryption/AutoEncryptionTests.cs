@@ -28,7 +28,6 @@ using MongoDB.Driver.TestHelpers;
 using MongoDB.Driver.Tests.Specifications.client_side_encryption;
 using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Tests.Encryption
 {

@@ -1,4 +1,4 @@
-﻿/* Copyright 2010-present MongoDB Inc.
+/* Copyright 2010-present MongoDB Inc.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,26 +15,25 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Reflection;
-using Xunit.Abstractions;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit.Sdk;
+using Xunit.v3;
 
 namespace MongoDB.TestHelpers.XunitExtensions.TimeoutEnforcing
 {
     [DebuggerStepThrough]
-    internal sealed class TimeoutEnforcingXunitTestFrameworkExecutor : XunitTestFrameworkExecutor
+    internal sealed class TimeoutEnforcingXunitTestFrameworkExecutor(IXunitTestAssembly testAssembly)
+        : XunitTestFrameworkExecutor(testAssembly)
     {
-        public TimeoutEnforcingXunitTestFrameworkExecutor(AssemblyName assemblyName, ISourceInformationProvider sourceInformationProvider, IMessageSink diagnosticMessageSink)
-            : base(assemblyName, sourceInformationProvider, diagnosticMessageSink)
+        public override async ValueTask RunTestCases(
+            IReadOnlyCollection<IXunitTestCase> testCases,
+            IMessageSink executionMessageSink,
+            ITestFrameworkExecutionOptions executionOptions,
+            CancellationToken cancellationToken)
         {
-        }
-
-        protected override async void RunTestCases(IEnumerable<IXunitTestCase> testCases, IMessageSink executionMessageSink, ITestFrameworkExecutionOptions executionOptions)
-        {
-            using (var assemblyRunner = new TimeoutEnforcingXunitTestAssemblyRunner(TestAssembly, testCases, DiagnosticMessageSink, executionMessageSink, executionOptions))
-            {
-                await assemblyRunner.RunAsync();
-            }
+            await TimeoutEnforcingXunitTestAssemblyRunner.Instance.Run(
+                TestAssembly, testCases, executionMessageSink, executionOptions, cancellationToken);
         }
     }
 }

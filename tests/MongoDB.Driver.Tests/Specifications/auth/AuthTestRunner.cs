@@ -28,7 +28,6 @@ using MongoDB.Driver.TestHelpers.Core;
 using MongoDB.TestHelpers.XunitExtensions;
 using Moq;
 using Xunit;
-using Xunit.Sdk;
 using Reflector = MongoDB.Bson.TestHelpers.Reflector;
 
 namespace MongoDB.Driver.Tests.Specifications.auth
@@ -50,7 +49,7 @@ namespace MongoDB.Driver.Tests.Specifications.auth
             if (connectionString.Contains("CANONICALIZE_HOST_NAME"))
             {
                 // have to skip CANONICALIZE_HOST_NAME tests. Not implemented yet. See: https://jira.mongodb.org/browse/CSHARP-3796
-                throw new SkipException("Test skipped because CANONICALIZE_HOST_NAME is not supported.");
+                Assert.Skip("Test skipped because CANONICALIZE_HOST_NAME is not supported.");
             }
 
             try

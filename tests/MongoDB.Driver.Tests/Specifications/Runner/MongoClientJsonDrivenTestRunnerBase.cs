@@ -33,8 +33,7 @@ using MongoDB.Driver.Core.TestHelpers.JsonDrivenTests;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Tests.JsonDrivenTests;
-using Xunit.Abstractions;
-using Xunit.Sdk;
+using Xunit;
 
 namespace MongoDB.Driver.Tests.Specifications.Runner
 {
@@ -558,7 +557,7 @@ namespace MongoDB.Driver.Tests.Specifications.Runner
 
             if (test.Contains(SkipReasonKey))
             {
-                throw new SkipException(test[SkipReasonKey].AsString);
+                Assert.Skip(test[SkipReasonKey].AsString);
             }
 
             Ensure.IsNotNullOrEmpty(DatabaseNameKey, nameof(DatabaseNameKey));

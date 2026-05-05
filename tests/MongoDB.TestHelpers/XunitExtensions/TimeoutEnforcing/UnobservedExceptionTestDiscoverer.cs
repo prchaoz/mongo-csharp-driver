@@ -1,4 +1,4 @@
-﻿/* Copyright 2010-present MongoDB Inc.
+/* Copyright 2010-present MongoDB Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,48 +13,69 @@
  * limitations under the License.
  */
 
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Sdk;
+using Xunit.v3;
 
 namespace MongoDB.TestHelpers.XunitExtensions.TimeoutEnforcing;
 
-[XunitTestCaseDiscoverer("MongoDB.TestHelpers.XunitExtensions.TimeoutEnforcing.UnobservedExceptionTestDiscoverer", "MongoDB.TestHelpers")]
-public class UnobservedExceptionTrackingFactAttribute: FactAttribute
-{}
+[XunitTestCaseDiscoverer(typeof(UnobservedExceptionTestDiscoverer))]
+public class UnobservedExceptionTrackingFactAttribute : FactAttribute
+{
+}
 
 public class UnobservedExceptionTestDiscoverer : IXunitTestCaseDiscoverer
 {
     private static readonly ConcurrentBag<string> __unobservedExceptions = new();
 
-    private readonly IMessageSink _diagnosticsMessageSink;
-
-    public UnobservedExceptionTestDiscoverer(IMessageSink diagnosticsMessageSink)
+    public UnobservedExceptionTestDiscoverer()
     {
-        _diagnosticsMessageSink = diagnosticsMessageSink;
         TaskScheduler.UnobservedTaskException += UnobservedTaskExceptionEventHandler;
     }
 
     public static IReadOnlyCollection<string> UnobservedExceptions => __unobservedExceptions;
 
-    public IEnumerable<IXunitTestCase> Discover(ITestFrameworkDiscoveryOptions discoveryOptions, ITestMethod testMethod, IAttributeInfo factAttribute)
+    public ValueTask<IReadOnlyCollection<IXunitTestCase>> Discover(
+        ITestFrameworkDiscoveryOptions discoveryOptions,
+        IXunitTestMethod testMethod,
+        IFactAttribute factAttribute)
     {
-        var testCase = new XunitTestCase(_diagnosticsMessageSink, TestMethodDisplay.Method, TestMethodDisplayOptions.All, testMethod);
-        if (!testCase.Traits.TryGetValue("Category", out var categories))
-        {
-            categories = new List<string>();
-            testCase.Traits.Add("Category", categories);
-        }
+        var details = TestIntrospectionHelper.GetTestCaseDetails(discoveryOptions, testMethod, factAttribute, label: null);
 
+        var traits = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+        foreach (var kvp in testMethod.Traits)
+        {
+            traits[kvp.Key] = new HashSet<string>(kvp.Value);
+        }
+        if (!traits.TryGetValue("Category", out var categories))
+        {
+            categories = new HashSet<string>();
+            traits["Category"] = categories;
+        }
         categories.Add("UnobservedExceptionTracking");
 
-        return [testCase];
+        var testCase = new XunitTestCase(
+            details.ResolvedTestMethod,
+            details.TestCaseDisplayName,
+            details.UniqueID,
+            details.Explicit,
+            details.SkipExceptions,
+            details.SkipReason,
+            details.SkipType,
+            details.SkipUnless,
+            details.SkipWhen,
+            traits,
+            sourceFilePath: details.SourceFilePath,
+            sourceLineNumber: details.SourceLineNumber,
+            timeout: details.Timeout);
+
+        return new ValueTask<IReadOnlyCollection<IXunitTestCase>>([testCase]);
     }
 
-    void UnobservedTaskExceptionEventHandler(object sender, UnobservedTaskExceptionEventArgs unobservedException) =>
+    private static void UnobservedTaskExceptionEventHandler(object sender, UnobservedTaskExceptionEventArgs unobservedException) =>
         __unobservedExceptions.Add(unobservedException.Exception.ToString());
 }
-

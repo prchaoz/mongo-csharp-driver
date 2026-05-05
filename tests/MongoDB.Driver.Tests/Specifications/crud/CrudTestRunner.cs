@@ -26,8 +26,6 @@ using MongoDB.Driver.Core.TestHelpers.JsonDrivenTests;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using Xunit;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace MongoDB.Driver.Tests.Specifications.crud
 {
@@ -320,13 +318,13 @@ namespace MongoDB.Driver.Tests.Specifications.crud
 
             if (test.TryGetValue("skipReason", out var reason))
             {
-                throw new SkipException(reason.AsString);
+                Assert.Skip(reason.AsString);
             }
 
             if (definition["_path"].AsString.EndsWith("aggregate-out-readConcern.json") &&
                 test["description"].AsString == "invalid readConcern with out stage")
             {
-                throw new SkipException("The C# driver does not support invalid read concerns.");
+                Assert.Skip("The C# driver does not support invalid read concerns.");
             }
         }
 

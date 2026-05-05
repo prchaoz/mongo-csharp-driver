@@ -2,6 +2,7 @@
   <Import Project="..\BuildProps\Tests.Build.props" />
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <CodeAnalysisRuleSet>..\..\MongoDBTest.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
@@ -16,11 +17,6 @@
       1701;1702; <!--https://github.com/dotnet/roslyn/issues/19640-->
     </NoWarn>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\MongoDB.Bson\MongoDB.Bson.csproj" />

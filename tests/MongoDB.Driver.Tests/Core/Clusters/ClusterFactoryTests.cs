@@ -22,7 +22,6 @@ using MongoDB.Driver.Core.Servers;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using Moq;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Core.Clusters
 {

@@ -29,7 +29,6 @@ using MongoDB.Driver.Core.Servers;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Tests.Specifications.server_discovery_and_monitoring.prose_tests
 {

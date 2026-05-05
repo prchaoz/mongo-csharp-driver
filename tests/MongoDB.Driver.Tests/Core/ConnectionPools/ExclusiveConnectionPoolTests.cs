@@ -33,7 +33,6 @@ using MongoDB.Driver.Core.TestHelpers;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using Moq;
 using Xunit;
-using Xunit.Abstractions;
 using static MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool;
 
 namespace MongoDB.Driver.Core.ConnectionPools

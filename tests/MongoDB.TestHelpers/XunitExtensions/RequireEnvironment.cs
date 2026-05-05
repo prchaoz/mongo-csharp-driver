@@ -39,7 +39,7 @@ namespace MongoDB.TestHelpers.XunitExtensions
             {
                 return this;
             }
-            throw new SkipException($"Test skipped because environment variable '{name}' {(actualIsDefined ? "is" : "is not")} defined.");
+            throw SkipException.ForSkip($"Test skipped because environment variable '{name}' {(actualIsDefined ? "is" : "is not")} defined.");
         }
 
         public RequireEnvironment EnvironmentVariable(string name, params string[] matchValues)
@@ -47,13 +47,13 @@ namespace MongoDB.TestHelpers.XunitExtensions
             var actualValue = Environment.GetEnvironmentVariable(name);
             if (string.IsNullOrEmpty(actualValue))
             {
-                throw new SkipException($"Test skipped because environment variable '{name}' is not defined.");
+                throw SkipException.ForSkip($"Test skipped because environment variable '{name}' is not defined.");
             }
             if (matchValues.Contains(actualValue))
             {
                 return this;
             }
-            throw new SkipException($"Test skipped because environment variable '{name}'={actualValue} does not satisfy expected values.");
+            throw SkipException.ForSkip($"Test skipped because environment variable '{name}'={actualValue} does not satisfy expected values.");
         }
 
         public RequireEnvironment ProcessStarted(string processName)
@@ -62,7 +62,7 @@ namespace MongoDB.TestHelpers.XunitExtensions
             {
                 return this;
             }
-            throw new SkipException($"Test skipped because an OS process {processName} has not been detected.");
+            throw SkipException.ForSkip($"Test skipped because an OS process {processName} has not been detected.");
         }
 
         public RequireEnvironment HostReachable(DnsEndPoint endPoint)
@@ -71,7 +71,7 @@ namespace MongoDB.TestHelpers.XunitExtensions
             {
                 return this;
             }
-            throw new SkipException($"Test skipped because expected server {endPoint} is not reachable.");
+            throw SkipException.ForSkip($"Test skipped because expected server {endPoint} is not reachable.");
 
             bool IsReachable()
             {

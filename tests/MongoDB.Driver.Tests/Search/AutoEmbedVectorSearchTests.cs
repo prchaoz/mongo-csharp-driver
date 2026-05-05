@@ -23,8 +23,6 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using Xunit;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace MongoDB.Driver.Tests.Search;
 
@@ -82,7 +80,7 @@ public class AutoEmbedVectorSearchTests : LoggableTestClass
         }
     }
 
-    private void SkipTests() => throw new SkipException("Test skipped because of CSHARP-5840.");
+    private void SkipTests() => Assert.Skip("Test skipped because of CSHARP-5840.");
 
     private bool TryGetIndex<TDocument>(
         IMongoCollection<TDocument> collection, string indexName, out BsonDocument indexDefinition)

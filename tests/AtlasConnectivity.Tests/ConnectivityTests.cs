@@ -19,7 +19,6 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace AtlasConnectivity.Tests
 {
@@ -54,13 +53,13 @@ namespace AtlasConnectivity.Tests
                 // test that a command that doesn't require auth completes normally
                 var adminDatabase = client.GetDatabase("admin");
                 var pingCommand = new BsonDocument("ping", 1);
-                var pingResult = adminDatabase.RunCommand<BsonDocument>(pingCommand);
+                var pingResult = adminDatabase.RunCommand<BsonDocument>(pingCommand, cancellationToken: TestContext.Current.CancellationToken);
 
                 // test that a command that does require auth completes normally
                 var database = client.GetDatabase("test");
                 var collection = database.GetCollection<BsonDocument>("test");
                 var emptyFilter = Builders<BsonDocument>.Filter.Empty;
-                var count = collection.CountDocuments(emptyFilter);
+                var count = collection.CountDocuments(emptyFilter, cancellationToken: TestContext.Current.CancellationToken);
             }
         }
 

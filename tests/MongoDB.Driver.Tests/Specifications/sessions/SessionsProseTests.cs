@@ -30,7 +30,6 @@ using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Encryption;
 using MongoDB.Driver.TestHelpers;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Tests.Specifications.sessions
 {

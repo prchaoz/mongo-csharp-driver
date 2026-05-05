@@ -23,8 +23,6 @@ using MongoDB.Bson;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using MongoDB.TestHelpers.XunitExtensions;
 using Xunit;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace MongoDB.Driver.Tests.Search
 {
@@ -896,7 +894,7 @@ namespace MongoDB.Driver.Tests.Search
             return (T)result;
         }
 
-        private void SkipTests() => throw new SkipException(
+        private void SkipTests() => Assert.Skip(
             "Test skipped because they currently only work against Atlas Local or Community. See CSHARP-5840.");
     }
 }

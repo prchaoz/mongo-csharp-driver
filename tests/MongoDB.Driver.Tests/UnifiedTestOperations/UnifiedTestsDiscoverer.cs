@@ -1,4 +1,4 @@
-﻿/* Copyright 2010-present MongoDB Inc.
+/* Copyright 2010-present MongoDB Inc.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,68 +13,84 @@
 * limitations under the License.
 */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.TestHelpers.JsonDrivenTests;
 using MongoDB.Driver;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Sdk;
+using Xunit.v3;
 
 namespace MongoDB.Driver.Tests.UnifiedTestOperations
 {
-    public sealed class UnifiedTestsDiscoverer(IMessageSink messageSink) : IXunitTestCaseDiscoverer
+    public sealed class UnifiedTestsDiscoverer : IXunitTestCaseDiscoverer
     {
         private const string SpecPathPrefix = "MongoDB.Driver.Tests.Specifications";
 
-        private readonly IMessageSink _messageSink = messageSink;
-
-        public IEnumerable<IXunitTestCase> Discover(
+        public ValueTask<IReadOnlyCollection<IXunitTestCase>> Discover(
             ITestFrameworkDiscoveryOptions discoveryOptions,
-            ITestMethod testMethod,
-            IAttributeInfo factAttribute)
+            IXunitTestMethod testMethod,
+            IFactAttribute factAttribute)
         {
-            var specPath = factAttribute.GetNamedArgument<string>(nameof(UnifiedTestsTheoryAttribute.Path));
-            var skipTestsProvider = factAttribute.GetNamedArgument<string>(nameof(UnifiedTestsTheoryAttribute.SkippedTestsProvider));
-            var skipFilesProvider = factAttribute.GetNamedArgument<string>(nameof(UnifiedTestsTheoryAttribute.SkippedFilesProvider));
-            var testsToSkip = GetHashSetMember(testMethod.TestClass.Class, skipTestsProvider);
-            var filesToSkip = GetHashSetMember(testMethod.TestClass.Class, skipFilesProvider);
+            var theoryAttribute = (UnifiedTestsTheoryAttribute)factAttribute;
+            var testClass = testMethod.TestClass.Class;
+            var testsToSkip = GetHashSetMember(testClass, theoryAttribute.SkippedTestsProvider);
+            var filesToSkip = GetHashSetMember(testClass, theoryAttribute.SkippedFilesProvider);
 
-            var testsFactory = new UnifiedTestCaseFactory(specPath, testsToSkip, filesToSkip);
+            var testsFactory = new UnifiedTestCaseFactory(theoryAttribute.Path, testsToSkip, filesToSkip);
 
+            var testCases = new List<IXunitTestCase>();
             foreach (var testCaseArguments in testsFactory)
             {
-                var jsonTestCase = testCaseArguments[0] as JsonDrivenTestCase;
+                var jsonTestCase = (JsonDrivenTestCase)testCaseArguments[0];
 
-                var testCase = new XunitTestCase(
-                    _messageSink,
-                    TestMethodDisplay.ClassAndMethod,
-                    TestMethodDisplayOptions.None,
+                var details = TestIntrospectionHelper.GetTestCaseDetails(
+                    discoveryOptions,
                     testMethod,
-                    [jsonTestCase]);
+                    factAttribute,
+                    testMethodArguments: [jsonTestCase],
+                    label: null);
 
-                testCase.SourceInformation = new SourceInformation()
+                var traits = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+                foreach (var kvp in testMethod.Traits)
                 {
-                    FileName = jsonTestCase.Shared["_localPath"].AsString,
-                    LineNumber = jsonTestCase.Test["_lineNumber"].AsInt32
-                };
+                    traits[kvp.Key] = new HashSet<string>(kvp.Value);
+                }
 
-                yield return testCase;
+                testCases.Add(new XunitTestCase(
+                    details.ResolvedTestMethod,
+                    details.TestCaseDisplayName,
+                    details.UniqueID,
+                    details.Explicit,
+                    details.SkipExceptions,
+                    details.SkipReason,
+                    details.SkipType,
+                    details.SkipUnless,
+                    details.SkipWhen,
+                    traits,
+                    testMethodArguments: [jsonTestCase],
+                    sourceFilePath: jsonTestCase.Shared["_localPath"].AsString,
+                    sourceLineNumber: jsonTestCase.Test["_lineNumber"].AsInt32,
+                    timeout: details.Timeout));
             }
+
+            return new ValueTask<IReadOnlyCollection<IXunitTestCase>>(testCases);
         }
 
-        private HashSet<string> GetHashSetMember(ITypeInfo testClassName, string memberName)
+        private static HashSet<string> GetHashSetMember(Type testClass, string memberName)
         {
-            if (memberName == null || testClassName is not ReflectionTypeInfo reflectionTypeInfo)
+            if (memberName == null || testClass == null)
             {
                 return null;
             }
 
-            var provider = reflectionTypeInfo.Type.GetField(memberName, BindingFlags.NonPublic | BindingFlags.Static);
-            return provider.GetValue(null) as HashSet<string>;
+            var provider = testClass.GetField(memberName, BindingFlags.NonPublic | BindingFlags.Static);
+            return provider?.GetValue(null) as HashSet<string>;
         }
 
         private sealed class UnifiedTestCaseFactory(string path, HashSet<string> testsToSkip, HashSet<string> filesToSkip) : JsonDrivenTestCaseFactory
@@ -138,8 +154,12 @@ namespace MongoDB.Driver.Tests.UnifiedTestOperations
         }
     }
 
-    [XunitTestCaseDiscoverer("MongoDB.Driver.Tests.UnifiedTestOperations.UnifiedTestsDiscoverer", "MongoDB.Driver.Tests")]
-    public class UnifiedTestsTheoryAttribute(string path) : FactAttribute
+    [XunitTestCaseDiscoverer(typeof(UnifiedTestsDiscoverer))]
+    public class UnifiedTestsTheoryAttribute(
+        string path,
+        [System.Runtime.CompilerServices.CallerFilePath] string sourceFilePath = null,
+        [System.Runtime.CompilerServices.CallerLineNumber] int sourceLineNumber = -1)
+        : FactAttribute(sourceFilePath, sourceLineNumber)
     {
         public string Path { get; set; } = path;
         public string SkippedTestsProvider { get; set; } = "__ignoredTests";

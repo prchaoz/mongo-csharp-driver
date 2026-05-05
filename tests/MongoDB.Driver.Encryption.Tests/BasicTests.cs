@@ -23,7 +23,6 @@ using System.Reflection;
 using Xunit;
 using System.Text;
 using FluentAssertions;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Encryption.Tests
 {

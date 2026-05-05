@@ -53,7 +53,7 @@ namespace MongoDB.Driver.Core.Connections
 
         private BinaryConnection _subject;
 
-        public BinaryConnectionTests(Xunit.Abstractions.ITestOutputHelper output) : base(output)
+        public BinaryConnectionTests(Xunit.ITestOutputHelper output) : base(output)
         {
             _capturedEvents = new EventCapturer();
             _mockStreamFactory = new Mock<IStreamFactory>();

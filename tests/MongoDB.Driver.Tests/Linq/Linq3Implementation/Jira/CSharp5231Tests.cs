@@ -17,7 +17,6 @@ using System.Linq;
 using FluentAssertions;
 using MongoDB.Driver.Core.Misc;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Tests.Linq.Linq3Implementation.Jira
 {

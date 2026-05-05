@@ -2,6 +2,7 @@
   <Import Project="..\BuildProps\Tests.Build.props" />
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <CodeAnalysisRuleSet>..\..\MongoDBTest.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
@@ -24,14 +25,12 @@
       xUnit1026; <!--Theory methods should use all of their parameters (https://xunit.github.io/xunit.analyzers/rules/xUnit1026.html)-->
       xUnit2003; <!--Do not use equality check to test for null value (https://xunit.github.io/xunit.analyzers/rules/xUnit2003.html-->
       xUnit2004; <!--Do not use equality check to test for boolean conditions (https://xunit.github.io/xunit.analyzers/rules/xUnit2004.html)-->
-      xUnit2013 <!--Do not use equality check to check for collection size. (https://xunit.github.io/xunit.analyzers/rules/xUnit2013.html)-->
+      xUnit2013; <!--Do not use equality check to check for collection size. (https://xunit.github.io/xunit.analyzers/rules/xUnit2013.html)-->
+      xUnit1030; <!--Test methods should not call ConfigureAwait (https://xunit.net/xunit.analyzers/rules/xUnit1030)-->
+      xUnit1031; <!--Test methods should not use blocking task operations (https://xunit.net/xunit.analyzers/rules/xUnit1031)-->
+      xUnit1051 <!--Calls to methods which accept CancellationToken should use TestContext.Current.CancellationToken (https://xunit.net/xunit.analyzers/rules/xUnit1051)-->
     </NoWarn>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\MongoDB.Bson\MongoDB.Bson.csproj" />

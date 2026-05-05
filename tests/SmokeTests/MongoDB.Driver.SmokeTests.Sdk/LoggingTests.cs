@@ -19,7 +19,6 @@ using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver.Core.Configuration;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.SmokeTests.Sdk
 {

@@ -34,7 +34,6 @@ using MongoDB.Driver.Core.WireProtocol.Messages;
 using MongoDB.Driver.TestHelpers.Core;
 using Moq;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Core.Servers
 {

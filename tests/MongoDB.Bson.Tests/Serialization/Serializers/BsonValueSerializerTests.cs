@@ -720,7 +720,7 @@ namespace MongoDB.Bson.Tests.Serialization
             idGenerator.Should().BeNull();
         }
 
-        public static IEnumerable<object[]> GetDocumentId_should_return_expected_result_when_id_is_binary_data_guid_MemberData()
+        public static TheoryData<GuidRepresentation> GetDocumentId_should_return_expected_result_when_id_is_binary_data_guid_MemberData()
         {
             var data = new TheoryData<GuidRepresentation>();
 

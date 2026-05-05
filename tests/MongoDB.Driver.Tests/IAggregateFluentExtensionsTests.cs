@@ -49,7 +49,7 @@ namespace MongoDB.Driver.Tests
         [Theory]
         [CombinatorialData]
         public void First_should_add_limit_and_call_ToCursor(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSubject1 = new Mock<IAggregateFluent<Person>>();
             var mockSubject2 = new Mock<IAggregateFluent<Person>>();
@@ -110,7 +110,7 @@ namespace MongoDB.Driver.Tests
         [Theory]
         [CombinatorialData]
         public void FirstOrDefault_should_add_limit_and_call_ToCursor(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSubject1 = new Mock<IAggregateFluent<Person>>();
             var mockSubject2 = new Mock<IAggregateFluent<Person>>();
@@ -332,7 +332,7 @@ namespace MongoDB.Driver.Tests
         [Theory]
         [CombinatorialData]
         public void Single_should_add_limit_and_call_ToCursor(
-           [Values(false, true)] bool async)
+           [CombinatorialValues(false, true)] bool async)
         {
             var mockSubject1 = new Mock<IAggregateFluent<Person>>();
             var mockSubject2 = new Mock<IAggregateFluent<Person>>();
@@ -392,7 +392,7 @@ namespace MongoDB.Driver.Tests
         [Theory]
         [CombinatorialData]
         public void SingleOrDefault_should_add_limit_and_call_ToCursor(
-            [Values(false, true)] bool async)
+            [CombinatorialValues(false, true)] bool async)
         {
             var mockSubject1 = new Mock<IAggregateFluent<Person>>();
             var mockSubject2 = new Mock<IAggregateFluent<Person>>();

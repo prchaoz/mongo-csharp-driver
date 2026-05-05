@@ -95,7 +95,7 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
             result.Should().Be(representation);
         }
 
-        public static IEnumerable<object[]> Deserialize_should_return_expected_result_when_representation_is_binary_MemberData()
+        public static TheoryData<GuidRepresentation> Deserialize_should_return_expected_result_when_representation_is_binary_MemberData()
         {
             var data = new TheoryData<GuidRepresentation>();
 
@@ -198,7 +198,7 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
             exception.Should().BeOfType<BsonSerializationException>();
         }
 
-        public static IEnumerable<object[]> Deserialize_should_throw_when_representation_is_binary_and_sub_type_does_not_match_MemberData()
+        public static TheoryData<GuidRepresentation, BsonBinarySubType> Deserialize_should_throw_when_representation_is_binary_and_sub_type_does_not_match_MemberData()
         {
             var data = new TheoryData<GuidRepresentation, BsonBinarySubType>();
 
@@ -267,7 +267,7 @@ namespace MongoDB.Bson.Tests.Serialization.Serializers
             exception.Should().BeOfType<FormatException>();
         }
 
-        public static IEnumerable<object[]> Serialize_should_write_expected_bytes_MemberData()
+        public static TheoryData<GuidRepresentation, BsonBinarySubType> Serialize_should_write_expected_bytes_MemberData()
         {
             var data = new TheoryData<GuidRepresentation, BsonBinarySubType>();
 

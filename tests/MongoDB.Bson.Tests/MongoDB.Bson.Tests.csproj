@@ -2,6 +2,7 @@
   <Import Project="..\BuildProps\Tests.Build.props" />
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <CodeAnalysisRuleSet>..\..\MongoDBLegacyTest.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
@@ -23,17 +24,14 @@
       xUnit2009; <!--Do not use boolean check to check for substrings (https://xunit.github.io/xunit.analyzers/rules/xUnit2009.html)-->
       xUnit2012; <!--Do not use Enumerable.Any() to check if a value exists in a collection (https://xunit.github.io/xunit.analyzers/rules/xUnit2012.html)-->
       xUnit2013; <!--Do not use equality check to check for collection size. (https://xunit.github.io/xunit.analyzers/rules/xUnit2013.html)-->
-      xUnit2017 <!--Do not use Contains() to check if a value exists in a collection (https://xunit.github.io/xunit.analyzers/rules/xUnit2017.html)-->
+      xUnit2017; <!--Do not use Contains() to check if a value exists in a collection (https://xunit.github.io/xunit.analyzers/rules/xUnit2017.html)-->
+      xUnit1031; <!--Test methods should not use blocking task operations (https://xunit.net/xunit.analyzers/rules/xUnit1031)-->
+      xUnit1051 <!--Calls to methods which accept CancellationToken should use TestContext.Current.CancellationToken (https://xunit.net/xunit.analyzers/rules/xUnit1051)-->
     </NoWarn>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
   </ItemGroup>
 
   <ItemGroup>

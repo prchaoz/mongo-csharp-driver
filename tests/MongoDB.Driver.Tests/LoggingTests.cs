@@ -22,7 +22,6 @@ using MongoDB.Driver.Core.Configuration;
 using MongoDB.Driver.Core.Logging;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Tests
 {

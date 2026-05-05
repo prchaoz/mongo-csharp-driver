@@ -1,4 +1,4 @@
-﻿/* Copyright 2010-present MongoDB Inc.
+/* Copyright 2010-present MongoDB Inc.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,71 +13,69 @@
 * limitations under the License.
 */
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Xunit.Abstractions;
 using Xunit.Sdk;
+using Xunit.v3;
 
 namespace MongoDB.TestHelpers.XunitExtensions.TimeoutEnforcing
 {
     [DebuggerStepThrough]
-    internal sealed class TimeoutEnforcingXunitTestAssemblyRunner : XunitTestAssemblyRunner
+    internal sealed class TimeoutEnforcingXunitTestAssemblyRunner :
+        XunitTestAssemblyRunnerBase<XunitTestAssemblyRunnerContext, IXunitTestAssembly, IXunitTestCollection, IXunitTestCase>
     {
-        private readonly IXunitTestCase _unobservedExceptionTrackingTestCase;
+        public static TimeoutEnforcingXunitTestAssemblyRunner Instance { get; } = new();
 
-        public TimeoutEnforcingXunitTestAssemblyRunner(
-            ITestAssembly testAssembly,
-            IEnumerable<IXunitTestCase> testCases,
-            IMessageSink diagnosticMessageSink,
+        private TimeoutEnforcingXunitTestAssemblyRunner() { }
+
+        public async ValueTask<RunSummary> Run(
+            IXunitTestAssembly testAssembly,
+            IReadOnlyCollection<IXunitTestCase> testCases,
             IMessageSink executionMessageSink,
-            ITestFrameworkExecutionOptions executionOptions)
-            : base(
-                testAssembly,
-                testCases.Where(t => !IsUnobservedExceptionTrackingTestCase(t)),
-                diagnosticMessageSink,
-                executionMessageSink,
-                executionOptions)
+            ITestFrameworkExecutionOptions executionOptions,
+            CancellationToken cancellationToken)
         {
-            _unobservedExceptionTrackingTestCase = testCases.FirstOrDefault(IsUnobservedExceptionTrackingTestCase);
-        }
+            var unobservedExceptionTrackingTestCase = testCases.FirstOrDefault(IsUnobservedExceptionTrackingTestCase);
+            var regularTestCases = unobservedExceptionTrackingTestCase != null
+                ? testCases.Where(t => !IsUnobservedExceptionTrackingTestCase(t)).ToArray()
+                : testCases;
 
-        protected override Task<RunSummary> RunTestCollectionAsync(
-            IMessageBus messageBus,
-            ITestCollection testCollection,
-            IEnumerable<IXunitTestCase> testCases,
-            CancellationTokenSource cancellationTokenSource)
-        {
-            return new TimeoutEnforcingXunitTestCollectionRunner(testCollection, testCases, DiagnosticMessageSink, messageBus, TestCaseOrderer, new ExceptionAggregator(Aggregator), cancellationTokenSource).RunAsync();
-        }
+            await using var ctxt = new XunitTestAssemblyRunnerContext(
+                testAssembly, regularTestCases, executionMessageSink, executionOptions, cancellationToken);
+            await ctxt.InitializeAsync();
 
-        protected override async Task<RunSummary> RunTestCollectionsAsync(IMessageBus messageBus, CancellationTokenSource cancellationTokenSource)
-        {
-            var baseSummary = await base.RunTestCollectionsAsync(messageBus, cancellationTokenSource);
+            var summary = await Run(ctxt);
 
-            if (_unobservedExceptionTrackingTestCase == null)
+            if (unobservedExceptionTrackingTestCase != null)
             {
-                return baseSummary;
+                await using var trailingCtxt = new XunitTestAssemblyRunnerContext(
+                    testAssembly, [unobservedExceptionTrackingTestCase], executionMessageSink, executionOptions, cancellationToken);
+                await trailingCtxt.InitializeAsync();
+                summary.Aggregate(await Run(trailingCtxt));
             }
 
-            var unobservedExceptionTestCaseRunSummary = await RunTestCollectionAsync(
-                messageBus,
-                _unobservedExceptionTrackingTestCase.TestMethod.TestClass.TestCollection,
-                [_unobservedExceptionTrackingTestCase],
-                cancellationTokenSource);
-
-            return new RunSummary
-            {
-                Total = baseSummary.Total + unobservedExceptionTestCaseRunSummary.Total,
-                Failed = baseSummary.Failed + unobservedExceptionTestCaseRunSummary.Failed,
-                Skipped = baseSummary.Skipped + unobservedExceptionTestCaseRunSummary.Skipped,
-                Time = baseSummary.Time + unobservedExceptionTestCaseRunSummary.Time
-            };
+            return summary;
         }
 
-        private static bool IsUnobservedExceptionTrackingTestCase(IXunitTestCase testCase)
-            => testCase.Traits.TryGetValue("Category", out var categories) && categories.Contains("UnobservedExceptionTracking");
+        protected override ValueTask<RunSummary> RunTestCollection(
+            XunitTestAssemblyRunnerContext ctxt,
+            IXunitTestCollection testCollection,
+            IReadOnlyCollection<IXunitTestCase> testCases) =>
+            TimeoutEnforcingXunitTestCollectionRunner.Instance.Run(
+                testCollection,
+                testCases,
+                ctxt.ExplicitOption,
+                ctxt.MessageBus,
+                ctxt.AssemblyTestCaseOrderer ?? DefaultTestCaseOrderer.Instance,
+                ctxt.Aggregator.Clone(),
+                ctxt.CancellationTokenSource,
+                ctxt.AssemblyFixtureMappings);
+
+        private static bool IsUnobservedExceptionTrackingTestCase(IXunitTestCase testCase) =>
+            testCase.Traits.TryGetValue("Category", out var categories) && categories.Contains("UnobservedExceptionTracking");
     }
 }

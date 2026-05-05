@@ -1,4 +1,4 @@
-﻿/* Copyright 2010-present MongoDB Inc.
+/* Copyright 2010-present MongoDB Inc.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,24 +13,52 @@
 * limitations under the License.
 */
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Xunit.Abstractions;
 using Xunit.Sdk;
+using Xunit.v3;
 
 namespace MongoDB.TestHelpers.XunitExtensions.TimeoutEnforcing
 {
     [DebuggerStepThrough]
-    internal sealed class TimeoutEnforcingXunitTestClassRunner : XunitTestClassRunner
+    internal sealed class TimeoutEnforcingXunitTestClassRunner :
+        XunitTestClassRunnerBase<XunitTestClassRunnerContext, IXunitTestClass, IXunitTestMethod, IXunitTestCase>
     {
-        public TimeoutEnforcingXunitTestClassRunner(ITestClass testClass, IReflectionTypeInfo @class, IEnumerable<IXunitTestCase> testCases, IMessageSink diagnosticMessageSink, IMessageBus messageBus, ITestCaseOrderer testCaseOrderer, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource, IDictionary<Type, object> collectionFixtureMappings) : base(testClass, @class, testCases, diagnosticMessageSink, messageBus, testCaseOrderer, aggregator, cancellationTokenSource, collectionFixtureMappings)
+        public static TimeoutEnforcingXunitTestClassRunner Instance { get; } = new();
+
+        private TimeoutEnforcingXunitTestClassRunner() { }
+
+        public async ValueTask<RunSummary> Run(
+            IXunitTestClass testClass,
+            IReadOnlyCollection<IXunitTestCase> testCases,
+            ExplicitOption explicitOption,
+            IMessageBus messageBus,
+            ITestCaseOrderer testCaseOrderer,
+            ExceptionAggregator aggregator,
+            CancellationTokenSource cancellationTokenSource,
+            FixtureMappingManager collectionFixtureMappings)
         {
+            await using var ctxt = new XunitTestClassRunnerContext(
+                testClass, testCases, explicitOption, messageBus, testCaseOrderer,
+                aggregator, cancellationTokenSource, collectionFixtureMappings);
+            await ctxt.InitializeAsync();
+            return await ctxt.Aggregator.RunAsync(() => Run(ctxt), default);
         }
 
-        protected override Task<RunSummary> RunTestMethodAsync(ITestMethod testMethod, IReflectionMethodInfo method, IEnumerable<IXunitTestCase> testCases, object[] constructorArguments) =>
-            new TimeoutEnforcingXunitTestMethodRunner(testMethod, Class, method, testCases, DiagnosticMessageSink, MessageBus, new ExceptionAggregator(Aggregator), CancellationTokenSource, constructorArguments).RunAsync();
+        protected override ValueTask<RunSummary> RunTestMethod(
+            XunitTestClassRunnerContext ctxt,
+            IXunitTestMethod testMethod,
+            IReadOnlyCollection<IXunitTestCase> testCases,
+            object[] constructorArguments) =>
+            TimeoutEnforcingXunitTestMethodRunner.Instance.Run(
+                testMethod,
+                testCases,
+                ctxt.ExplicitOption,
+                ctxt.MessageBus,
+                ctxt.Aggregator.Clone(),
+                ctxt.CancellationTokenSource,
+                constructorArguments);
     }
 }

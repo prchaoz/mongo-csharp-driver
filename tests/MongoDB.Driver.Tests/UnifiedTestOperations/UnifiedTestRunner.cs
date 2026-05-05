@@ -28,7 +28,7 @@ using MongoDB.Driver.Core.TestHelpers.Logging;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using MongoDB.Driver.Tests.UnifiedTestOperations.Matchers;
 using MongoDB.TestHelpers.XunitExtensions;
-using Xunit.Sdk;
+using Xunit;
 
 namespace MongoDB.Driver.Tests.UnifiedTestOperations
 {
@@ -124,7 +124,7 @@ namespace MongoDB.Driver.Tests.UnifiedTestOperations
             }
             if (skipReason != null)
             {
-                throw new SkipException($"Test skipped because '{skipReason}'.");
+                Assert.Skip($"Test skipped because '{skipReason}'.");
             }
 
             var lastKnownClusterTime = AddInitialData(DriverTestConfiguration.Client, initialData);

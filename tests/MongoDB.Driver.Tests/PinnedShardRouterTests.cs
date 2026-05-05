@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using FluentAssertions;
 using MongoDB.Bson;
 using MongoDB.Driver.Core;
@@ -26,7 +27,6 @@ using MongoDB.Driver.Core.Servers;
 using MongoDB.Driver.Core.TestHelpers.Logging;
 using MongoDB.Driver.Core.TestHelpers.XunitExtensions;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace MongoDB.Driver.Tests
 {
@@ -57,7 +57,7 @@ namespace MongoDB.Driver.Tests
         /// </summary>
         [Theory]
         [CombinatorialData]
-        public async void Test_Unpin_For_Next_Transaction([CombinatorialValues(false, true)] bool async)
+        public async Task Test_Unpin_For_Next_Transaction([CombinatorialValues(false, true)] bool async)
         {
             RequireServer
                 .Check()
@@ -117,7 +117,7 @@ namespace MongoDB.Driver.Tests
         /// </summary>
         [Theory]
         [CombinatorialData]
-        public async void Test_Unpin_For_Non_Transaction_Operation([CombinatorialValues(false, true)] bool async)
+        public async Task Test_Unpin_For_Non_Transaction_Operation([CombinatorialValues(false, true)] bool async)
         {
             RequireServer
                 .Check()
